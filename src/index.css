@@ -1,0 +1,71 @@
+
+/* =====================================
+   GLOBAL RESET
+===================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Inter", sans-serif;
+  color: #171717;
+
+  background-color: #fffdf9;
+  background-image:
+    radial-gradient(
+      ellipse at 82% 20%,
+      rgba(205, 171, 125, 0.30) 0%,
+      rgba(230, 207, 174, 0.20) 28%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse at 55% 65%,
+      rgba(248, 229, 197, 0.32) 0%,
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 5% 8%,
+      rgba(255, 255, 255, 0.98) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      115deg,
+      #fffefd 0%,
+      #fffaf2 48%,
+      #f5e8d6 100%
+    );
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  overflow-x: clip;
+}
+
+/* =====================================
+   REACT ROOT
+===================================== */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
