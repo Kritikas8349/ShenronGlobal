@@ -1,0 +1,270 @@
+.comex-page {
+  --cx-ink:#171717;
+  --cx-muted:#626b7a;
+  --cx-brown:#756b60;
+  --cx-gold:#b7832d;
+  --cx-line:rgba(142,105,51,.2);
+  --cx-cream:#fffaf2;
+  --cx-plum:#211d1b;
+  width:100%;
+  overflow:clip;
+  color:var(--cx-ink);
+  background:#fffdf9;
+  font-family:Inter,sans-serif;
+  line-height:1.6;
+}
+.comex-page *, .comex-page *::before, .comex-page *::after { box-sizing:border-box; }
+.comex-page a:focus-visible, .comex-page button:focus-visible { outline:2px solid #ae8249; outline-offset:4px; }
+.comex-page img { display:block; max-width:100%; }
+.comex-page .comex-eyebrow { display:inline-flex; align-items:center; gap:10px; color:#7c8290; font-size:10px; font-weight:700; letter-spacing:2.1px; line-height:1.5; text-transform:uppercase; }
+.comex-page .comex-eyebrow > i { width:25px; height:1px; background:#d9ae5e; }
+.comex-page .comex-eyebrow.is-light { color:#d4c39e; }
+
+/* Editorial hero: Home's warm palette with a COMEX-specific photograph. */
+.comex-page .comex-hero { position:relative; max-width:1500px; min-height:710px; margin:0 auto; padding:142px 5.2% 68px; display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); align-items:center; gap:clamp(38px,6vw,86px); isolation:isolate; }
+.comex-page .comex-hero::before { position:absolute; z-index:-2; inset:0; content:""; background:radial-gradient(ellipse at 85% 42%,rgba(216,178,112,.2),transparent 42%),linear-gradient(115deg,#fffefd 0%,#fffaf2 53%,#f5e8d6 100%); }
+.comex-page .comex-hero-copy { position:relative; z-index:2; max-width:620px; animation:cx-rise .7s .08s both; }
+.comex-page .comex-hero h1 { max-width:690px; margin:21px 0 14px; color:#101010; font-size:clamp(48px,6.1vw,78px); font-weight:800; line-height:1.035; letter-spacing:-3.7px; }
+.comex-page .comex-hero h1 span, .comex-page .comex-section-heading h2 span, .comex-page .comex-metal-copy h2 span, .comex-page .comex-analysis-copy h2 span, .comex-page .comex-faq-heading h2 span { color:#b7832d; background:linear-gradient(100deg,#98631c 0%,#d9ae5e 58%,#ae7928 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.comex-page .comex-hero-subtitle { margin:0 0 9px; color:#8b7759; font-size:clamp(15px,1.4vw,19px); font-weight:600; line-height:1.6; }
+.comex-page .comex-hero-description { max-width:570px; margin:0; color:var(--cx-muted); font-size:14px; line-height:1.9; }
+.comex-page .comex-hero-actions { margin-top:25px; display:flex; flex-wrap:wrap; gap:12px; }
+.comex-page .comex-button { min-height:48px; padding:0 23px; display:inline-flex; justify-content:center; align-items:center; gap:12px; border:1px solid transparent; border-radius:30px; color:#251b0c; background:linear-gradient(135deg,#f5d38a,#d9a640); box-shadow:0 8px 20px rgba(181,133,46,.18); font-size:12px; font-weight:700; text-decoration:none; transition:transform .25s ease,box-shadow .25s ease,background .25s ease; }
+.comex-page .comex-button svg { font-size:11px; transition:transform .25s ease; }
+.comex-page .comex-button:hover { transform:translateY(-3px); box-shadow:0 12px 25px rgba(181,133,46,.25); }
+.comex-page .comex-button:hover svg { transform:translateX(3px); }
+.comex-page .comex-button.is-secondary { border-color:#efcf91; color:#282828; background:rgba(255,255,255,.8); box-shadow:none; }
+.comex-page .comex-button.is-secondary:hover { background:#fff8e9; box-shadow:0 8px 20px rgba(181,133,46,.1); }
+.comex-page .comex-hero-note { margin:20px 0 0; display:flex; align-items:center; gap:8px; color:#817564; font-size:10px; line-height:1.7; }
+.comex-page .comex-hero-note svg { flex:none; color:#a77a3d; }
+.comex-page .comex-hero-art { position:relative; min-width:0; margin:0; aspect-ratio:1.12/1; overflow:hidden; border-radius:8px 110px 8px 8px; background:#201b14; box-shadow:0 26px 60px rgba(68,48,22,.19); animation:cx-image-arrive .9s .18s both; }
+.comex-page .comex-hero-art::after { position:absolute; inset:0; content:""; background:linear-gradient(180deg,rgba(17,14,10,.05) 35%,rgba(17,14,10,.72) 100%); pointer-events:none; }
+.comex-page .comex-hero-art img { width:100%; height:100%; object-fit:cover; object-position:center 53%; transition:transform .8s cubic-bezier(.2,.75,.25,1); }
+.comex-page .comex-hero-art:hover img { transform:scale(1.035); }
+.comex-page .comex-hero-art figcaption { position:absolute; z-index:1; right:24px; bottom:22px; left:25px; display:flex; justify-content:space-between; gap:15px; color:#f8ead0; font-size:8px; font-weight:700; letter-spacing:1.6px; }
+.comex-page .comex-art-index { position:absolute; z-index:1; top:22px; left:25px; color:rgba(255,247,227,.78); font-family:Georgia,serif; font-size:13px; }
+.comex-page .comex-hero-watermark { position:absolute; z-index:-1; right:4%; bottom:-.19em; color:rgba(183,131,45,.045); font-family:Georgia,serif; font-size:clamp(240px,35vw,480px); line-height:1; pointer-events:none; }
+
+.comex-page .comex-context { width:min(100% - 10.4%,1370px); min-height:74px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; border-top:1px solid var(--cx-line); border-bottom:1px solid var(--cx-line); }
+.comex-page .comex-context-label { color:#98815e; font-size:8px; font-weight:700; letter-spacing:1.7px; white-space:nowrap; }
+.comex-page .comex-context-item { display:inline-flex; align-items:center; gap:8px; color:#625a4d; font-size:10px; font-weight:500; white-space:nowrap; }
+.comex-page .comex-context-item i { width:5px; height:5px; border-radius:50%; background:#c29750; }
+
+.comex-page .comex-section { width:min(100% - 11%,1300px); margin:0 auto; }
+.comex-page .comex-services { padding:116px 0 123px; }
+.comex-page .comex-section-heading { margin-bottom:42px; display:grid; grid-template-columns:1fr minmax(250px,.62fr); align-items:end; gap:45px; }
+.comex-page .comex-section-heading h2, .comex-page .comex-analysis-copy h2, .comex-page .comex-faq-heading h2 { margin:14px 0 0; color:#101010; font-size:clamp(36px,4.2vw,55px); font-weight:800; line-height:1.1; letter-spacing:-2px; }
+.comex-page .comex-section-heading > p { max-width:490px; margin:0 0 4px; color:var(--cx-muted); font-size:13px; line-height:1.9; }
+.comex-page .comex-service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(190px,auto)); gap:15px; }
+.comex-page .comex-service-card { min-width:0; padding:25px 25px 23px; display:flex; flex-direction:column; border:1px solid rgba(173,137,87,.22); border-radius:15px; background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(244,228,202,.48)); box-shadow:0 7px 22px rgba(122,91,51,.035); transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease; }
+.comex-page .comex-service-card:hover { transform:translateY(-5px); border-color:rgba(174,130,73,.58); box-shadow:0 16px 32px rgba(96,68,34,.09); }
+.comex-page .comex-service-card.is-featured { grid-row:span 2; padding:30px; justify-content:space-between; background:linear-gradient(145deg,#fffdf8,#f3e2c5); }
+.comex-page .comex-service-card-top { display:flex; align-items:center; justify-content:space-between; color:#9a825e; font-size:8px; font-weight:700; letter-spacing:1.4px; }
+.comex-page .comex-service-card-top svg { color:#a77a3d; font-size:19px; }
+.comex-page .comex-service-card h3 { margin:24px 0 9px; color:#30271e; font-size:18px; font-weight:700; line-height:1.4; letter-spacing:-.3px; }
+.comex-page .comex-service-card.is-featured h3 { max-width:320px; margin-top:auto; font-size:29px; letter-spacing:-.8px; }
+.comex-page .comex-service-card p { max-width:490px; margin:0; color:var(--cx-muted); font-size:11px; line-height:1.8; }
+.comex-page .comex-service-card.is-featured p { max-width:330px; font-size:12px; }
+.comex-page .comex-service-card > a { width:fit-content; margin-top:18px; display:inline-flex; align-items:center; gap:8px; color:#8a642c; font-size:9px; font-weight:700; text-decoration:none; }
+.comex-page .comex-service-card > a svg { transition:transform .2s ease; }
+.comex-page .comex-service-card > a:hover svg { transform:translateX(3px); }
+
+.comex-page .comex-metals { padding:0 0 117px; }
+.comex-page .comex-metal-feature { width:min(100% - 11%,1300px); margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.88fr); align-items:center; gap:clamp(40px,8vw,115px); }
+.comex-page .comex-metal-feature + .comex-metal-feature { margin-top:95px; grid-template-columns:minmax(0,.88fr) minmax(0,1fr); }
+.comex-page .comex-metal-image { position:relative; min-width:0; aspect-ratio:1.22/1; overflow:hidden; border-radius:4px 74px 4px 4px; background:#171512; box-shadow:0 22px 54px rgba(69,50,25,.15); }
+.comex-page .comex-metal-image::after { position:absolute; inset:35% 0 0; content:""; background:linear-gradient(transparent,rgba(15,13,10,.62)); }
+.comex-page .comex-metal-image img { width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
+.comex-page .comex-metal-feature:hover .comex-metal-image img { transform:scale(1.035); }
+.comex-page .comex-metal-image > span { position:absolute; z-index:1; bottom:19px; left:22px; color:#fff4d7; font-size:8px; font-weight:700; letter-spacing:1.6px; }
+.comex-page .comex-silver-feature .comex-metal-image { border-radius:74px 4px 4px 4px; }
+.comex-page .comex-metal-copy { max-width:500px; }
+.comex-page .comex-metal-copy h2 { margin:14px 0 14px; color:#171717; font-size:clamp(34px,4vw,48px); font-weight:800; line-height:1.1; letter-spacing:-1.9px; }
+.comex-page .comex-metal-copy p { margin:0; color:var(--cx-muted); font-size:13px; line-height:1.95; }
+.comex-page .comex-metal-copy > a { margin-top:22px; display:inline-flex; align-items:center; gap:10px; color:#8a642c; font-size:10px; font-weight:700; text-decoration:none; }
+.comex-page .comex-metal-copy > a svg { transition:transform .2s ease; }
+.comex-page .comex-metal-copy > a:hover svg { transform:translateX(4px); }
+
+.comex-page .comex-analysis { position:relative; padding:105px max(5.5%,calc((100% - 1290px)/2)); display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); align-items:center; gap:clamp(40px,8vw,110px); background:linear-gradient(115deg,#f6efe4,#f4eadb 53%,#fffaf2); }
+.comex-page .comex-analysis-copy h2 { font-size:clamp(36px,4.4vw,55px); }
+.comex-page .comex-analysis-copy > p { max-width:490px; margin:17px 0 23px; color:var(--cx-muted); font-size:12px; line-height:1.95; }
+.comex-page .comex-analysis-copy ul { margin:0; padding:0; display:grid; gap:15px; list-style:none; }
+.comex-page .comex-analysis-copy li { display:flex; align-items:flex-start; gap:13px; color:#917143; }
+.comex-page .comex-analysis-copy li > svg { margin-top:3px; flex:none; font-size:14px; }
+.comex-page .comex-analysis-copy li span { display:grid; gap:3px; color:var(--cx-muted); font-size:10px; line-height:1.7; }
+.comex-page .comex-analysis-copy li b { color:#30271e; font-size:11px; }
+.comex-page .comex-analysis-visual { min-width:0; padding:22px 24px 18px; border:1px solid rgba(173,137,87,.22); border-radius:16px; background:rgba(255,253,248,.86); box-shadow:0 15px 38px rgba(96,68,34,.07); }
+.comex-page .comex-chart-head { display:flex; justify-content:space-between; gap:14px; color:#917143; font-size:8px; font-weight:700; letter-spacing:1.15px; }
+.comex-page .comex-chart-head span:last-child { color:#a09583; font-size:7px; }
+.comex-page .comex-chart-area { position:relative; height:250px; margin:20px 0 14px; overflow:hidden; }
+.comex-page .comex-chart-grid { position:absolute; inset:0; background:repeating-linear-gradient(to bottom,transparent 0,transparent 51px,rgba(151,125,86,.14) 52px),repeating-linear-gradient(to right,transparent 0,transparent 109px,rgba(151,125,86,.09) 110px); }
+.comex-page .comex-chart-area svg { position:relative; width:100%; height:100%; overflow:visible; }
+.comex-page .comex-chart-legend { display:flex; flex-wrap:wrap; align-items:center; gap:13px; color:#786c59; font-size:8px; }
+.comex-page .comex-chart-legend span { display:inline-flex; align-items:center; gap:6px; }
+.comex-page .comex-chart-legend span:last-child { width:100%; color:#8a8172; font-size:7px; }
+.comex-page .comex-chart-legend i { width:7px; height:7px; border-radius:50%; background:#bd8c3c; }
+.comex-page .comex-chart-legend span:nth-child(2) i { width:12px; height:1px; border-radius:0; background:#9d855d; }
+
+.comex-page .comex-approach { position:relative; padding:108px max(5.5%,calc((100% - 1290px)/2)) 112px; overflow:hidden; color:#f8f1e5; background:#211d1b; }
+.comex-page .comex-approach::before { position:absolute; top:-270px; right:-120px; width:650px; aspect-ratio:1; content:""; border:1px solid rgba(217,174,94,.12); border-radius:50%; box-shadow:0 0 0 50px rgba(217,174,94,.018),0 0 0 110px rgba(217,174,94,.012); pointer-events:none; }
+.comex-page .comex-approach-heading { position:relative; z-index:1; max-width:560px; }
+.comex-page .comex-approach-heading h2 { margin:14px 0 12px; color:#fffaf2; font-size:clamp(38px,4.5vw,58px); font-weight:800; line-height:1.08; letter-spacing:-2px; }
+.comex-page .comex-approach-heading h2 span { color:#e2bd77; }
+.comex-page .comex-approach-heading p { max-width:470px; margin:0; color:#c1b7a6; font-size:12px; line-height:1.9; }
+.comex-page .comex-approach-track { position:relative; margin-top:57px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:26px; }
+.comex-page .comex-approach-line { position:absolute; top:22px; right:10%; left:10%; height:1px; background:rgba(220,187,121,.2); }
+.comex-page .comex-approach-line::after { display:block; width:100%; height:100%; content:""; background:linear-gradient(90deg,#b17c2b,#e4c77e); transform:scaleX(0); transform-origin:left; }
+.comex-page .comex-approach.is-visible .comex-approach-line::after { animation:cx-rule-draw .9s .15s ease-out forwards; }
+.comex-page .comex-approach-step { position:relative; z-index:1; min-width:0; }
+.comex-page .comex-approach-number { width:44px; height:44px; display:grid; place-items:center; border:1px solid rgba(219,183,111,.48); border-radius:50%; color:#f0cf85; background:#28231e; font-family:Georgia,serif; font-size:13px; }
+.comex-page .comex-approach-label { margin-top:23px; display:block; color:#c2a66b; font-size:8px; font-weight:700; letter-spacing:1.6px; }
+.comex-page .comex-approach-step h3 { margin:8px 0 6px; color:#fffaf2; font-size:18px; font-weight:700; }
+.comex-page .comex-approach-step p { max-width:235px; margin:0; color:#bdb5a9; font-size:10px; line-height:1.8; }
+
+.comex-page .comex-principles { width:min(100% - 11%,1240px); margin:0 auto; padding:112px 0; display:grid; grid-template-columns:.8fr 1fr; align-items:center; gap:clamp(45px,9vw,130px); }
+.comex-page .comex-principles-mark { position:relative; width:min(100%,390px); aspect-ratio:1; margin:auto; display:grid; place-items:center; border:1px solid rgba(174,130,73,.19); border-radius:50%; background:radial-gradient(circle at 48% 45%,#fffaf0 0,#f2e3c9 56%,rgba(244,232,211,.2) 70%,transparent 71%); }
+.comex-page .comex-principles-mark::before,.comex-page .comex-principles-mark::after { position:absolute; inset:11%; content:""; border:1px solid rgba(174,130,73,.22); border-radius:50%; transform:rotate(-28deg) scaleY(.42); }
+.comex-page .comex-principles-mark::after { inset:2%; transform:rotate(52deg) scaleY(.36); border-color:rgba(174,130,73,.14); }
+.comex-page .comex-principles-mark > span { color:#9c6f2b; font-family:Georgia,serif; font-size:clamp(86px,11vw,140px); text-shadow:0 8px 30px rgba(133,91,29,.12); }
+.comex-page .comex-principles-mark > i { position:absolute; top:24%; right:20%; width:10px; aspect-ratio:1; border-radius:50%; background:#e1ba66; box-shadow:0 0 18px rgba(193,140,52,.42); }
+.comex-page .comex-principles-mark > b { position:absolute; bottom:18%; left:22%; color:#818887; font-family:Georgia,serif; font-size:18px; font-weight:400; }
+.comex-page .comex-principles-copy h2 { margin:13px 0 12px; color:#161616; font-size:clamp(34px,4vw,49px); font-weight:800; line-height:1.1; letter-spacing:-1.8px; }
+.comex-page .comex-principles-copy > p { max-width:550px; margin:0; color:var(--cx-muted); font-size:12px; line-height:1.9; }
+.comex-page .comex-principle-list { margin-top:27px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+.comex-page .comex-principle-list span { min-height:72px; padding:12px 10px; display:flex; flex-direction:column; justify-content:space-between; border-top:1px solid rgba(174,130,73,.34); color:#5f5444; font-size:9px; font-weight:600; line-height:1.5; }
+.comex-page .comex-principle-list i { color:#b7832d; font-size:8px; font-style:normal; letter-spacing:1px; }
+
+.comex-page .comex-faq { width:min(100% - 11%,1250px); margin:0 auto; padding:15px 0 120px; display:grid; grid-template-columns:.72fr 1fr; gap:clamp(45px,8vw,110px); }
+.comex-page .comex-faq-heading h2 { font-size:clamp(35px,4vw,49px); }
+.comex-page .comex-faq-heading p { max-width:330px; margin:15px 0 0; color:var(--cx-muted); font-size:11px; line-height:1.9; }
+.comex-page .comex-faq-list { border-top:1px solid var(--cx-line); }
+.comex-page .comex-faq-item { border-bottom:1px solid var(--cx-line); }
+.comex-page .comex-faq-item h3 { margin:0; }
+.comex-page .comex-faq-item button { width:100%; min-height:68px; padding:18px 2px; display:flex; justify-content:space-between; align-items:center; gap:20px; border:0; color:#30271e; background:transparent; font:600 12px/1.5 Inter,sans-serif; text-align:left; cursor:pointer; }
+.comex-page .comex-faq-item button > span { flex:none; color:#a77a3d; font-size:22px; font-weight:400; transition:transform .25s ease; }
+.comex-page .comex-faq-item.is-open button > span { transform:rotate(45deg); }
+.comex-page .comex-faq-answer { display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s ease; }
+.comex-page .comex-faq-item.is-open .comex-faq-answer { grid-template-rows:1fr; }
+.comex-page .comex-faq-answer > div { overflow:hidden; }
+.comex-page .comex-faq-answer p { max-width:650px; margin:0; padding:0 35px 19px 2px; color:var(--cx-muted); font-size:10px; line-height:1.85; }
+
+.comex-page .comex-final { position:relative; width:min(100% - 11%,1300px); min-height:330px; margin:0 auto; padding:55px clamp(28px,6vw,80px); display:flex; align-items:center; overflow:hidden; border:1px solid rgba(174,130,73,.25); border-radius:18px; background:radial-gradient(ellipse at 90% 20%,rgba(207,162,77,.21),transparent 38%),linear-gradient(115deg,#211d1b,#2a241d 70%,#332919); box-shadow:0 18px 50px rgba(76,55,31,.1); }
+.comex-page .comex-final::after { position:absolute; top:-180px; right:7%; width:420px; aspect-ratio:1; content:""; border:1px solid rgba(222,190,127,.12); border-radius:50%; box-shadow:0 0 0 37px rgba(222,190,127,.025),0 0 0 78px rgba(222,190,127,.018); pointer-events:none; }
+.comex-page .comex-final-copy { position:relative; z-index:1; max-width:780px; }
+.comex-page .comex-final h2 { max-width:720px; margin:13px 0 10px; color:#fffaf2; font-size:clamp(35px,4.8vw,58px); font-weight:800; line-height:1.08; letter-spacing:-2px; }
+.comex-page .comex-final-copy > p { max-width:590px; margin:0; color:#c8c0b2; font-size:12px; line-height:1.9; }
+.comex-page .comex-final-actions { margin-top:23px; display:flex; flex-wrap:wrap; gap:11px; }
+.comex-page .comex-final .comex-button.is-secondary { border-color:rgba(239,207,145,.45); color:#fff8e9; background:rgba(255,255,255,.06); }
+.comex-page .comex-final .comex-button.is-secondary:hover { background:rgba(255,255,255,.12); }
+.comex-page .comex-risk-note { margin-top:16px; display:block; color:#bdb3a2; font-size:9px; }
+.comex-page .comex-image-credit { width:min(100% - 11%,1300px); margin:0 auto; padding:19px 0 26px; display:flex; justify-content:space-between; gap:20px; color:#817564; font-size:8px; }
+.comex-page .comex-image-credit a { color:#84622f; text-decoration:underline; text-underline-offset:2px; }
+.comex-page .comex-image-credit > a { display:inline-flex; align-items:center; gap:7px; white-space:nowrap; text-decoration:none; }
+
+.comex-page [data-comex-reveal] { opacity:0; transform:translateY(18px); transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1); }
+.comex-page [data-comex-reveal].is-visible { opacity:1; transform:translateY(0); }
+@keyframes cx-rise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes cx-image-arrive { from { opacity:0; transform:translateX(20px) scale(.985); } to { opacity:1; transform:translateX(0) scale(1); } }
+@keyframes cx-rule-draw { to { transform:scaleX(1); } }
+
+@media (max-width:1100px) {
+  .comex-page .comex-hero { min-height:650px; gap:34px; }
+  .comex-page .comex-hero h1 { font-size:clamp(44px,5.6vw,64px); letter-spacing:-2.8px; }
+  .comex-page .comex-context { width:89%; gap:13px; }
+  .comex-page .comex-context-item { font-size:9px; }
+  .comex-page .comex-service-grid { grid-template-rows:repeat(2,minmax(205px,auto)); }
+  .comex-page .comex-approach-track { gap:18px; }
+}
+@media (max-width:800px) {
+  .comex-page .comex-hero { min-height:0; padding:122px 6% 54px; grid-template-columns:1fr; gap:34px; }
+  .comex-page .comex-hero-copy { max-width:700px; }
+  .comex-page .comex-hero h1 { max-width:650px; font-size:clamp(48px,8vw,69px); }
+  .comex-page .comex-hero-art { width:min(100%,650px); margin:0 auto; aspect-ratio:1.45/1; }
+  .comex-page .comex-context { width:88%; min-height:0; padding:15px 0; justify-content:flex-start; flex-wrap:wrap; gap:12px 22px; }
+  .comex-page .comex-context-label { width:100%; }
+  .comex-page .comex-section,.comex-page .comex-metal-feature,.comex-page .comex-principles,.comex-page .comex-faq,.comex-page .comex-final,.comex-page .comex-image-credit { width:88%; }
+  .comex-page .comex-services { padding:84px 0 90px; }
+  .comex-page .comex-section-heading { grid-template-columns:1fr; gap:14px; }
+  .comex-page .comex-section-heading > p { max-width:560px; }
+  .comex-page .comex-service-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:none; }
+  .comex-page .comex-service-card.is-featured { grid-column:span 2; grid-row:auto; min-height:235px; }
+  .comex-page .comex-service-card { min-height:200px; }
+  .comex-page .comex-metal-feature,.comex-page .comex-metal-feature + .comex-metal-feature { grid-template-columns:1fr 1fr; gap:32px; }
+  .comex-page .comex-metal-feature + .comex-metal-feature { margin-top:65px; }
+  .comex-page .comex-analysis { padding:80px 6%; grid-template-columns:1fr; gap:35px; }
+  .comex-page .comex-analysis-visual { width:100%; }
+  .comex-page .comex-approach { padding:82px 6% 88px; }
+  .comex-page .comex-approach-track { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 26px; }
+  .comex-page .comex-approach-line { display:none; }
+  .comex-page .comex-approach-step p { max-width:290px; }
+  .comex-page .comex-principles { padding:84px 0; grid-template-columns:.75fr 1fr; gap:34px; }
+  .comex-page .comex-principles-mark { width:min(100%,290px); }
+  .comex-page .comex-faq { padding-bottom:88px; grid-template-columns:1fr; gap:27px; }
+  .comex-page .comex-faq-heading p { max-width:500px; }
+  .comex-page .comex-final { min-height:0; padding:45px 36px; }
+}
+@media (max-width:560px) {
+  .comex-page .comex-hero { padding:108px 5% 38px; gap:26px; }
+  .comex-page .comex-hero h1 { margin-top:18px; font-size:clamp(41px,10vw,54px); letter-spacing:-2.3px; }
+  .comex-page .comex-hero-subtitle { font-size:14px; }
+  .comex-page .comex-hero-description { font-size:12px; }
+  .comex-page .comex-hero-actions { flex-direction:column; align-items:stretch; }
+  .comex-page .comex-button { width:100%; }
+  .comex-page .comex-hero-art { width:100%; aspect-ratio:.92/1; border-top-right-radius:72px; }
+  .comex-page .comex-hero-art figcaption { right:14px; bottom:16px; left:15px; font-size:6px; letter-spacing:.9px; }
+  .comex-page .comex-art-index { top:16px; left:16px; }
+  .comex-page .comex-context { width:90%; gap:10px 15px; }
+  .comex-page .comex-context-item { font-size:8px; }
+  .comex-page .comex-section,.comex-page .comex-metal-feature,.comex-page .comex-principles,.comex-page .comex-faq,.comex-page .comex-final,.comex-page .comex-image-credit { width:90%; }
+  .comex-page .comex-services { padding:70px 0 77px; }
+  .comex-page .comex-section-heading { margin-bottom:27px; }
+  .comex-page .comex-section-heading h2,.comex-page .comex-analysis-copy h2 { font-size:35px; letter-spacing:-1.2px; }
+  .comex-page .comex-section-heading > p { font-size:11px; }
+  .comex-page .comex-service-grid { grid-template-columns:1fr; gap:11px; }
+  .comex-page .comex-service-card.is-featured { grid-column:1; min-height:240px; padding:24px; }
+  .comex-page .comex-service-card { min-height:0; padding:21px; }
+  .comex-page .comex-service-card h3 { margin-top:14px; }
+  .comex-page .comex-service-card.is-featured h3 { font-size:25px; }
+  .comex-page .comex-metals { padding-bottom:76px; }
+  .comex-page .comex-metal-feature,.comex-page .comex-metal-feature + .comex-metal-feature { grid-template-columns:1fr; gap:23px; }
+  .comex-page .comex-metal-feature + .comex-metal-feature { margin-top:55px; }
+  .comex-page .comex-silver-feature .comex-metal-copy { order:2; }
+  .comex-page .comex-silver-feature .comex-metal-image { order:1; }
+  .comex-page .comex-metal-image { aspect-ratio:1.2/1; border-top-right-radius:55px; }
+  .comex-page .comex-metal-copy h2 { font-size:35px; letter-spacing:-1.2px; }
+  .comex-page .comex-metal-copy p { font-size:11px; }
+  .comex-page .comex-analysis { padding:70px 5%; gap:25px; }
+  .comex-page .comex-analysis-copy > p { font-size:11px; }
+  .comex-page .comex-analysis-visual { padding:17px 14px 14px; }
+  .comex-page .comex-chart-area { height:190px; }
+  .comex-page .comex-chart-legend { gap:9px; font-size:7px; }
+  .comex-page .comex-approach { padding:70px 6% 75px; }
+  .comex-page .comex-approach-heading h2 { font-size:38px; letter-spacing:-1.2px; }
+  .comex-page .comex-approach-heading p { font-size:11px; }
+  .comex-page .comex-approach-track { margin-top:34px; grid-template-columns:1fr; gap:23px; }
+  .comex-page .comex-approach-step { display:grid; grid-template-columns:48px 1fr; align-items:center; gap:0 14px; }
+  .comex-page .comex-approach-number { grid-column:1; grid-row:1/4; }
+  .comex-page .comex-approach-label { margin:0; }
+  .comex-page .comex-approach-step h3 { margin:4px 0; }
+  .comex-page .comex-approach-step p { grid-column:2; max-width:none; }
+  .comex-page .comex-principles { padding:70px 0; grid-template-columns:1fr; gap:25px; }
+  .comex-page .comex-principles-mark { width:min(72vw,270px); }
+  .comex-page .comex-principles-mark > span { font-size:100px; }
+  .comex-page .comex-principles-copy h2 { font-size:35px; letter-spacing:-1.2px; }
+  .comex-page .comex-principles-copy > p { font-size:11px; }
+  .comex-page .comex-principle-list { gap:8px; }
+  .comex-page .comex-principle-list span { min-height:68px; padding:10px 6px; font-size:8px; }
+  .comex-page .comex-faq { padding:5px 0 70px; gap:20px; }
+  .comex-page .comex-faq-heading h2 { font-size:36px; letter-spacing:-1.2px; }
+  .comex-page .comex-faq-item button { min-height:62px; font-size:11px; }
+  .comex-page .comex-faq-answer p { font-size:9px; }
+  .comex-page .comex-final { padding:32px 22px; border-radius:14px; }
+  .comex-page .comex-final h2 { font-size:36px; letter-spacing:-1.3px; }
+  .comex-page .comex-final-copy > p { font-size:11px; }
+  .comex-page .comex-final-actions { align-items:stretch; flex-direction:column; }
+  .comex-page .comex-image-credit { padding:16px 0 21px; flex-direction:column; gap:9px; font-size:7px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .comex-page *, .comex-page *::before, .comex-page *::after { scroll-behavior:auto !important; animation:none !important; transition:none !important; }
+  .comex-page [data-comex-reveal] { opacity:1; transform:none; }
+}

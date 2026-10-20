@@ -191,6 +191,16 @@ export default function Navbar() {
           </div>
 
           <NavLink
+            to="/portfolio"
+            className={({ isActive }) =>
+              `nav-link ${isActive ? "active" : ""}`
+            }
+            onClick={closeMenus}
+          >
+            Portfolio
+          </NavLink>
+
+          <NavLink
             to="/guide-to-kickstart"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`

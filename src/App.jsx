@@ -4,6 +4,10 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Portfolio from "./pages/Portfolio";
+import Forex from "./Subpages/Forex";
+import Comex from "./Subpages/Comex";
+import Crypto from "./Subpages/Crypto";
 
 // import Home from "./Pages/Home";
 // import GuideToKickStart from "./Pages/guide-to-KickStart";
@@ -39,58 +43,13 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Home />
-{/* 
       <Routes>
-   
         <Route path="/" element={<Home />} />
-
-
-        <Route path="/service" element={<ServicesPage />} />
-
-      
-        <Route
-          path="/services/forex"
-          element={<ForexSection />}
-        />
-
-        <Route
-          path="/services/crypto"
-          element={<CryptoSection />}
-        />
-
-        <Route
-          path="/services/comex"
-          element={<ComexServices />}
-        />
-
-      
-        <Route
-          path="/guide-to-kickstart"
-          element={<GuideToKickStart />}
-        />
-
-     
-        <Route path="/faq" element={<FAQ />} />
-
-
-        <Route
-          path="/exclusive-deals"
-          element={<PlaceholderPage title="Exclusive Deals" />}
-        />
-
-        <Route
-          path="/contact"
-          element={<PlaceholderPage title="Contact Us" />}
-        />
-
-
-        <Route
-          path="*"
-          element={<PlaceholderPage title="404 - Page Not Found" />}
-        />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/services/forex" element={<Forex />} />
+        <Route path="/services/comex" element={<Comex />} />
+        <Route path="/services/crypto" element={<Crypto />} />
       </Routes>
-      <Footer/> */}
     </>
   );
 }
