@@ -1,9 +1,16 @@
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+
 import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+// import Portfolio from "./pages/Portfolio";
+// import Forex from "./Subpages/Forex";
+// import Comex from "./Subpages/Comex";
+// import Crypto from "./Subpages/Crypto";
 
 // import Home from "./Pages/Home";
 // import GuideToKickStart from "./Pages/guide-to-KickStart";
@@ -16,81 +23,35 @@ import Home from "./pages/Home";
 
 // Main Services Landing Page
 // function ServicesPage() {
-//   return (
-//     <main className="services-landing-page">
-//       <ForexSection />
-//       <CryptoSection />
-//       <ComexServices />
-//     </main>
-//   );
+// return (
+// <main className="services-landing-page">
+// <ForexSection />
+// <CryptoSection />
+// <ComexServices />
+// </main>
+// );
 // }
 
 // Temporary pages
 // function PlaceholderPage({ title }) {
-//   return (
-//     <main className="route-placeholder">
-//       <h1>{title}</h1>
-//       <p>Content for this page will be added soon.</p>
-//     </main>
-//   );
+// return (
+// <main className="route-placeholder">
+// <h1>{title}</h1>
+// <p>Content for this page will be added soon.</p>
+// </main>
+// );
 // }
 
 export default function App() {
-  return (
-    <>
-      <Navbar />
-      <Home />
-{/* 
-      <Routes>
-   
-        <Route path="/" element={<Home />} />
+return (
+<>
+<Navbar />
+<Routes>
+<Route path="/" element={<Home />} />
+<Route path="/contact-us" element={<Contact />} />
 
-
-        <Route path="/service" element={<ServicesPage />} />
-
-      
-        <Route
-          path="/services/forex"
-          element={<ForexSection />}
-        />
-
-        <Route
-          path="/services/crypto"
-          element={<CryptoSection />}
-        />
-
-        <Route
-          path="/services/comex"
-          element={<ComexServices />}
-        />
-
-      
-        <Route
-          path="/guide-to-kickstart"
-          element={<GuideToKickStart />}
-        />
-
-     
-        <Route path="/faq" element={<FAQ />} />
-
-
-        <Route
-          path="/exclusive-deals"
-          element={<PlaceholderPage title="Exclusive Deals" />}
-        />
-
-        <Route
-          path="/contact"
-          element={<PlaceholderPage title="Contact Us" />}
-        />
-
-
-        <Route
-          path="*"
-          element={<PlaceholderPage title="404 - Page Not Found" />}
-        />
-      </Routes>
-      <Footer/> */}
-    </>
-  );
+</Routes>
+<Footer/>
+</>
+);
 }

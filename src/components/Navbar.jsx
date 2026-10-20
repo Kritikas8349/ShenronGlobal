@@ -191,33 +191,33 @@ export default function Navbar() {
           </div>
 
           <NavLink
-            to="/guide-to-kickstart"
+            to="/portfolio-management"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
             onClick={closeMenus}
           >
-            Guide to Kickstart
+            Portfolio Management
           </NavLink>
 
           <NavLink
-            to="/faq"
+            to="/blog"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
             onClick={closeMenus}
           >
-            FAQ
+            Blog
           </NavLink>
 
           <NavLink
-            to="/exclusive-deals"
+            to="/contact-us"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
             onClick={closeMenus}
           >
-            Exclusive Deals
+            Contact Us
           </NavLink>
 
           {/* Contact Button */}
