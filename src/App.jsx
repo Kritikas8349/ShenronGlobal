@@ -3,21 +3,15 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 import Home from "./pages/Home";
-<<<<<<< HEAD
-import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
+import PortfolioM from "./pages/PortfolioM";
 import Forex from "./Subpages/Forex";
 import Comex from "./Subpages/Comex";
 import Crypto from "./Subpages/Crypto";
-=======
-import Contact from "./pages/Contact";
-// import Portfolio from "./pages/Portfolio";
-// import Forex from "./Subpages/Forex";
-// import Comex from "./Subpages/Comex";
-// import Crypto from "./Subpages/Crypto";
->>>>>>> 7c7fb35f6cf6bb6fb02723b4bff2c5d7c2413de0
 
 // import Home from "./Pages/Home";
 // import GuideToKickStart from "./Pages/guide-to-KickStart";
@@ -50,31 +44,19 @@ import Contact from "./pages/Contact";
 // }
 
 export default function App() {
-<<<<<<< HEAD
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/portfolio" element={<PortfolioM />} />
         <Route path="/services/forex" element={<Forex />} />
         <Route path="/services/comex" element={<Comex />} />
         <Route path="/services/crypto" element={<Crypto />} />
       </Routes>
+      <Footer />
     </>
   );
 }
-=======
-return (
-<>
-<Navbar />
-<Routes>
-<Route path="/" element={<Home />} />
-<Route path="/contact-us" element={<Contact />} />
-
-</Routes>
-<Footer/>
-</>
-);
-}
->>>>>>> 7c7fb35f6cf6bb6fb02723b4bff2c5d7c2413de0

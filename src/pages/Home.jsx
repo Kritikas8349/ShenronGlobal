@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 
 import "./Home.css";
-import heroImg from "../assets/HeroImg.png";
+import heroImg from "../assets/heroImg.png";
 import phone from "../assets/phoneNew.png";
 
 

@@ -2707,16 +2707,13 @@ body {
   }
   
   .signals-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    color: #d9ae5e;
-    font-size: 10px;
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #a77a3d;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 3px;
-    opacity: 0;
-    transform: translateY(24px);
+    text-transform: uppercase;
   }
   
   .signals-eyebrow-line {
@@ -3068,8 +3065,8 @@ body {
   
   @media (max-width: 1200px) {
     .trading-signals-section {
-      padding-right: 4%;
-      padding-left: 4%;
+      padding-right: 5%;
+      padding-left: 5%;
     }
   
     .signals-grid {
@@ -3173,7 +3170,7 @@ body {
 
 .faq-section {
     width: 100%;
-    padding: 80px 5.5% 85px;
+    padding: 80px 5% 85px;
     position: relative;
     overflow: hidden;
     background: transparent;
@@ -3746,7 +3743,7 @@ body {
 .testimonials-section {
     position: relative;
     width: 100%;
-    padding: 60px 24px 85px;
+    padding: 60px 5% 85px;
     overflow: hidden;
     background: transparent;
     color: #29231c;
@@ -3755,7 +3752,7 @@ body {
   
   .testimonials-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
   }
   

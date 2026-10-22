@@ -30,7 +30,7 @@
     position: relative;
     isolation: isolate;
     width: 100%;
-    padding: 150px 0 80px;
+    padding: 150px 12px 80px;
     overflow: hidden;
   
     background:
@@ -60,7 +60,7 @@
     position: relative;
     isolation: isolate;
     min-height: 224px;
-    padding: 4px 0 26px 17px;
+    padding: 4px 0px 17px;
     overflow: hidden;
   }
   
