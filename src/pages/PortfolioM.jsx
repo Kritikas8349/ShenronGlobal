@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import "./PortfolioM.css";
-import portfolioM from "../assets/PortfolioM.png";
+import portfolioM from "../assets/portfolioM.png";
 import portfolioConstructionImg from "../assets/portfolioManagement.png";
 import {
     FiArrowUpRight,
