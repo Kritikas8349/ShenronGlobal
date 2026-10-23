@@ -3093,7 +3093,7 @@ body {
   
   @media (max-width: 600px) {
     .trading-signals-section {
-      padding: 65px 20px 60px;
+      padding: 65px 20px;
     }
   
     .signals-heading {
@@ -3732,6 +3732,10 @@ body {
       transition: none;
     }
   }
+
+
+
+
 
  /* =========================================
    SHENRON GLOBAL — TESTIMONIALS
@@ -4494,3 +4498,425 @@ body {
     }
   }
 
+
+/* =========================================
+   TESTIMONIALS — RESPONSIVE FIX
+   Add this at the END of your CSS file
+========================================= */
+
+.testimonials-section,
+.testimonials-section * {
+  box-sizing: border-box;
+}
+
+.testimonials-section {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1300px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.testimonials-top {
+  min-width: 0;
+}
+
+.testimonials-heading,
+.testimonials-review-summary {
+  min-width: 0;
+}
+
+.testimonials-heading h2,
+.testimonials-description,
+.testimonial-card-content h3,
+.testimonial-message,
+.testimonial-side-panel h3,
+.testimonial-side-panel > p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.testimonial-slider {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.testimonial-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  width: 100%;
+  min-width: 0;
+  min-height: 355px;
+}
+
+.testimonial-card-main,
+.testimonial-side-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.testimonial-card-top {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.testimonial-tag {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.testimonial-card-content h3 {
+  max-width: 100%;
+  font-size: clamp(21px, 2.2vw, 27px);
+}
+
+.testimonial-side-panel h3 {
+  max-width: 100%;
+  font-size: clamp(25px, 2.6vw, 35px);
+  line-height: 1.3;
+}
+
+.testimonial-side-panel h3 span {
+  overflow-wrap: anywhere;
+}
+
+.testimonial-card-footer,
+.testimonial-person,
+.testimonial-person-info {
+  min-width: 0;
+}
+
+.testimonial-person-info strong {
+  overflow-wrap: anywhere;
+}
+
+.testimonial-client-note {
+  white-space: normal;
+}
+
+.testimonial-controls {
+  width: 100%;
+  min-width: 0;
+}
+
+.testimonial-dots {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .testimonials-section {
+    padding: 65px 22px 60px;
+  }
+
+  .testimonials-top {
+    gap: 22px;
+  }
+
+  .testimonial-slide {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    min-height: 0;
+  }
+
+  .testimonial-card-main {
+    padding: 28px 23px;
+  }
+
+  .testimonial-side-panel {
+    padding: 30px 23px 26px;
+  }
+
+  .testimonial-card-top {
+    gap: 10px;
+  }
+
+  .testimonial-card-footer {
+    gap: 12px;
+  }
+
+  .testimonial-client-note {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .testimonials-section {
+    padding: 48px 16px 45px;
+  }
+
+  .testimonials-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 22px;
+    margin-bottom: 26px;
+  }
+
+  .testimonials-heading {
+    width: 100%;
+  }
+
+  .testimonials-heading h2 {
+    font-size: clamp(29px, 7.5vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .testimonials-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .testimonials-review-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .testimonials-review-summary strong {
+    font-size: 13px;
+  }
+
+  .testimonials-review-summary > span {
+    flex-basis: 100%;
+    font-size: 12px;
+  }
+
+  .review-stars {
+    margin: 0;
+  }
+
+  .testimonial-slider {
+    border-radius: 21px;
+  }
+
+  .testimonial-slide {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .testimonial-card-main {
+    width: 100%;
+    padding: 23px 20px 22px;
+  }
+
+  .testimonial-card-top {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .testimonial-quote-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .testimonial-tag {
+    padding: 8px 11px;
+    font-size: 10px;
+  }
+
+  .testimonial-card-content {
+    padding: 25px 0;
+  }
+
+  .testimonial-card-content h3 {
+    font-size: clamp(23px, 6vw, 29px);
+    line-height: 1.3;
+    letter-spacing: -0.5px;
+  }
+
+  .testimonial-message {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .testimonial-card-footer {
+    justify-content: flex-start;
+    padding-top: 18px;
+  }
+
+  .testimonial-avatar {
+    width: 43px;
+    height: 43px;
+  }
+
+  .testimonial-person-info strong {
+    font-size: 13px;
+  }
+
+  .testimonial-side-panel {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 30px 22px 27px;
+    border-top: 1px solid rgba(164, 127, 73, 0.2);
+    border-left: none;
+  }
+
+  .side-panel-label {
+    margin-bottom: 17px;
+    font-size: 9px;
+    letter-spacing: 1.8px;
+  }
+
+  .testimonial-side-panel h3 {
+    font-size: clamp(27px, 7vw, 34px);
+    line-height: 1.3;
+  }
+
+  .testimonial-side-panel > p {
+    max-width: 100%;
+    margin: 15px 0 23px;
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .side-panel-bottom {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+    font-size: 9px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+  }
+
+  .side-panel-line {
+    width: 22px;
+  }
+
+  .side-panel-decoration {
+    width: 145px;
+    height: 145px;
+    right: -40px;
+  }
+
+  .side-quote-mark {
+    right: 25px;
+    bottom: 10px;
+    font-size: 100px;
+  }
+
+  /* Controls stay inside the screen */
+  .testimonial-controls {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    margin-top: 21px;
+  }
+
+  .testimonial-slide-count {
+    gap: 7px;
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  .testimonial-count-divider {
+    width: 17px;
+  }
+
+  .testimonial-dots {
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .testimonial-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+  }
+
+  .testimonial-dot.active {
+    width: 20px;
+  }
+
+  .testimonial-arrows {
+    gap: 7px;
+  }
+
+  .testimonial-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .testimonials-disclaimer {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .testimonials-section {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .testimonial-card-main {
+    padding: 20px 16px;
+  }
+
+  .testimonial-side-panel {
+    padding: 25px 17px;
+  }
+
+  .testimonial-card-content h3 {
+    font-size: 23px;
+  }
+
+  .testimonial-message {
+    font-size: 12px;
+  }
+
+  .testimonial-controls {
+    gap: 7px;
+  }
+
+  .testimonial-slide-count {
+    gap: 5px;
+    font-size: 10px;
+  }
+
+  .testimonial-count-divider {
+    width: 12px;
+  }
+
+  .testimonial-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .testimonial-arrows {
+    gap: 5px;
+  }
+
+  .testimonial-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .testimonial-dot.active {
+    width: 16px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-slide {
+    animation: none !important;
+  }
+}

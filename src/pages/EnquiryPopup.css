@@ -1,0 +1,613 @@
+
+/* =========================================
+   ENQUIRY POPUP - SHENRON GLOBAL
+   Premium Ivory & Gold Theme
+========================================= */
+
+:root {
+    --enquiry-gold: #b8944e;
+    --enquiry-gold-dark: #98743a;
+    --enquiry-ink: #25251f;
+    --enquiry-muted: #77766e;
+    --enquiry-border: #e7e0d4;
+    --enquiry-ivory: #fbf9f4;
+    --enquiry-white: #ffffff;
+  }
+  
+  /* =========================================
+     POPUP OVERLAY
+  ========================================= */
+  
+  .enquiry-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    padding: 24px 16px;
+    box-sizing: border-box;
+  
+    background: rgba(20, 21, 18, 0.66);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  
+    /* Scroll only the overlay on small screens */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  
+    animation: enquiryOverlayFade 0.3s ease both;
+  }
+  
+  /* =========================================
+     POPUP MODAL
+  ========================================= */
+  
+  .enquiry-modal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+  
+    margin: auto;
+    padding: 38px 42px 32px;
+    box-sizing: border-box;
+  
+    background:
+      radial-gradient(
+        circle at top right,
+        rgba(184, 148, 78, 0.09),
+        transparent 34%
+      ),
+      var(--enquiry-ivory);
+  
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+  
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.28),
+      0 5px 18px rgba(0, 0, 0, 0.08);
+  
+    /* No scrollbar inside the modal */
+    overflow: visible;
+    max-height: none;
+  
+    animation: enquiryModalEnter 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  
+  /* Decorative gold line */
+  
+  .enquiry-modal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 42px;
+    right: 42px;
+    height: 3px;
+  
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--enquiry-gold),
+      #d9c59b,
+      transparent
+    );
+  
+    border-radius: 0 0 5px 5px;
+  }
+  
+  /* =========================================
+     CLOSE BUTTON
+  ========================================= */
+  
+  .enquiry-close {
+    position: absolute;
+    top: 17px;
+    right: 18px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 35px;
+    height: 35px;
+    padding: 0;
+  
+    border: 1px solid var(--enquiry-border);
+    border-radius: 50%;
+  
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--enquiry-ink);
+  
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+  
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .enquiry-close:hover:not(:disabled) {
+    background: var(--enquiry-gold);
+    color: var(--enquiry-white);
+    border-color: var(--enquiry-gold);
+    transform: rotate(90deg);
+  }
+  
+  .enquiry-close:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* =========================================
+     MODAL CONTENT
+  ========================================= */
+  
+  .enquiry-modal-content {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Eyebrow text */
+  
+  .enquiry-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  
+    margin-bottom: 12px;
+  
+    color: var(--enquiry-gold-dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+  }
+  
+  .enquiry-eyebrow span {
+    display: inline-block;
+    width: 23px;
+    height: 1px;
+    background: var(--enquiry-gold);
+  }
+  
+  /* Main heading */
+  
+  .enquiry-modal-content h2 {
+    margin: 0 38px 12px 0;
+  
+    color: var(--enquiry-ink);
+    font-family: inherit;
+    font-size: clamp(27px, 4vw, 35px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1.1px;
+  }
+  
+  .enquiry-modal-content h2 span {
+    color: var(--enquiry-gold-dark);
+    font-weight: 500;
+  }
+  
+  /* Description */
+  
+  .enquiry-description {
+    margin: 0 0 25px;
+  
+    color: var(--enquiry-muted);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  
+  /* =========================================
+     FORM LAYOUT
+     All fields one below another
+  ========================================= */
+  
+  .enquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Individual field */
+  
+  .enquiry-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+  
+  /* Field labels */
+  
+  .enquiry-field label {
+    display: block;
+    margin: 0;
+  
+    color: #37362f;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  
+  .enquiry-field label span {
+    color: var(--enquiry-gold-dark);
+  }
+  
+  /* Inputs and textarea */
+  
+  .enquiry-field input,
+  .enquiry-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 14px;
+  
+    box-sizing: border-box;
+  
+    border: 1px solid var(--enquiry-border);
+    border-radius: 8px;
+  
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--enquiry-ink);
+  
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+  
+    outline: none;
+  
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
+  }
+  
+  /* Text input height */
+  
+  .enquiry-field input {
+    height: 44px;
+  }
+  
+  /* Placeholder styling */
+  
+  .enquiry-field input::placeholder,
+  .enquiry-field textarea::placeholder {
+    color: #a19d93;
+    opacity: 1;
+  }
+  
+  /* Focus effect */
+  
+  .enquiry-field input:focus,
+  .enquiry-field textarea:focus {
+    border-color: var(--enquiry-gold);
+    background: var(--enquiry-white);
+  
+    box-shadow: 0 0 0 3px rgba(184, 148, 78, 0.12);
+  }
+  
+  /* Message textarea */
+  
+  .enquiry-field textarea {
+    min-height: 85px;
+    height: 85px;
+  
+    resize: vertical;
+    overflow-y: auto;
+  }
+  
+  /* =========================================
+     STATUS MESSAGE
+  ========================================= */
+  
+  .enquiry-status {
+    margin: 0;
+    padding: 11px 13px;
+  
+    border: 1px solid #d9e8d7;
+    border-radius: 8px;
+  
+    background: #f1f7ef;
+    color: #315e37;
+  
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  
+  /* =========================================
+     SUBMIT BUTTON
+  ========================================= */
+  
+  .enquiry-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  
+    width: 100%;
+    min-height: 47px;
+    margin: 3px 0 0;
+    padding: 13px 20px;
+  
+    box-sizing: border-box;
+  
+    border: 1px solid var(--enquiry-gold);
+    border-radius: 8px;
+  
+    background: linear-gradient(
+      135deg,
+      #c5a363,
+      #a98443
+    );
+  
+    color: var(--enquiry-white);
+  
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+  
+    cursor: pointer;
+  
+    box-shadow: 0 5px 14px rgba(152, 116, 58, 0.16);
+  
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .enquiry-submit-btn span {
+    font-size: 17px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+  }
+  
+  .enquiry-submit-btn:hover:not(:disabled) {
+    background: linear-gradient(
+      135deg,
+      #ad8848,
+      #8d6b32
+    );
+  
+    box-shadow: 0 8px 20px rgba(152, 116, 58, 0.24);
+    transform: translateY(-1px);
+  }
+  
+  .enquiry-submit-btn:hover:not(:disabled) span {
+    transform: translate(2px, -2px);
+  }
+  
+  .enquiry-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* =========================================
+     PRIVACY TEXT
+  ========================================= */
+  
+  .enquiry-privacy {
+    margin: 0;
+    padding-top: 1px;
+  
+    color: #89867d;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  /* =========================================
+     OPTIONAL ENQUIRE NOW TRIGGER BUTTON
+     Used only if this component's own button
+     is displayed elsewhere on the website
+  ========================================= */
+  
+  .enquiry-open-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    padding: 13px 21px;
+  
+    border: 1px solid var(--enquiry-gold);
+    border-radius: 8px;
+  
+    background: var(--enquiry-gold);
+    color: var(--enquiry-white);
+  
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+  
+    cursor: pointer;
+  
+    transition:
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .enquiry-open-btn:hover {
+    background: var(--enquiry-gold-dark);
+    transform: translateY(-2px);
+  }
+  
+  /* =========================================
+     ANIMATIONS
+  ========================================= */
+  
+  @keyframes enquiryOverlayFade {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes enquiryModalEnter {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.98);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* =========================================
+     TABLET
+  ========================================= */
+  
+  @media (max-width: 768px) {
+    .enquiry-modal {
+      max-width: 510px;
+      padding: 34px 30px 28px;
+      border-radius: 16px;
+    }
+  
+    .enquiry-modal::before {
+      left: 30px;
+      right: 30px;
+    }
+  
+    .enquiry-description {
+      margin-bottom: 21px;
+    }
+  
+    .enquiry-form {
+      gap: 13px;
+    }
+  }
+  
+  /* =========================================
+     MOBILE
+  ========================================= */
+  
+  @media (max-width: 480px) {
+    .enquiry-overlay {
+      align-items: flex-start;
+      padding: 16px 12px;
+    }
+  
+    .enquiry-modal {
+      width: 100%;
+      max-width: 100%;
+      margin: auto 0;
+      padding: 30px 20px 23px;
+      border-radius: 14px;
+    }
+  
+    .enquiry-modal::before {
+      left: 20px;
+      right: 20px;
+    }
+  
+    .enquiry-close {
+      top: 12px;
+      right: 12px;
+      width: 31px;
+      height: 31px;
+      font-size: 22px;
+    }
+  
+    .enquiry-eyebrow {
+      margin-bottom: 10px;
+      font-size: 9px;
+      letter-spacing: 1.8px;
+    }
+  
+    .enquiry-modal-content h2 {
+      margin-right: 20px;
+      margin-bottom: 10px;
+      font-size: 27px;
+      letter-spacing: -0.7px;
+    }
+  
+    .enquiry-description {
+      margin-bottom: 19px;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+  
+    .enquiry-form {
+      gap: 12px;
+    }
+  
+    .enquiry-field {
+      gap: 6px;
+    }
+  
+    .enquiry-field label {
+      font-size: 11px;
+    }
+  
+    .enquiry-field input,
+    .enquiry-field textarea {
+      padding: 11px 12px;
+      font-size: 12px;
+    }
+  
+    .enquiry-field input {
+      height: 42px;
+    }
+  
+    .enquiry-field textarea {
+      min-height: 78px;
+      height: 78px;
+    }
+  
+    .enquiry-submit-btn {
+      min-height: 44px;
+      padding: 12px 16px;
+      font-size: 11px;
+    }
+  
+    .enquiry-privacy {
+      font-size: 9px;
+    }
+  }
+  
+  /* =========================================
+     REDUCED MOTION ACCESSIBILITY
+  ========================================= */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .enquiry-overlay,
+    .enquiry-modal {
+      animation: none;
+    }
+  
+    .enquiry-close,
+    .enquiry-field input,
+    .enquiry-field textarea,
+    .enquiry-submit-btn,
+    .enquiry-open-btn {
+      transition: none;
+    }
+  }
+  

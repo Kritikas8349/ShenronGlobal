@@ -1,6 +1,7 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PortfolioM.css";
+import EnquiryPopup from "../pages/EnquiryPopup";
 import portfolioM from "../assets/portfolioM.png";
 import portfolioConstructionImg from "../assets/portfolioManagement.png";
 import {
@@ -159,6 +160,7 @@ const clientPrivileges = [
 
 
 function useSectionReveal() {
+
     const ref = useRef(null);
 
     useEffect(() => {
@@ -303,6 +305,8 @@ const features = [
 ];
 
 function PortfolioM() {
+    const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
     const sectionRef = useRef(null);
 
     useEffect(() => {
@@ -403,13 +407,16 @@ function PortfolioM() {
                         </p>
 
                         <div className="portfolio-actions portfolio-animate">
-                            <a href="/contact" className="portfolio-btn-primary">
+                            <button
+                                type="button"
+                                className="portfolio-btn-primary"
+                                onClick={() => setIsEnquiryOpen(true)}
+                            >
                                 Apply for Portfolio Management
-                                <span aria-hidden="true">↗</span>
-                            </a>
+                            </button>
 
-                            <a href="/contact" className="portfolio-btn-secondary">
-                                Request a Call with Our Research Desk
+                            <a href="/contact-us" className="portfolio-btn-secondary">
+                                Connect with Our Research Desk
                             </a>
                         </div>
 
@@ -708,99 +715,99 @@ function PortfolioM() {
                     </section>
 
                     {/* CLIENT PRIVILEGES */}
-                   
+
 
                     <section
-    className="privileges-section benefits-reveal-section"
-    ref={privilegesRef}
->
-    <div className="privileges-top benefits-item">
-        <div>
-            <div className="benefits-eyebrow">
-                <span className="benefits-eyebrow-line" />
-                CLIENT PRIVILEGES
-            </div>
-
-            <h3>
-                Your portfolio.
-                <br />
-                <span>Our continued commitment.</span>
-            </h3>
-        </div>
-
-        <p className="privileges-intro">
-            A more considered investment experience, built around
-            meaningful insights, personal attention, and a
-            relationship that goes beyond the numbers.
-        </p>
-    </div>
-
-    <div className="privileges-showcase">
-        <div className="privileges-feature benefits-item">
-            <div className="privileges-feature-top">
-                <span>THE EXPERIENCE</span>
-                <span className="privileges-feature-symbol">✳</span>
-            </div>
-
-            <div className="privileges-feature-main">
-                <span className="privileges-feature-index">01 / 09</span>
-
-                <h4>
-                    A relationship built around your financial goals.
-                </h4>
-
-                <p>
-                    Personalized attention, relevant perspectives,
-                    and thoughtful guidance to help you navigate
-                    your investment journey.
-                </p>
-            </div>
-
-            <div className="privileges-feature-bottom">
-                <span>BEYOND PORTFOLIO MANAGEMENT</span>
-                <FiArrowUpRight />
-            </div>
-        </div>
-
-        <div className="privileges-grid">
-            {clientPrivileges.slice(1).map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                    <article
-                        className="privilege-card benefits-item"
-                        key={item.title}
-                        style={{
-                            "--item-delay": `${index * 80}ms`,
-                        }}
+                        className="privileges-section benefits-reveal-section"
+                        ref={privilegesRef}
                     >
-                        <div className="privilege-card-top">
-                            <Icon className="privilege-icon" />
-                            <span>
-                                {String(index + 2).padStart(2, "0")}
-                            </span>
+                        <div className="privileges-top benefits-item">
+                            <div>
+                                <div className="benefits-eyebrow">
+                                    <span className="benefits-eyebrow-line" />
+                                    CLIENT PRIVILEGES
+                                </div>
+
+                                <h3>
+                                    Your portfolio.
+                                    <br />
+                                    <span>Our continued commitment.</span>
+                                </h3>
+                            </div>
+
+                            <p className="privileges-intro">
+                                A more considered investment experience, built around
+                                meaningful insights, personal attention, and a
+                                relationship that goes beyond the numbers.
+                            </p>
                         </div>
 
-                        <div className="privilege-card-content">
-                            <h4>{item.title}</h4>
-                            <p>{item.text}</p>
+                        <div className="privileges-showcase">
+                            <div className="privileges-feature benefits-item">
+                                <div className="privileges-feature-top">
+                                    <span>THE EXPERIENCE</span>
+                                    <span className="privileges-feature-symbol">✳</span>
+                                </div>
+
+                                <div className="privileges-feature-main">
+                                    <span className="privileges-feature-index">01 / 09</span>
+
+                                    <h4>
+                                        A relationship built around your financial goals.
+                                    </h4>
+
+                                    <p>
+                                        Personalized attention, relevant perspectives,
+                                        and thoughtful guidance to help you navigate
+                                        your investment journey.
+                                    </p>
+                                </div>
+
+                                <div className="privileges-feature-bottom">
+                                    <span>BEYOND PORTFOLIO MANAGEMENT</span>
+                                    <FiArrowUpRight />
+                                </div>
+                            </div>
+
+                            <div className="privileges-grid">
+                                {clientPrivileges.slice(1).map((item, index) => {
+                                    const Icon = item.icon;
+
+                                    return (
+                                        <article
+                                            className="privilege-card benefits-item"
+                                            key={item.title}
+                                            style={{
+                                                "--item-delay": `${index * 80}ms`,
+                                            }}
+                                        >
+                                            <div className="privilege-card-top">
+                                                <Icon className="privilege-icon" />
+                                                <span>
+                                                    {String(index + 2).padStart(2, "0")}
+                                                </span>
+                                            </div>
+
+                                            <div className="privilege-card-content">
+                                                <h4>{item.title}</h4>
+                                                <p>{item.text}</p>
+                                            </div>
+
+                                            <span className="privilege-card-line" />
+                                        </article>
+                                    );
+                                })}
+                            </div>
                         </div>
 
-                        <span className="privilege-card-line" />
-                    </article>
-                );
-            })}
-        </div>
-    </div>
-
-    <div className="privileges-bottom benefits-item">
-        <span>PERSONAL ATTENTION</span>
-        <span className="privileges-bottom-divider" />
-        <span>RESEARCH-LED PERSPECTIVES</span>
-        <span className="privileges-bottom-divider" />
-        <span>LONG-TERM PARTNERSHIP</span>
-    </div>
-</section>
+                        <div className="privileges-bottom benefits-item">
+                            <span>PERSONAL ATTENTION</span>
+                            <span className="privileges-bottom-divider" />
+                            <span>RESEARCH-LED PERSPECTIVES</span>
+                            <span className="privileges-bottom-divider" />
+                            <span>LONG-TERM PARTNERSHIP</span>
+                        </div>
+                    </section>
 
 
 
@@ -887,6 +894,14 @@ function PortfolioM() {
                     </div>
                 </div>
             </section>
+
+
+            {isEnquiryOpen && (
+                <EnquiryPopup
+                    openOnMount={true}
+                    onClose={() => setIsEnquiryOpen(false)}
+                />
+            )}
 
         </>
     );

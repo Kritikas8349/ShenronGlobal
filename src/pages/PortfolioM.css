@@ -184,6 +184,7 @@
     color: #251b0c;
     background: linear-gradient(135deg, #f5d38a, #d9a640);
     box-shadow: 0 8px 20px rgba(181, 133, 46, 0.18);
+    border: none;
   }
   
   .portfolio-btn-primary span {
