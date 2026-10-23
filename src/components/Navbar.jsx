@@ -191,21 +191,7 @@ export default function Navbar() {
           </div>
 
           <NavLink
-<<<<<<< HEAD
             to="/portfolio"
-            className={({ isActive }) =>
-              `nav-link ${isActive ? "active" : ""}`
-            }
-            onClick={closeMenus}
-          >
-            Portfolio
-          </NavLink>
-
-          <NavLink
-            to="/guide-to-kickstart"
-=======
-            to="/portfolio-management"
->>>>>>> 7c7fb35f6cf6bb6fb02723b4bff2c5d7c2413de0
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
@@ -215,7 +201,7 @@ export default function Navbar() {
           </NavLink>
 
           <NavLink
-            to="/blog"
+            to="/blogs"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
@@ -236,7 +222,7 @@ export default function Navbar() {
 
           {/* Contact Button */}
           <Link
-            to="/contact"
+            to="/contact-us"
             className="navbar-cta"
             onClick={closeMenus}
           >
