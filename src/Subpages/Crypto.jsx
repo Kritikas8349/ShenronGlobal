@@ -183,7 +183,43 @@ function CryptoPlans() {
   );
 }
 
+function CryptoMarketTicker() {
+  return (
+    <section className="crypto-market-section crypto-section" id="crypto-market" data-crypto-reveal>
+      <div className="crypto-market-heading">
+        <Eyebrow>LIVE CRYPTO MARKETS</Eyebrow>
+        <h2>Digital assets, moving live.</h2>
+        <p>Follow current quotes for Bitcoin and Ethereum as you explore the research desk.</p>
+      </div>
+      <div className="crypto-live-panel">
+        <div className="crypto-live-panel-heading"><span><i aria-hidden="true" /> Live market feed</span><small>BTC / ETH</small></div>
+        <tv-ticker-tape
+          symbols="BITSTAMP:BTCUSD,BITSTAMP:ETHUSD"
+          item-size="compact"
+          hide-chart
+          theme="light"
+          transparent
+        >
+          <div className="crypto-ticker-placeholder"><i />Connecting to crypto quotes…</div>
+        </tv-ticker-tape>
+        <p className="crypto-live-disclaimer">Quotes provided by TradingView from Bitstamp. Prices can vary by exchange and quote availability may be delayed.</p>
+      </div>
+    </section>
+  );
+}
+
 export default function Crypto() {
+  useEffect(() => {
+    if (window.customElements?.get("tv-ticker-tape")) return;
+    if (document.getElementById("tradingview-ticker-tape-script")) return;
+
+    const script = document.createElement("script");
+    script.id = "tradingview-ticker-tape-script";
+    script.type = "module";
+    script.src = "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js";
+    document.head.appendChild(script);
+  }, []);
+
   useEffect(() => {
     const root = document.querySelector(".crypto-page");
     if (!root) return undefined;
@@ -216,14 +252,18 @@ export default function Crypto() {
       </section>
 
       <section className="crypto-section crypto-overview" data-crypto-reveal>
-        <div className="crypto-section-heading"><div><Eyebrow>MARKET OVERVIEW</Eyebrow><h2>Understand the Market Before the Recommendation</h2></div>
+        <div className="crypto-section-heading crypto-overview-heading"><div><Eyebrow>MARKET OVERVIEW</Eyebrow><h2>Understand the market <span>before the recommendation.</span></h2></div>
           <p>Start with the mechanics of digital assets, then add market context and a defined approach to risk.</p></div>
-        <div className="crypto-overview-layout"><article className="crypto-overview-lead"><span className="crypto-overview-index">01 / THE LANDSCAPE</span><FaBitcoin aria-hidden="true" /><h3>{overview[0].title}</h3><p>{overview[0].text}</p><span className="crypto-overview-watermark" aria-hidden="true">₿</span></article>
-          <div className="crypto-overview-rows">{overview.slice(1).map(({ number, title, text, icon: Icon }) => <article className="crypto-overview-row" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div>{createElement(Icon, { "aria-hidden": true })}</article>)}</div>
-        </div>
+        <div className="crypto-overview-grid">{overview.map(({ number, title, text, icon: Icon }, index) => <article className="crypto-overview-card" key={number}>
+          <div className="crypto-overview-card-top"><span>{number}</span><i aria-hidden="true"><Icon /></i></div>
+          <h3>{title}</h3><p>{text}</p>
+          <a href={index === 0 ? "#crypto-market" : index === 1 ? "#services" : "#plans"}><span>{index === 0 ? "Explore live markets" : index === 1 ? "Explore the research" : "View plans"}</span><i aria-hidden="true"><FaArrowRight /></i></a>
+        </article>)}</div>
       </section>
 
-      <section className="crypto-section crypto-services" data-crypto-reveal>
+      <CryptoMarketTicker />
+
+      <section className="crypto-section crypto-services" id="services" data-crypto-reveal>
         <div className="crypto-section-heading"><div><Eyebrow>WHAT YOU GET</Eyebrow><h2>Crypto Research, Updates and Actionable Guidance</h2></div>
           <p>Get research-driven crypto insights, digital-asset market updates, and risk-focused recommendations to help evaluate market opportunities.</p></div>
         <div className="crypto-service-layout"><article className="crypto-service-feature"><div className="crypto-service-feature-art"><div className="crypto-token-ring"><FaEthereum aria-hidden="true" /></div><span>MARKET STRUCTURE / VOLATILITY / NARRATIVE</span></div>

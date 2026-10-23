@@ -27,28 +27,32 @@ const serviceLinks = [
   { label: "Comex", to: "/services" },
 ];
 
+
 const resourceLinks = [
-    {
-      label: "Address: Business Centre, A3 Dubai South Business Park - Dubai - United Arab Emirates",
-      value: "Your Office Address",
-      to: null,
-    },
-    {
-      label: "Email: support@shenronglobal.com",
-      value: "info@yourdomain.com",
-      to: "mailto:info@yourdomain.com",
-    },
-    {
-      label: "Phone no: +971565702852",
-      value: "+91 XXXXX XXXXX",
-      to: "tel:+91XXXXXXXXXX",
-    },
-    {
-      label: "Timings: Mon - Fri: 9:00 AM - 6:00 PM (GST)",
-      value: "Mon – Fri, 9 AM – 6 PM",
-      to: null,
-    },
-  ];
+  {
+    label:
+      "Address: Business Centre, A3 Dubai South Business Park - Dubai - United Arab Emirates",
+    value: "Business Centre, Dubai",
+    to: "https://www.google.com/maps/search/?api=1&query=Business+Centre+A3+Dubai+South+Business+Park+Dubai",
+    external: true,
+  },
+  {
+    label: "Email: support@shenronglobal.com",
+    value: "support@shenronglobal.com",
+    to: "mailto:support@shenronglobal.com",
+  },
+  {
+    label: "Phone no: +971565702852",
+    value: "+971565702852",
+    to: "tel:+971565702852",
+  },
+  {
+    label: "Timings: Mon - Fri: 9:00 AM - 6:00 PM (GST)",
+    value: "Mon - Fri, 9 AM - 6 PM",
+    to: null,
+  },
+];
+
 
 const socialLinks = [
   {
@@ -112,7 +116,7 @@ export default function Footer() {
                         </div>
 
                         <div className="home-cta-actions">
-                            <Link to="/services" className="home-cta-button">
+                            <Link to="/services/forex" className="home-cta-button">
                                 Explore Our Services
                                 <FaArrowRight />
                             </Link>

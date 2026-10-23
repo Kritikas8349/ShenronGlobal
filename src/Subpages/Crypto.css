@@ -7,7 +7,7 @@
     padding: 0 0 72px;
     overflow: clip;
     color: var(--crypto-ink);
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     background: #fffdf8;
 }
 
@@ -296,7 +296,7 @@
     right: 4%;
     bottom: 3%;
     color: #817564;
-    font-family: Georgia, serif;
+    font-family: "Inter", sans-serif;
     font-size: 11px;
     font-style: italic;
 }
@@ -1500,5 +1500,322 @@
     .crypto-page [data-crypto-reveal] {
         opacity: 1;
         transform: none;
+    }
+}
+
+/* Match the Forex warm backdrop and overview-card system. */
+.crypto-page {
+    background-image: url("../assets/ForexBG.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #fbf7ef;
+}
+
+.crypto-page .crypto-hero::before {
+    background: rgba(255, 255, 255, .12);
+}
+
+.crypto-page .crypto-overview-heading {
+    display: block;
+    max-width: 880px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.crypto-page .crypto-overview-heading > div {
+    text-align: center;
+}
+
+.crypto-page .crypto-overview-heading .crypto-eyebrow {
+    justify-content: center;
+}
+
+.crypto-page .crypto-overview-heading h2 {
+    max-width: 850px;
+    margin: 18px auto 12px;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.045em;
+}
+
+.crypto-page .crypto-overview-heading h2 span {
+    display: block;
+    color: #8f6123;
+}
+
+.crypto-page .crypto-overview-heading > p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.crypto-page .crypto-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.crypto-page .crypto-overview-card {
+    min-width: 0;
+    min-height: 310px;
+    padding: 27px 28px 23px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(183, 131, 45, .25);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .24);
+    box-shadow: 0 18px 42px rgba(95, 67, 31, .055);
+    backdrop-filter: blur(3px);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.crypto-page .crypto-overview-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(153, 103, 34, .55);
+    box-shadow: 0 22px 46px rgba(95, 67, 31, .1);
+}
+
+.crypto-page .crypto-overview-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #94621f;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.crypto-page .crypto-overview-card-top > i {
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(183, 131, 45, .24);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .3);
+    color: #91621f;
+    font-size: 23px;
+    font-style: normal;
+}
+
+.crypto-page .crypto-overview-card h3 {
+    margin: 0 0 9px;
+    color: #201c17;
+    font-size: clamp(20px, 1.9vw, 27px);
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -.035em;
+}
+
+.crypto-page .crypto-overview-card > p {
+    margin: 0 0 20px;
+    color: #625d55;
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.crypto-page .crypto-overview-card > a {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #885b1e;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.crypto-page .crypto-overview-card > a > i {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(153, 103, 34, .66);
+    border-radius: 50%;
+    font-size: 14px;
+    font-style: normal;
+    transition: transform .2s ease, color .2s ease, background .2s ease;
+}
+
+.crypto-page .crypto-overview-card > a:hover > i {
+    transform: translateX(3px);
+    background: #94621f;
+    color: #fff;
+}
+
+.crypto-page .crypto-overview-card > a:focus-visible {
+    outline: 2px solid #94621f;
+    outline-offset: 4px;
+}
+
+.crypto-page .crypto-market-section {
+    padding-top: 36px;
+}
+
+.crypto-page .crypto-market-heading {
+    margin: 0 auto 26px;
+    text-align: center;
+}
+
+.crypto-page .crypto-market-heading .crypto-eyebrow {
+    justify-content: center;
+    color: #9a7133;
+}
+
+.crypto-page .crypto-market-heading h2 {
+    margin: 16px auto 10px;
+    color: #171717;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -.045em;
+}
+
+.crypto-page .crypto-market-heading > p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #756b60;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.crypto-page .crypto-live-panel {
+    padding: 19px 23px 14px;
+    border: 1px solid rgba(153, 113, 51, .27);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .23);
+    box-shadow: 0 16px 38px rgba(39, 31, 20, .065);
+    color-scheme: light;
+    --tv-widget-background-color: transparent;
+    --tv-widget-text-color: #312a20;
+    --tv-widget-price-text-color: #312a20;
+    --tv-widget-positive-color: #39774f;
+    --tv-widget-negative-color: #b3473d;
+}
+
+.crypto-page .crypto-live-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 9px;
+    color: #382f23;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.crypto-page .crypto-live-panel-heading > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.crypto-page .crypto-live-panel-heading i,
+.crypto-page .crypto-ticker-placeholder > i {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #3f9660;
+    box-shadow: 0 0 0 4px rgba(63, 150, 96, .12);
+}
+
+.crypto-page .crypto-live-panel-heading small {
+    color: #817565;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.crypto-page tv-ticker-tape {
+    display: block;
+    width: 100%;
+    min-height: 72px;
+    overflow: hidden;
+}
+
+.crypto-page .crypto-ticker-placeholder {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #766b5e;
+    font-size: 13px;
+}
+
+.crypto-page .crypto-live-disclaimer {
+    margin: 11px 0 0;
+    color: #766b5e;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.crypto-page .crypto-plans {
+    background: rgba(255, 255, 255, .08);
+}
+
+.crypto-page .crypto-plan,
+.crypto-page .crypto-plan.is-recommended {
+    background: rgba(255, 255, 255, .29);
+    backdrop-filter: blur(3px);
+}
+
+.crypto-page .crypto-risk-section,
+.crypto-page .crypto-final {
+    background: rgba(255, 255, 255, .27);
+    backdrop-filter: blur(3px);
+}
+
+@media (max-width: 900px) {
+    .crypto-page .crypto-overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .crypto-page .crypto-overview-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 620px) {
+    .crypto-page {
+        background-attachment: scroll;
+        background-position: center top;
+        background-size: auto 100vh;
+    }
+
+    .crypto-page .crypto-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .crypto-page .crypto-overview-card:last-child {
+        grid-column: auto;
+    }
+
+    .crypto-page .crypto-overview-card {
+        min-height: 280px;
+        padding: 24px 22px 20px;
+    }
+
+    .crypto-page .crypto-overview-heading h2 {
+        font-size: clamp(34px, 9vw, 48px);
+    }
+
+    .crypto-page .crypto-live-panel {
+        padding: 16px 13px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .crypto-page .crypto-overview-card,
+    .crypto-page .crypto-overview-card > a > i {
+        transition: none;
     }
 }

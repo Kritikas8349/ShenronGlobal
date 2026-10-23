@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaArrowRight,
@@ -9,102 +9,105 @@ import {
 } from "react-icons/fa";
 import "./Comex.css";
 
+const marketImage =
+  "https://images.unsplash.com/photo-1768055104929-cf2317674a80?auto=format&fit=crop&w=1800&q=88";
 const goldImage =
-  "https://images.unsplash.com/photo-1718752773271-5bec84137916?auto=format&fit=crop&w=1600&q=85";
-const goldDetailImage =
-  "https://images.unsplash.com/photo-1718752773174-6e10495fdcf2?auto=format&fit=crop&w=1200&q=85";
+  "https://images.unsplash.com/photo-1718752773174-6e10495fdcf2?auto=format&fit=crop&w=1000&q=85";
 const silverImage =
-  "https://images.unsplash.com/photo-1720637595085-cd0b84ed67ad?auto=format&fit=crop&w=1200&q=85";
+  "https://images.unsplash.com/photo-1720637595085-cd0b84ed67ad?auto=format&fit=crop&w=1000&q=85";
 
-const services = [
-  {
-    title: "Precious metals",
-    text: "Understand gold and silver through their distinct market drivers and trading context.",
-    icon: FaChartLine,
-  },
-  {
-    title: "Market context",
-    text: "Connect commodity developments with relevant economic themes and market sentiment.",
-    icon: FaGlobeAmericas,
-  },
-  {
-    title: "Technical observations",
-    text: "Review price behaviour, trend structure, and relevant technical reference points.",
-    icon: FaCompass,
-  },
-  {
-    title: "Risk-aware thinking",
-    text: "Consider volatility, exposure, and uncertainty before discussing a possible approach.",
-    icon: FaShieldAlt,
-  },
-];
-
-const metals = [
+const overviewItems = [
   {
     number: "01",
-    name: "Gold",
-    title: "A market shaped by more than safe-haven demand.",
-    description:
-      "Real yields, currency movements, central-bank activity, and changing risk sentiment can all influence how gold is discussed. No single factor explains every move.",
-    factors: ["Real yields", "Currency movements", "Central-bank activity"],
-    image: goldDetailImage,
-    imageAlt: "Close view of stacked gold bullion bars",
-    tone: "gold",
-    eyebrow: "PRECIOUS METAL / 01",
+    icon: FaGlobeAmericas,
+    title: "What is the COMEX market?",
+    text: "A major metals futures market where gold and silver prices respond to supply, demand, economic data, and global market trends.",
   },
   {
     number: "02",
-    name: "Silver",
-    title: "Precious-metal character. Industrial context.",
-    description:
-      "Silver can respond to precious-metal sentiment and industrial demand at once. Its market context deserves its own view of volatility, price behaviour, and economic themes.",
-    factors: ["Industrial demand", "Precious-metal sentiment", "Relative volatility"],
-    image: silverImage,
-    imageAlt: "Polished silver bullion bars stacked on a dark surface",
-    tone: "silver",
-    eyebrow: "PRECIOUS METAL / 02",
+    icon: FaChartLine,
+    title: "How do traders approach it?",
+    text: "Read price trends alongside trading hours, market news, and event risk before assessing a futures opportunity.",
+  },
+  {
+    number: "03",
+    icon: FaShieldAlt,
+    title: "How does Shenron assist?",
+    text: "Our desk brings research, market updates, and risk context together to help you assess your own decisions.",
   },
 ];
 
-const approach = [
-  ["01", "Understand", "Clarify objectives and familiarity with commodity markets."],
-  ["02", "Analyse", "Review relevant market conditions and available information."],
-  ["03", "Plan", "Discuss possible approaches, constraints, and risk considerations."],
-  ["04", "Review", "Reassess the discussion as market conditions or objectives change."],
+const serviceItems = [
+  {
+    number: "01",
+    icon: FaCompass,
+    title: "Commodity research",
+    text: "Daily context around gold, silver, oil, dollar strength, yields, and global risk appetite.",
+    meta: "MARKET CONTEXT",
+  },
+  {
+    number: "02",
+    icon: FaChartLine,
+    title: "Market updates",
+    text: "Notes on reversals, breakout attempts, session highs and lows, and relevant data releases.",
+    meta: "SESSION NOTES",
+  },
+  {
+    number: "03",
+    icon: FaShieldAlt,
+    title: "Risk-first ideas",
+    text: "Trade scenarios with entry ranges, invalidation and target levels, plus cautions around sharp moves.",
+    meta: "RISK CONTEXT",
+  },
 ];
 
-const principles = [
-  ["01", "Research with context", "Connect price behaviour to relevant market themes."],
-  ["02", "Plain-language explanations", "Make the reasoning and its limits easy to follow."],
-  ["03", "Risk-aware decisions", "Discuss uncertainty before considering an approach."],
+const plans = [
+  {
+    name: "COMEX Basic",
+    category: "CORE SIGNALS",
+    price: "AED 349",
+    description:
+      "Core commodity signals and market updates for a focused COMEX routine.",
+    features: [
+      "1–2 focused trade ideas per day",
+      "Risk/reward context up to 1:1.5",
+      "Around 1,500 pips monthly target context",
+      "Scalping-focused ideas",
+      "Commodity calendar and market news",
+    ],
+  },
+  {
+    name: "COMEX Plus",
+    category: "ENHANCED RESEARCH",
+    price: "AED 499",
+    description:
+      "More frequent setups with research, session context, and practical sizing notes.",
+    recommended: true,
+    features: [
+      "1–3 curated setups per day",
+      "Risk/reward context up to 1:2.5",
+      "Around 2,500 pips monthly target context",
+      "Scalping and day-trade setups",
+      "Weekly notes, sizing, and macro/inventory updates",
+    ],
+  },
+  {
+    name: "COMEX Pro",
+    category: "DEDICATED SUPPORT",
+    price: "AED 799",
+    description:
+      "A deeper research and support option for experienced commodity traders.",
+    features: [
+      "3–4 highly vetted setups per day",
+      "Risk/reward context up to 1:8",
+      "Around 4,000 pips monthly target context",
+      "Day trades, swing setups, and ICT-based entries",
+      "Dedicated relationship manager and inventory analysis",
+    ],
+  },
 ];
 
-const faqs = [
-  [
-    "What are COMEX markets?",
-    "COMEX is a commodities exchange associated with futures markets, including contracts for metals such as gold, silver, copper, and other products. Trading a futures contract is different from owning the physical commodity.",
-  ],
-  [
-    "Which precious metals are covered?",
-    "This page focuses on gold and silver market context. Confirm any other commodity coverage with the Shenron Global team before relying on it.",
-  ],
-  [
-    "What is included in COMEX market analysis?",
-    "Analysis may discuss technical market structure, relevant economic context, and risk considerations. Specific deliverables and availability depend on the service agreed with you.",
-  ],
-  [
-    "How are market risks explained?",
-    "Risk discussion can include volatility, exposure, position-sizing concepts, and scenarios that could challenge an idea. It cannot remove the possibility of loss.",
-  ],
-  [
-    "Is commodity trading risk-free?",
-    "No. Commodity markets can move quickly, and leveraged products can magnify both gains and losses. Consider whether the risks are suitable for your circumstances.",
-  ],
-  [
-    "How can I discuss the available services?",
-    "Use the enquiry form to tell our team which market topics you would like to discuss. The team can then confirm service availability and next steps.",
-  ],
-];
+const billingPeriods = ["monthly", "quarterly", "yearly"];
 
 function Eyebrow({ children, light = false }) {
   return (
@@ -115,448 +118,321 @@ function Eyebrow({ children, light = false }) {
   );
 }
 
-function ArrowLink({ href, children, secondary = false }) {
+function ComexHero() {
   return (
-    <a
-      className={`comex-button${secondary ? " is-secondary" : ""}`}
-      href={href}
-    >
-      {children}
-      <FaArrowRight aria-hidden="true" />
-    </a>
-  );
-}
-
-function hideUnavailableImage(event) {
-  event.currentTarget.hidden = true;
-}
-
-function MarketContextStrip() {
-  return (
-    <section className="comex-context" aria-label="COMEX coverage">
-      <div className="comex-context-heading">
-        <span>MARKET COVERAGE</span>
-        <span>Research themes</span>
+    <section className="comex-hero" aria-labelledby="comex-title">
+      <div className="comex-hero-topline comex-container">
+        <span>SHENRON GLOBAL <i aria-hidden="true" /> COMEX SERVICES</span>
+        <span>COMMODITY MARKET DESK</span>
       </div>
-      <div className="comex-context-topics">
-        {["Gold", "Silver", "Commodity context", "Risk awareness"].map(
-          (item, index) => (
-            <span className="comex-context-item" key={item}>
-              <i aria-hidden="true">0{index + 1}</i>
-              {item}
-            </span>
-          ),
-        )}
+
+      <div className="comex-hero-layout comex-container">
+        <div className="comex-hero-copy">
+          <Eyebrow>GOLD · SILVER · OIL · MARKET CONTEXT</Eyebrow>
+          <h1 id="comex-title">
+            Gold, silver and commodity guidance <em>for active traders.</em>
+          </h1>
+          <p>
+            Get COMEX-focused recommendations, market analysis, and strategy
+            notes for precious metals and commodity-linked opportunities.
+          </p>
+          <div className="comex-hero-actions">
+            <a className="comex-button comex-button--dark" href="#plans">
+              View plans <FaArrowRight aria-hidden="true" />
+            </a>
+            <Link className="comex-button comex-button--outline" to="/contact-us">
+              Book consultation
+            </Link>
+          </div>
+          <div className="comex-coverage" aria-label="COMEX desk coverage">
+            <span>DESK COVERAGE</span>
+            <strong>XAU/USD</strong><i aria-hidden="true" />
+            <strong>Silver</strong><i aria-hidden="true" />
+            <strong>Oil</strong><i aria-hidden="true" />
+            <strong>Macro events</strong>
+          </div>
+        </div>
+
+        <figure className="comex-hero-visual">
+          <img
+            src={marketImage}
+            alt="Trader reviewing market charts on a tablet beside a monitor"
+            fetchPriority="high"
+            decoding="async"
+            onError={(event) => { event.currentTarget.hidden = true; }}
+          />
+          <div className="comex-hero-image-shade" aria-hidden="true" />
+          <figcaption>
+            <span>MARKET RESEARCH</span>
+            <span>01 / COMEX DESK</span>
+          </figcaption>
+          <div className="comex-desk-card">
+            <div className="comex-desk-card-heading">
+              <span className="comex-live-dot" />
+              <span>COMEX DESK</span>
+              <strong>24/5</strong>
+            </div>
+            <p>Research-led recommendations, risk context, market updates, and execution notes.</p>
+            <div className="comex-desk-tags">
+              <span>Gold</span><span>Silver</span><span>Oil</span><span>Macro</span>
+            </div>
+          </div>
+          <span className="comex-image-index" aria-hidden="true">01 <i /> MARKET DESK</span>
+        </figure>
+      </div>
+
+      <div className="comex-hero-bottom comex-container">
+        <span>Structured guidance for changing commodity markets.</span>
+        <a href="#comex-intro">Explore the desk <FaArrowRight aria-hidden="true" /></a>
       </div>
     </section>
   );
 }
 
-function ResearchFeature({ item }) {
-  const Icon = item.icon;
-
+function ComexMarketTicker() {
   return (
-    <article className="comex-research-feature">
-      <span className="comex-research-feature-icon" aria-hidden="true">
-        <Icon />
-      </span>
-      <h3>{item.title}</h3>
-      <p>{item.text}</p>
-    </article>
+    <section className="comex-live-section" aria-label="Live commodity and currency market feed">
+      <div className="comex-live-panel comex-container">
+        <div className="comex-live-heading">
+          <span><i className="comex-live-dot" /> LIVE MARKET WATCH</span>
+          <small>COMEX metals · NYMEX oil · FX references</small>
+        </div>
+        <tv-ticker-tape
+          symbols="COMEX:GC1!,COMEX:SI1!,NYMEX:CL1!,TVC:DXY,FX:EURUSD"
+          item-size="compact"
+          hide-chart
+          theme="light"
+          transparent
+        >
+          <div className="comex-ticker-placeholder"><i className="comex-live-dot" />Connecting to market quotes…</div>
+        </tv-ticker-tape>
+        <p>Market data is provided by TradingView and may be delayed. Continuous futures are reference contracts, not physical commodity prices.</p>
+      </div>
+    </section>
   );
 }
 
-function MetalFeature({ metal }) {
+function Introduction() {
   return (
-    <article className={`comex-metal-feature comex-metal-feature--${metal.tone}`}>
-      <figure className="comex-metal-visual">
-        <img
-          src={metal.image}
-          alt={metal.imageAlt}
-          loading="lazy"
-          decoding="async"
-          onError={hideUnavailableImage}
-        />
-        <figcaption>
-          <span>{metal.eyebrow}</span>
-          <span>MARKET STUDY</span>
-        </figcaption>
-      </figure>
-
-      <div className="comex-metal-copy">
-        <Eyebrow>{metal.eyebrow}</Eyebrow>
-        <span className="comex-metal-name">{metal.name}</span>
-        <h3>{metal.title}</h3>
-        <p>{metal.description}</p>
-        <div className="comex-metal-watch">
-          <span>CONTEXT TO CONSIDER</span>
-          <ul>
-            {metal.factors.map((factor) => (
-              <li key={factor}>{factor}</li>
-            ))}
-          </ul>
-        </div>
-        <a className="comex-inline-link" href="#analysis">
-          See the analysis framework <FaArrowRight aria-hidden="true" />
+    <section className="comex-intro comex-container" id="comex-intro">
+      <div className="comex-intro-copy">
+        <Eyebrow>INTRODUCTION</Eyebrow>
+        <h2>COMEX trading guidance <em>with risk in view.</em></h2>
+        <p>
+          Get COMEX-focused recommendations, market analysis, and strategy notes
+          for gold, silver, oil, and commodity-linked opportunities. Our desk
+          shares research and market updates to help traders understand price
+          movements and evaluate potential setups.
+        </p>
+        <p>
+          Trading hours matter when analysing futures markets. Exchange schedules
+          and holidays can affect activity, so check the latest calendar when
+          planning around gold and silver sessions.
+        </p>
+        <p>
+          Whether you are exploring COMEX or looking for broader commodity
+          insights, Shenron Global focuses on structured guidance and risk
+          awareness. Trading involves risk; no recommendation guarantees profit.
+        </p>
+        <a className="comex-text-link" href="#overview">
+          Understand the desk <FaArrowRight aria-hidden="true" />
         </a>
       </div>
-    </article>
+
+      <div className="comex-intro-visuals" role="group" aria-label="Gold and silver market imagery">
+        <figure className="comex-intro-photo comex-intro-photo--gold">
+          <img src={goldImage} alt="Gold bullion bars" loading="lazy" decoding="async" onError={(event) => { event.currentTarget.hidden = true; }} />
+          <figcaption><span>01</span><strong>Gold futures</strong></figcaption>
+        </figure>
+        <figure className="comex-intro-photo comex-intro-photo--silver">
+          <img src={silverImage} alt="Polished silver bullion bars" loading="lazy" decoding="async" onError={(event) => { event.currentTarget.hidden = true; }} />
+          <figcaption><span>02</span><strong>Silver futures</strong></figcaption>
+        </figure>
+        <div className="comex-intro-note">
+          <span>RESEARCH LENS</span>
+          <strong>Price action, market drivers, and risk context.</strong>
+        </div>
+      </div>
+    </section>
   );
 }
 
-function MarketSketch() {
+function OverviewSection() {
   return (
-    <div
-      className="comex-analysis-visual"
-      role="img"
-      aria-label="Illustrative chart showing price structure and a reference level. It is not live market data or a forecast."
-    >
-      <div className="comex-chart-head">
+    <section className="comex-overview comex-section" id="overview">
+      <div className="comex-section-heading comex-container">
         <div>
-          <span>VISUAL GUIDE</span>
-          <strong>Reading market structure</strong>
+          <Eyebrow>COMEX OVERVIEW</Eyebrow>
+          <h2>Understand the market <em>before the recommendation.</em></h2>
         </div>
-        <span className="comex-chart-status">ILLUSTRATIVE ONLY</span>
+        <p>
+          A clearer view of the futures market, the way traders prepare, and the
+          research Shenron brings to the conversation.
+        </p>
       </div>
-      <div className="comex-chart-area" aria-hidden="true">
-        <div className="comex-chart-grid" />
-        <svg viewBox="0 0 660 270" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="comex-chart-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#d9ae5e" stopOpacity=".18" />
-              <stop offset="1" stopColor="#d9ae5e" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0 145 C42 130 55 164 94 151 S140 103 182 126 S226 170 270 144 S318 111 359 130 S402 171 447 145 S487 100 526 119 S578 156 615 134 S642 108 660 122 L660 270 L0 270Z"
-            fill="url(#comex-chart-fill)"
-          />
-          <path
-            d="M0 145 C42 130 55 164 94 151 S140 103 182 126 S226 170 270 144 S318 111 359 130 S402 171 447 145 S487 100 526 119 S578 156 615 134 S642 108 660 122"
-            fill="none"
-            stroke="#a67935"
-            strokeWidth="3"
-            vectorEffect="non-scaling-stroke"
-          />
-          <path
-            d="M0 179 H660"
-            fill="none"
-            stroke="#7d8588"
-            strokeDasharray="5 8"
-            strokeOpacity=".7"
-            vectorEffect="non-scaling-stroke"
-          />
-          <circle
-            cx="447"
-            cy="145"
-            r="5"
-            fill="#fffaf2"
-            stroke="#a67935"
-            strokeWidth="3"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-        <span className="comex-chart-marker comex-chart-marker--one">PRICE STRUCTURE</span>
-        <span className="comex-chart-marker comex-chart-marker--two">REFERENCE LEVEL</span>
+      <div className="comex-overview-grid comex-container">
+        {overviewItems.map(({ number, icon: Icon, title, text }) => (
+          <article className="comex-overview-card" key={number}>
+            <div className="comex-card-topline"><span>{number}</span><i><Icon aria-hidden="true" /></i></div>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <span className="comex-card-rule" aria-hidden="true" />
+          </article>
+        ))}
       </div>
-      <div className="comex-chart-legend">
-        <span><i className="is-price" />Illustrative price movement</span>
-        <span><i className="is-reference" />Reference level</span>
+    </section>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <section className="comex-services comex-section" id="services">
+      <div className="comex-section-heading comex-container">
+        <div>
+          <Eyebrow light>WHAT YOU GET</Eyebrow>
+          <h2>Research, updates, <em>and actionable guidance.</em></h2>
+        </div>
+        <p>
+          COMEX trading insights, gold and silver market updates, futures-session
+          context, and risk-focused recommendations for evaluating opportunities.
+        </p>
       </div>
-      <p className="comex-chart-disclaimer">
-        Conceptual example only. No live feed, dated price series, or forecast is shown.
+      <div className="comex-service-grid comex-container">
+        {serviceItems.map(({ number, icon: Icon, title, text, meta }) => (
+          <article className="comex-service-card" key={number}>
+            <div className="comex-service-card-top"><span>{number}</span><Icon aria-hidden="true" /></div>
+            <span className="comex-service-meta">{meta}</span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <span className="comex-service-line" aria-hidden="true" />
+          </article>
+        ))}
+      </div>
+      <div className="comex-service-foot comex-container">
+        <span>Ideas are shared for information and discussion.</span>
+        <a href="#plans">Compare plans <FaArrowRight aria-hidden="true" /></a>
+      </div>
+    </section>
+  );
+}
+
+function PlansSection() {
+  const [period, setPeriod] = useState("monthly");
+  const periodLabel = period[0].toUpperCase() + period.slice(1);
+  const billingMessage = period === "monthly"
+    ? "Monthly package rates shown as listed."
+    : `Monthly reference rates remain visible. Confirm the ${period} total with our team.`;
+
+  return (
+    <section className="comex-plans comex-section" id="plans">
+      <div className="comex-section-heading comex-container comex-plans-heading">
+        <div>
+          <Eyebrow>MEMBERSHIP OPTIONS</Eyebrow>
+          <h2>Choose your <em>guidance level.</em></h2>
+        </div>
+        <p>Select a billing period. Prices are in AED and follow the current service package sheet.</p>
+      </div>
+
+      <div className="comex-billing comex-container">
+        <div className="comex-billing-switch" role="group" aria-label="Billing period">
+          {billingPeriods.map((option) => (
+            <button
+              type="button"
+              key={option}
+              className={period === option ? "is-selected" : ""}
+              aria-pressed={period === option}
+              onClick={() => setPeriod(option)}
+            >
+              {option[0].toUpperCase() + option.slice(1)}
+            </button>
+          ))}
+        </div>
+        <p aria-live="polite">{billingMessage}</p>
+      </div>
+
+      <div className="comex-plan-grid comex-container">
+        {plans.map((plan) => (
+          <article className={`comex-plan-card${plan.recommended ? " is-recommended" : ""}`} key={plan.name}>
+            <div className="comex-plan-topline">
+              <span>{plan.category}</span>
+              {plan.recommended && <strong>POPULAR</strong>}
+            </div>
+            <h3>{plan.name}</h3>
+            <p className="comex-plan-description">{plan.description}</p>
+            <div className="comex-plan-price"><strong>{plan.price}</strong><span>/mo</span></div>
+            <span className="comex-plan-price-note">
+              {period === "monthly" ? "Monthly package rate" : `Monthly reference · ${periodLabel} quote on request`}
+            </span>
+            <span className="comex-plan-divider" />
+            <ul>
+              {plan.features.map((feature) => <li key={feature}><i aria-hidden="true" />{feature}</li>)}
+            </ul>
+            <Link className={`comex-button ${plan.recommended ? "comex-button--dark" : "comex-button--plan"}`} to="/contact-us">
+              Choose {plan.name} <FaArrowRight aria-hidden="true" />
+            </Link>
+          </article>
+        ))}
+      </div>
+      <p className="comex-plan-disclaimer comex-container">
+        Pip targets and risk/reward figures are package-sheet context, not forecasts or guarantees. Pip values vary by instrument and provider. Confirm all current plan terms with the Shenron team.
       </p>
-    </div>
+    </section>
+  );
+}
+
+function RiskSection() {
+  return (
+    <section className="comex-risk-section">
+      <div className="comex-risk-inner comex-container">
+        <div className="comex-risk-icon"><FaShieldAlt aria-hidden="true" /></div>
+        <div className="comex-risk-copy">
+          <Eyebrow light>RISK DISCLOSURE</Eyebrow>
+          <h2>Market recommendations <em>do not remove trading risk.</em></h2>
+          <p>
+            COMEX and commodity markets can move sharply due to leverage,
+            contract size, liquidity, and macro events. Recommendations are
+            informational and do not guarantee outcomes. Consider whether the
+            risks are suitable for your circumstances.
+          </p>
+        </div>
+        <div className="comex-risk-actions">
+          <a className="comex-button comex-button--light" href="https://shenronglobal.com/legal/risk-disclosure" target="_blank" rel="noopener noreferrer">
+            Read full risk disclosure <FaArrowRight aria-hidden="true" />
+          </a>
+          <Link className="comex-risk-consult" to="/contact-us">Ask about COMEX services</Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export default function Comex() {
-  const [openFaq, setOpenFaq] = useState(0);
-  const pageRef = useRef(null);
-
   useEffect(() => {
-    const root = pageRef.current;
-    if (!root) return undefined;
+    if (window.customElements?.get("tv-ticker-tape")) return;
+    if (document.getElementById("tradingview-ticker-tape-script")) return;
 
-    const sections = root.querySelectorAll("[data-comex-reveal]");
-    if (!("IntersectionObserver" in window)) {
-      sections.forEach((section) => section.classList.add("is-visible"));
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -28px 0px" },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    const script = document.createElement("script");
+    script.id = "tradingview-ticker-tape-script";
+    script.type = "module";
+    script.src = "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js";
+    document.head.appendChild(script);
   }, []);
 
   return (
-    <main className="comex-page" id="comex-top" ref={pageRef}>
-      <section className="comex-hero" aria-labelledby="comex-title">
-        <div className="comex-hero-kicker comex-container">
-          <span>SHENRON GLOBAL / COMEX</span>
-          <span>PRECIOUS METALS RESEARCH</span>
-        </div>
-
-        <div className="comex-hero-layout comex-container">
-          <div className="comex-hero-copy">
-            <Eyebrow>GOLD · SILVER · MARKET CONTEXT</Eyebrow>
-            <h1 id="comex-title">
-              Precious metals,<em>read in context.</em>
-            </h1>
-            <p className="comex-hero-description">
-              Consider price structure alongside the economic context and risk
-              factors that can shape gold and silver markets.
-            </p>
-            <div className="comex-hero-actions">
-              <Link className="comex-button" to="/contact-us">
-                Discuss COMEX services <FaArrowRight aria-hidden="true" />
-              </Link>
-              <ArrowLink href="#approach" secondary>
-                How we approach research
-              </ArrowLink>
-            </div>
-            <div className="comex-hero-coverage" aria-label="Topics covered">
-              <span>RESEARCH FOCUS</span>
-              <strong>Gold</strong>
-              <i aria-hidden="true" />
-              <strong>Silver</strong>
-              <i aria-hidden="true" />
-              <strong>Risk context</strong>
-            </div>
-          </div>
-
-          <figure className="comex-hero-visual">
-            <img
-              src={goldImage}
-              alt="Gold bullion bars arranged against a dark background"
-              fetchPriority="high"
-              decoding="async"
-              onError={hideUnavailableImage}
-            />
-            <div className="comex-hero-image-shade" aria-hidden="true" />
-            <figcaption>
-              <span>01 / PRECIOUS METALS</span>
-              <span>MARKET RESEARCH</span>
-            </figcaption>
-            <div className="comex-hero-inset">
-              <span>ANALYTICAL LENSES</span>
-              <strong>Price structure</strong>
-              <strong>Economic context</strong>
-              <strong>Risk scenarios</strong>
-            </div>
-          </figure>
-        </div>
-
-        <div className="comex-hero-foot comex-container">
-          <span>Research designed to support informed questions.</span>
-          <span>Market analysis involves risk. No outcome is guaranteed.</span>
-        </div>
-      </section>
-
-      <MarketContextStrip />
-
-      <section className="comex-research comex-container" id="services" data-comex-reveal>
-        <div
-          className="comex-research-visual"
-          role="img"
-          aria-label="Illustrative mobile COMEX research view showing gold market context and a chart marked as not live data."
-        >
-          <div className="comex-research-phone" aria-hidden="true">
-            <div className="comex-research-phone-screen">
-              <div className="comex-research-phone-status">
-                <span>9:41</span>
-                <span className="comex-research-phone-camera" />
-                <span>•••</span>
-              </div>
-              <div className="comex-research-phone-brand">
-                <span className="comex-research-phone-mark">S</span>
-                <span>SHENRON GLOBAL</span>
-                <span className="comex-research-phone-menu">•••</span>
-              </div>
-              <span className="comex-research-phone-kicker">COMEX / RESEARCH</span>
-              <div className="comex-research-phone-title">
-                <strong>Market brief</strong>
-                <span>OVERVIEW</span>
-              </div>
-              <div className="comex-research-phone-card">
-                <div className="comex-research-phone-card-head">
-                  <span>GOLD / MARKET CONTEXT</span>
-                  <i />
-                </div>
-                <strong>Price structure</strong>
-                <p>Technical view with wider market context</p>
-                <svg viewBox="0 0 250 72" focusable="false" aria-hidden="true">
-                  <path className="comex-research-phone-gridline" d="M0 18H250M0 45H250" />
-                  <path className="comex-research-phone-line" d="M3 59 C22 54 27 38 46 44 S70 52 88 35 S117 48 136 29 S162 35 179 20 S207 30 225 12 S240 17 247 5" />
-                </svg>
-                <span className="comex-research-phone-disclaimer">ILLUSTRATIVE VIEW · NOT LIVE DATA</span>
-              </div>
-              <div className="comex-research-phone-tags">
-                <span>Economic context</span>
-                <span>Risk notes</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="comex-research-content">
-          <Eyebrow>01 / RESEARCH SCOPE</Eyebrow>
-          <h2>Built for context.<br /><em>Designed for clarity.</em></h2>
-          <p className="comex-research-intro">
-            A focused view of precious-metals markets, technical observations,
-            and the wider forces that shape the conversation.
-          </p>
-          <div className="comex-research-features">
-            {services.map((item) => (
-              <ResearchFeature item={item} key={item.title} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="comex-metals" aria-label="Gold and silver market context" data-comex-reveal>
-        <div className="comex-metals-heading comex-container">
-          <Eyebrow>02 / TWO DISTINCT MARKETS</Eyebrow>
-          <p>Different drivers deserve different questions.</p>
-        </div>
-        <div className="comex-metals-list">
-          {metals.map((metal) => <MetalFeature key={metal.number} metal={metal} />)}
-        </div>
-      </section>
-
-      <section className="comex-analysis" id="analysis" data-comex-reveal>
-        <div className="comex-analysis-layout comex-container">
-          <div className="comex-analysis-copy">
-            <Eyebrow>03 / MARKET ANALYSIS</Eyebrow>
-            <h2>Look beyond the price.<br /><em>Understand the context.</em></h2>
-            <p>
-              Analysis can bring several perspectives together. The illustration
-              is a visual aid, not a live chart or a signal.
-            </p>
-            <ul>
-              <li><span>01</span><div><strong>Technical structure</strong><p>Support, resistance, and observed price behaviour.</p></div></li>
-              <li><span>02</span><div><strong>Market context</strong><p>Relevant economic and commodity developments.</p></div></li>
-              <li><span>03</span><div><strong>Risk perspective</strong><p>Uncertainty, exposure, and invalidation scenarios.</p></div></li>
-            </ul>
-          </div>
-          <MarketSketch />
-        </div>
-      </section>
-
-      <section className="comex-approach" id="approach" data-comex-reveal>
-        <div className="comex-container">
-          <div className="comex-approach-heading">
-            <div>
-              <Eyebrow light>04 / HOW WE WORK</Eyebrow>
-              <h2>Four stages.<br /><em>One considered process.</em></h2>
-            </div>
-            <p>
-              A clear process leaves room for context, questions, and risk
-              discussion at every stage.
-            </p>
-          </div>
-          <div className="comex-approach-track">
-            <div className="comex-approach-line" aria-hidden="true" />
-            {approach.map(([number, title, text]) => (
-              <article className="comex-approach-step" key={number}>
-                <span className="comex-approach-number">{number}</span>
-                <span className="comex-approach-label">STAGE {number}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="comex-principles comex-container" data-comex-reveal>
-        <div className="comex-principles-heading">
-          <Eyebrow>05 / OUR PRINCIPLES</Eyebrow>
-          <h2>Clarity before <em>conviction.</em></h2>
-          <p>
-            The limits of an analysis matter as much as the observations within it.
-          </p>
-        </div>
-        <div className="comex-principles-list">
-          {principles.map(([number, title, text]) => (
-            <article className="comex-principle" key={number}>
-              <span>{number}</span>
-              <div><h3>{title}</h3><p>{text}</p></div>
-              <FaArrowRight aria-hidden="true" />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="comex-faq comex-container" id="comex-faq" data-comex-reveal>
-        <div className="comex-faq-heading">
-          <Eyebrow>06 / QUESTIONS</Eyebrow>
-          <h2>Good questions deserve<br /><em>clear answers.</em></h2>
-          <p>Understand the basics and the limits before exploring commodity markets.</p>
-        </div>
-        <div className="comex-faq-list">
-          {faqs.map(([question, answer], index) => {
-            const isOpen = openFaq === index;
-            const answerId = `comex-answer-${index}`;
-
-            return (
-              <article className={`comex-faq-item${isOpen ? " is-open" : ""}`} key={question}>
-                <h3>
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={answerId}
-                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                  >
-                    {question}<span aria-hidden="true">{isOpen ? "−" : "+"}</span>
-                  </button>
-                </h3>
-                <div className="comex-faq-answer" id={answerId} aria-hidden={!isOpen}>
-                  <div><p>{answer}</p></div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="comex-final" data-comex-reveal>
-        <div className="comex-final-inner comex-container">
-          <div>
-            <Eyebrow light>YOUR NEXT MARKET CONVERSATION</Eyebrow>
-            <h2>Start with a better question.</h2>
-            <p>
-              Tell us what you would like to understand about gold, silver, or
-              commodity-market research.
-            </p>
-            <span className="comex-risk-note">
-              Commodity markets carry risk. Information on this page is general
-              and is not a personal recommendation.
-            </span>
-          </div>
-          <Link className="comex-button" to="/contact-us">
-            Contact the Shenron team <FaArrowRight aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
-
-      <div className="comex-image-credit comex-container">
+    <main className="comex-page" id="comex-top">
+      <ComexHero />
+      <ComexMarketTicker />
+      <Introduction />
+      <OverviewSection />
+      <ServicesSection />
+      <PlansSection />
+      <RiskSection />
+      <footer className="comex-image-credit comex-container">
         <span>
-          Precious-metals photography: <a href="https://unsplash.com/photos/a-stack-of-gold-bars-sitting-on-top-of-each-other-dvdAdJxxvv0" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a> and <a href="https://unsplash.com/photos/a-pile-of-silver-bars-stacked-on-top-of-each-other-dPahQ_Q56zY" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>.
+          Photography: <a href="https://unsplash.com/photos/trader-analyzing-stock-market-charts-on-tablet-and-monitor-tFecc1boKYc" target="_blank" rel="noopener noreferrer">Jakub Żerdzicki / Unsplash</a>, <a href="https://unsplash.com/photos/a-stack-of-gold-bars-sitting-on-top-of-each-other-dvdAdJxxvv0" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>, and <a href="https://unsplash.com/photos/a-pile-of-silver-bars-stacked-on-top-of-each-other-dPahQ_Q56zY" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>.
         </span>
         <a href="#comex-top">Back to top <FaArrowRight aria-hidden="true" /></a>
-      </div>
+      </footer>
     </main>
   );
 }

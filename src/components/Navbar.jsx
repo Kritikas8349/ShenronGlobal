@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -8,6 +7,7 @@ const services = [
   { name: "Forex Services", path: "/services/forex" },
   { name: "Crypto Services", path: "/services/crypto" },
   { name: "Comex Services", path: "/services/comex" },
+  { name: "Mentorship", path: "/services/mentorship" },
 ];
 
 export default function Navbar() {
@@ -80,9 +80,8 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className={`mobile-menu-toggle ${
-            menuOpen ? "is-active" : ""
-          }`}
+          className={`mobile-menu-toggle ${menuOpen ? "is-active" : ""
+            }`}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="navbar-navigation"
@@ -99,9 +98,8 @@ export default function Navbar() {
         {/* Navigation Links */}
         <div
           id="navbar-navigation"
-          className={`navbar-navigation ${
-            menuOpen ? "is-open" : ""
-          }`}
+          className={`navbar-navigation ${menuOpen ? "is-open" : ""
+            }`}
         >
           <NavLink
             to="/"
@@ -116,9 +114,8 @@ export default function Navbar() {
 
           {/* Services Dropdown */}
           <div
-            className={`nav-dropdown ${
-              servicesOpen ? "dropdown-open" : ""
-            }`}
+            className={`nav-dropdown ${servicesOpen ? "dropdown-open" : ""
+              }`}
             onMouseEnter={() => {
               if (
                 window.matchMedia("(min-width: 901px)").matches
@@ -172,8 +169,7 @@ export default function Navbar() {
                   key={service.path}
                   to={service.path}
                   className={({ isActive }) =>
-                    `dropdown-item ${
-                      isActive ? "active" : ""
+                    `dropdown-item ${isActive ? "active" : ""
                     }`
                   }
                   onClick={closeMenus}
@@ -190,6 +186,7 @@ export default function Navbar() {
             </div>
           </div>
 
+
           <NavLink
             to="/portfolio"
             className={({ isActive }) =>
@@ -201,7 +198,7 @@ export default function Navbar() {
           </NavLink>
 
           <NavLink
-            to="/blogs"
+            to="/blog"
             className={({ isActive }) =>
               `nav-link ${isActive ? "active" : ""}`
             }
@@ -220,14 +217,16 @@ export default function Navbar() {
             Contact Us
           </NavLink>
 
-          {/* Contact Button */}
-          <Link
-            to="/contact-us"
+          {/* Contact Button - WhatsApp */}
+          <a
+            href="https://wa.me/971565702852"
             className="navbar-cta"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={closeMenus}
           >
             Let's Talk
-          </Link>
+          </a>
         </div>
       </nav>
     </header>

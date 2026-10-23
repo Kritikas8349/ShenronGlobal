@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 
 import "./Home.css";
-import heroImg from "../assets/HeroImg.png";
+import heroImg from "../assets/MobileHero.png";
 import phone from "../assets/phoneNew.png";
 
 
@@ -137,7 +137,7 @@ const steps = [
         title: "Join Our Telegram",
         description:
             "Join our official Telegram channel to receive real-time forex signals, market updates, and instant support. Stay connected with our team and trading community 24/7.",
-        label: "Connect with us",
+        // label: "Connect with us",
     },
     {
         number: "02",
@@ -145,7 +145,7 @@ const steps = [
         title: "Receive Signals",
         description:
             "Get curated daily alerts and premium priority signals with sizing guidance to help you evaluate trading opportunities.",
-        label: "Discover opportunities",
+        // label: "Discover opportunities",
     },
     {
         number: "03",
@@ -153,7 +153,7 @@ const steps = [
         title: "Execute or Copy",
         description:
             "Connect your broker or explore copy trading to mirror experienced traders according to your preferences.",
-        label: "Choose your approach",
+        // label: "Choose your approach",
     },
     {
         number: "04",
@@ -161,7 +161,7 @@ const steps = [
         title: "Manage Risk",
         description:
             "Review portfolio allocations and risk management with support from our CFA-led team.",
-        label: "Stay risk-aware",
+        // label: "Stay risk-aware",
     },
 ];
 
@@ -493,7 +493,7 @@ export default function Home() {
                                 Start Trading
                             </Link>
 
-                            <Link to="/services" className="hero-btn secondary-btn">
+                            <Link to="/services/forex" className="hero-btn secondary-btn">
                                 Explore Our Services
                             </Link>
                         </div>
@@ -581,7 +581,7 @@ export default function Home() {
                             landscape.
                         </p>
 
-                        <Link to="/services" className="about-cta">
+                        <Link to="/portfolio" className="about-cta">
                             Discover Our Approach
                             <span className="about-cta-icon">
                                 <FaArrowRight />
@@ -805,7 +805,7 @@ export default function Home() {
 
                                     <div className="how-step-footer">
                                         <span>{step.label}</span>
-                                        <FaArrowRight />
+                                        {/* <FaArrowRight /> */}
                                     </div>
                                 </div>
                             </article>

@@ -2,14 +2,16 @@ import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import { AdminAuthProvider, AdminGuard } from "./admin/AdminAuth";
 import AdminLoginPage from "./admin/AdminLoginPage";
 import AdminLayout from "./admin/AdminLayout";
 
+
 const BlogListPage = lazy(() => import("./blogs/BlogListPage"));
 const BlogDetailPage = lazy(() => import("./blogs/BlogDetailPage"));
 const Home = lazy(() => import("./pages/Home"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Portfolio = lazy(() => import("./pages/PortfolioM"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Forex = lazy(() => import("./Subpages/Forex"));
 const Comex = lazy(() => import("./Subpages/Comex"));
@@ -44,13 +46,22 @@ function PublicRoutes() {
     <Route path="/services/forex" element={<Forex />} />
     <Route path="/services/comex" element={<Comex />} />
     <Route path="/services/crypto" element={<Crypto />} />
+    <Route path="/services/mentorship" element={<Navigate to="/contact-us" replace />} />
     <Route path="/blogs" element={<BlogListPage />} />
     <Route path="/blogs/:slug" element={<BlogDetailPage />} />
     <Route path="/blog" element={<Navigate to="/blogs" replace />} />
+    <Route path="*" element={<Navigate to="/" replace />} />
   </Routes><Footer /></>;
 }
 
 export default function App() {
   const { pathname } = useLocation();
-  return <Suspense fallback={<AppLoading />}>{pathname === "/admin" || pathname.startsWith("/admin/") ? <AdminRoutes /> : <PublicRoutes />}</Suspense>;
+  return <>
+    <ScrollToTop />
+    <Suspense fallback={<AppLoading />}>
+      {pathname === "/admin" || pathname.startsWith("/admin/")
+        ? <AdminRoutes />
+        : <PublicRoutes />}
+    </Suspense>
+  </>;
 }
