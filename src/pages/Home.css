@@ -3051,7 +3051,7 @@ body {
   .signals-disclaimer {
     max-width: 850px;
     margin: 27px 0 0;
-    color: rgba(235, 235, 235, 0.4);
+    color: #756b60;
     font-size: 11px;
     line-height: 1.8;
   }
@@ -3604,7 +3604,7 @@ body {
   
   @media (max-width: 600px) {
     .faq-section {
-      padding: 65px 18px 65px;
+      padding: 45px 18px 65px;
     }
   
     .faq-layout {
