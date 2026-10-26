@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -8,7 +7,7 @@ const services = [
   { name: "Forex Services", path: "/services/forex" },
   { name: "Crypto Services", path: "/services/crypto" },
   { name: "Comex Services", path: "/services/comex" },
-  { name: "Mentorship", path: "/services/mentroship" },
+  { name: "Mentorship", path: "/services/mentorship" },
 ];
 
 export default function Navbar() {

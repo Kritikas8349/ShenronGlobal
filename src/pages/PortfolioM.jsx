@@ -422,7 +422,7 @@ function PortfolioM() {
 
                         {/* FEATURES */}
                         <div className="portfolio-features portfolio-animate">
-                            {features.map((feature, index) => (
+                            {features.map((feature) => (
                                 <div className="portfolio-feature" key={feature.title}>
                                     <div className="portfolio-feature-icon">
                                         {feature.icon}

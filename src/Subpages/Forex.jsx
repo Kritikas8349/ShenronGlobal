@@ -1,6 +1,5 @@
 ﻿import { useEffect, useState } from "react";
 import {
-  FaArrowDown,
   FaArrowRight,
   FaCalendarAlt,
   FaChartLine,
@@ -11,6 +10,8 @@ import {
   FaStream,
 } from "react-icons/fa";
 import "./Forex.css";
+
+import forexHero from "../assets/forexHero.png";
 
 const stats = [
   ["100k+", "Traders in community"],
@@ -72,26 +73,37 @@ const packages = [
   },
 ];
 
-const marketRows = [
-  ["EUR/USD", "1.17092", "+0.26%"],
-  ["GBP/USD", "1.36720", "+0.30%"],
-  ["USD/JPY", "158.425", "-0.14%"],
-  ["AUD/USD", "0.71644", "+0.72%"],
-  ["GBP/JPY", "216.596", "-0.10%"],
-  ["USD/CAD", "1.37464", "+0.08%"],
-];
-
 const method = [
   ["01", "Read the session", "Start with liquidity and time of day before any chart pattern."],
   ["02", "Write the plan", "Entry, invalidation, size - on paper before the click."],
   ["03", "Review the tape", "Log the outcome against the original thesis, weekly."],
 ];
 
-const brokers = [
-  ["MultiBank", "Lightning execution, deep institutional liquidity & zero slippage."],
-  ["Vantage", "Ultra-tight spreads across major pairs with MT4 & MT5 integration."],
-  ["OctaFX", "Beginner-friendly ecosystem with low entry deposit requirements."],
-  ["Exness", "Instant automated withdrawals with robust global regulation."],
+const overviewCards = [
+  {
+    number: "01",
+    icon: <FaChartLine />,
+    title: "What is the Forex market?",
+    text: "Forex is the global market where traders buy and sell currency pairs as exchange rates move across international sessions.",
+    link: "#market-board",
+    label: "Explore live markets",
+  },
+  {
+    number: "02",
+    icon: <FaLayerGroup />,
+    title: "How traders approach it",
+    text: "A disciplined workflow combines technical levels, macro awareness, session timing and position sizing before a trade is placed.",
+    link: "#method",
+    label: "See the routine",
+  },
+  {
+    number: "03",
+    icon: <FaGlobe />,
+    title: "How Shenron assists",
+    text: "The desk organizes market context into scenarios with entry, invalidation, target and risk notes for your own decision-making.",
+    link: "#features",
+    label: "Inside the desk",
+  },
 ];
 
 const faqs = [
@@ -105,31 +117,19 @@ function InactiveAction({ children, className = "" }) {
   return <button className={className} type="button" disabled title="A destination has not been configured yet">{children}</button>;
 }
 
-function ForexMarketVisual() {
-  const horizontal = [75, 135, 195, 255, 315];
-  const vertical = [90, 190, 290, 390, 490, 590];
-  return (
-    <div className="forex-market-visual" role="img" aria-label="Illustrative forex session chart showing price movement between reference levels">
-      <div className="forex-visual-heading"><span>SESSION MAP</span><span>ILLUSTRATIVE VIEW</span></div>
-      <div className="forex-visual-symbol"><strong>FX</strong><span>STRUCTURE / LIQUIDITY / RISK</span></div>
-      <svg className="forex-chart-graphic" viewBox="0 0 620 380" aria-hidden="true">
-        <defs><linearGradient id="forex-chart-area" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#d4af63" stopOpacity=".22" /><stop offset="1" stopColor="#d4af63" stopOpacity="0" /></linearGradient></defs>
-        {horizontal.map((y) => <line key={`h${y}`} x1="22" x2="598" y1={y} y2={y} stroke="rgba(212,175,99,.12)" />)}
-        {vertical.map((x) => <line key={`v${x}`} x1={x} x2={x} y1="40" y2="340" stroke="rgba(212,175,99,.09)" />)}
-        <path d="M26 273 C72 251 94 280 128 232 S182 209 213 221 S259 154 295 183 S341 205 370 147 S425 170 452 126 S512 139 542 91 S570 111 594 69 V340 H26Z" fill="url(#forex-chart-area)" />
-        <path d="M26 273 C72 251 94 280 128 232 S182 209 213 221 S259 154 295 183 S341 205 370 147 S425 170 452 126 S512 139 542 91 S570 111 594 69" fill="none" stroke="#e4c77e" strokeWidth="3" strokeLinecap="round" />
-        <path d="M26 240 H594 M26 154 H594" stroke="#d4af63" strokeDasharray="5 7" strokeOpacity=".58" />
-        <circle cx="452" cy="126" r="5" fill="#f5d38a" /><circle cx="452" cy="126" r="12" fill="#d4af63" fillOpacity=".15" />
-        <g stroke="#c7a55e" strokeWidth="1.5"><path d="M86 202v57m-7-43h14m57-49v63m-7-48h14m61-36v63m-7-46h14m58-46v66m-7-52h14m59-13v61m-7-47h14m59-55v66m-7-53h14m60-34v57m-7-46h14m61-55v52m-7-43h14" /></g>
-      </svg>
-      <div className="forex-visual-legend"><span><i />Reference level</span><span><i />Session structure</span><span>Illustrative only</span></div>
-      <div className="forex-session-stamp">LONDON<br /><b>→</b><br />NEW YORK</div>
-    </div>
-  );
-}
-
 export default function Forex() {
   const [openFaq, setOpenFaq] = useState(0);
+
+  useEffect(() => {
+    if (window.customElements?.get("tv-ticker-tape")) return;
+    if (document.getElementById("forex-tradingview-ticker")) return;
+
+    const script = document.createElement("script");
+    script.id = "forex-tradingview-ticker";
+    script.type = "module";
+    script.src = "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js";
+    document.head.appendChild(script);
+  }, []);
 
   useEffect(() => {
     const root = document.querySelector(".forex-page");
@@ -165,7 +165,14 @@ export default function Forex() {
             {stats.map(([value, label]) => <div className="forex-stat" key={label}><strong>{value}</strong><span>{label}</span></div>)}
           </div>
         </div>
-        <ForexMarketVisual />
+        <div className="forex-image-space" aria-hidden="true">
+          <img
+            src={forexHero}
+            alt=""
+            className="forex-trading-image"
+          />
+        </div>
+
       </section>
 
       <section className="forex-features forex-section" id="features" data-forex-reveal>
@@ -187,8 +194,20 @@ export default function Forex() {
       </section>
 
       <section className="forex-market-board forex-section" id="market-board" data-forex-reveal>
-        <div className="forex-section-heading forex-market-heading"><span className="forex-eyebrow">DESK SNAPSHOT</span><h2>Numbers with context attached</h2><p>Illustrative desk snapshot. Every row on the live desk carries the reasoning behind the move.</p><span className="forex-snapshot-note">Illustrative snapshot - not live market data</span></div>
-        <div className="forex-table-wrap"><table><thead><tr><th scope="col">Pair</th><th scope="col">Reference</th><th scope="col">Move</th></tr></thead><tbody>{marketRows.map(([pair, price, move]) => <tr key={pair}><th scope="row">{pair}</th><td>{price}</td><td className={move.startsWith("-") ? "is-negative" : "is-positive"}>{move}</td></tr>)}</tbody></table></div>
+        <div className="forex-section-heading forex-market-heading"><span className="forex-eyebrow">LIVE FOREX MARKET</span><h2>Major pairs on the move.</h2><p>Follow current quotes for the most traded currency pairs while you explore the desk.</p></div>
+        <div className="forex-live-panel">
+          <div className="forex-live-panel-heading"><span><i aria-hidden="true" /> Live market feed</span><small>Major currency pairs</small></div>
+          <tv-ticker-tape
+            symbols="FX:EURUSD,FX:GBPUSD,FX:USDJPY,FX:AUDUSD,FX:USDCAD,FX:USDCHF"
+            item-size="compact"
+            hide-chart
+            theme="light"
+            transparent
+          >
+            <div className="forex-ticker-placeholder"><span className="forex-live-dot" /> Connecting to live FX quotes…</div>
+          </tv-ticker-tape>
+          <p className="forex-live-disclaimer">Market data provided by <a href="https://www.tradingview.com/markets/" target="_blank" rel="noreferrer">TradingView</a>. Quote availability and delay may vary by instrument and source.</p>
+        </div>
       </section>
 
       <section className="forex-method forex-section" id="method" data-forex-reveal>
@@ -196,17 +215,21 @@ export default function Forex() {
         <div className="forex-method-steps">{method.map(([number, title, text]) => <article className="forex-method-step" key={number}><span className="forex-method-number">{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
 
-      <section className="forex-brokers forex-section" id="brokers" data-forex-reveal>
-        <div className="forex-section-heading"><span className="forex-eyebrow">BROKER SOURCE COPY</span><h2>Top 4 Forex Brokers in 2025</h2><p>Forexnexa's Fab Four delivers unbeatable trading perks! From lightning-fast execution to spreads tighter than ever, these brokers redefine forex. Enjoy expert insights, robust platforms, and stellar support.</p><span className="forex-broker-disclaimer">Dated source listing; broker information and claims are not independently verified.</span></div>
-        <div className="forex-broker-grid">{brokers.map(([name, description], index) => <article className="forex-broker-card" key={name}><span className="forex-broker-index">0{index + 1}</span><div className="forex-broker-monogram" aria-hidden="true">{name.slice(0, 1)}</div><h3>{name}</h3><p>{description}</p><InactiveAction className="forex-text-action">Join Now <FaArrowRight /></InactiveAction></article>)}</div>
-      </section>
+      <section className="forex-overview forex-section" id="overview" data-forex-reveal>
+        <div className="forex-section-heading"><span className="forex-eyebrow">FOREX OVERVIEW</span><h2>Understand the market <span>before the recommendation.</span></h2><p>Forex is the global marketplace for currency pairs, shaped by changing exchange rates and trading sessions around the world.</p></div>
+        <div className="forex-overview-grid">{overviewCards.map((card) => <article className="forex-overview-card" key={card.number}>
+          <div className="forex-overview-card-top"><span className="forex-overview-number">{card.number}</span><i aria-hidden="true">{card.icon}</i></div>
+          <h3>{card.title}</h3><p>{card.text}</p>
+          <a className="forex-overview-link" href={card.link}><span>{card.label}</span><i aria-hidden="true"><FaArrowRight /></i></a>
+        </article>)}</div>
+        </section>
 
       <section className="forex-faq forex-section" id="faq" data-forex-reveal>
         <div className="forex-faq-heading"><span className="forex-eyebrow">CLEAR ANSWERS</span><h2>What traders ask us first</h2><p>Review the desk details before deciding whether it fits your approach.</p></div>
-        <div className="forex-faq-list">{faqs.map(([question, answer], index) => <article className={`forex-faq-item ${openFaq === index ? "is-open" : ""}`} key={question}><h3><button type="button" aria-expanded={openFaq === index} aria-controls={`forex-faq-answer-${index}`} onClick={() => setOpenFaq(openFaq === index ? -1 : index)}>{question}<span aria-hidden="true">{openFaq === index ? "âˆ’" : "+"}</span></button></h3><div className="forex-faq-answer" id={`forex-faq-answer-${index}`} hidden={openFaq !== index}><p>{answer}</p></div></article>)}</div>
+        <div className="forex-faq-list">{faqs.map(([question, answer], index) => <article className={`forex-faq-item ${openFaq === index ? "is-open" : ""}`} key={question}><h3><button type="button" aria-expanded={openFaq === index} aria-controls={`forex-faq-answer-${index}`} onClick={() => setOpenFaq(openFaq === index ? -1 : index)}>{question}<span aria-hidden="true">{openFaq === index ? "\u2212" : "+"}</span></button></h3><div className="forex-faq-answer" id={`forex-faq-answer-${index}`} hidden={openFaq !== index}><p>{answer}</p></div></article>)}</div>
       </section>
 
-      <section className="forex-final-cta" id="final-cta" data-forex-reveal><div><span className="forex-eyebrow">FOREX DESK</span><h2>What can we help you achieve?</h2><p>Join the community, take the free trial, and see the forex desk in action for a week.</p></div><InactiveAction className="forex-button forex-button-primary">Book your FREE trial <FaArrowRight /></InactiveAction><a className="forex-back-link" href="#top">Back to the radar <FaArrowDown /></a></section>
+      {/* <section className="forex-final-cta" id="final-cta" data-forex-reveal><div><span className="forex-eyebrow">FOREX DESK</span><h2>What can we help you achieve?</h2><p>Join the community, take the free trial, and see the forex desk in action for a week.</p></div><InactiveAction className="forex-button forex-button-primary">Book your FREE trial <FaArrowRight /></InactiveAction><a className="forex-back-link" href="#top">Back to the radar <FaArrowDown /></a></section> */}
     </main>
   );
 }

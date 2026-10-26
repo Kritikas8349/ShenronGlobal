@@ -18,7 +18,7 @@
 .forex-page .forex-hero {
     width: 100%;
     max-width: 1400px;
-    min-height: 640px;
+    min-height: 100vh;
     margin: 0 auto;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(390px, .92fr);
@@ -45,7 +45,6 @@
 .forex-page .forex-eyebrow>i {
     width: 24px;
     height: 1px;
-    background: #d4af63;
 }
 
 .forex-page .forex-hero h1 {
@@ -60,10 +59,6 @@
 
 .forex-page .forex-hero h1 span {
     color: #b7832d;
-    background: linear-gradient(100deg, #98631c 0%, #d9ae5e 58%, #ae7928 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .forex-page .forex-hero-lede {
@@ -110,13 +105,11 @@
 
 .forex-page .forex-button-primary {
     color: #251b0c;
-    background: linear-gradient(120deg, #f5d38a, #d9a640);
     box-shadow: 0 8px 20px rgba(181, 133, 46, .16);
 }
 
 .forex-page .forex-button-secondary {
     color: #292014;
-    background: rgba(255, 255, 255, .7);
 }
 
 .forex-page .forex-button:not(:disabled):hover {
@@ -205,7 +198,6 @@
 
 .forex-page .forex-visual-orbit-inner {
     width: min(82%, 370px);
-    background: radial-gradient(circle, rgba(218, 191, 151, .3), rgba(235, 220, 196, .18) 48%, transparent 74%);
 }
 
 .forex-page .forex-phone-glow {
@@ -216,7 +208,6 @@
     width: 260px;
     height: 390px;
     border-radius: 50%;
-    background: rgba(207, 177, 131, .23);
     filter: blur(52px);
     transform: translate(-50%, -50%);
 }
@@ -242,7 +233,6 @@
     gap: 4px 10px;
     border: 1px solid rgba(198, 150, 69, .25);
     border-radius: 13px;
-    background: rgba(255, 253, 249, .94);
     box-shadow: 0 12px 35px rgba(83, 58, 25, .1);
 }
 
@@ -292,6 +282,7 @@
     max-width: 1280px;
     margin: 0 auto;
     padding: 92px 0;
+    /* margin-top: -100px; */
 }
 
 .forex-page .forex-section-heading {
@@ -335,7 +326,6 @@
     padding: 23px 24px;
     border: 1px solid rgba(173, 137, 87, .22);
     border-radius: 16px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, .94), rgba(244, 228, 202, .58));
     box-shadow: 0 7px 22px rgba(122, 91, 51, .045);
     transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
@@ -362,7 +352,6 @@
     place-items: center;
     border: 1px solid rgba(173, 137, 87, .2);
     border-radius: 50%;
-    background: rgba(255, 255, 255, .72);
     font-size: 14px;
     font-style: normal;
 }
@@ -384,7 +373,6 @@
 .forex-page .forex-packages {
     max-width: none;
     padding: 88px max(5.5%, calc((100% - 1280px) / 2)) 100px;
-    background: rgba(255, 252, 246, .48);
 }
 
 .forex-page .forex-package-grid {
@@ -405,13 +393,11 @@
     flex-direction: column;
     border: 1px solid rgba(174, 130, 73, .25);
     border-radius: 17px;
-    background: rgba(255, 255, 255, .84);
     box-shadow: 0 10px 30px rgba(76, 55, 31, .045);
 }
 
 .forex-page .forex-package-card.is-recommended {
     border: 1.5px solid #bd914b;
-    background: linear-gradient(155deg, #fffefa, #f8edda);
     box-shadow: 0 15px 38px rgba(145, 101, 44, .13);
 }
 
@@ -423,7 +409,6 @@
     max-width: calc(100% - 30px);
     padding: 7px 13px;
     border-radius: 20px;
-    background: #ae8249;
     color: white;
     font-size: 9px;
     font-weight: 700;
@@ -548,7 +533,6 @@
     border: 1px solid rgba(174, 130, 73, .22);
     border-radius: 20px;
     color: #88775f;
-    background: rgba(255, 252, 246, .65);
     font-size: 9px;
 }
 
@@ -556,7 +540,6 @@
     overflow-x: auto;
     border: 1px solid rgba(174, 130, 73, .24);
     border-radius: 15px;
-    background: rgba(255, 255, 255, .78);
     box-shadow: 0 12px 35px rgba(76, 55, 31, .05);
 }
 
@@ -575,7 +558,6 @@
 
 .forex-page .forex-table-wrap thead th {
     color: #9a825e;
-    background: rgba(245, 232, 214, .42);
     font-size: 9px;
     letter-spacing: .8px;
     text-transform: uppercase;
@@ -624,7 +606,6 @@
     right: 14%;
     left: 14%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(174, 130, 73, .55), transparent);
 }
 
 .forex-page .forex-method-step {
@@ -642,7 +623,6 @@
     place-items: center;
     border: 1px solid rgba(174, 130, 73, .4);
     border-radius: 50%;
-    background: linear-gradient(145deg, #fffdf8, #f5e8d5);
     box-shadow: 0 5px 16px rgba(111, 78, 37, .07);
     color: #986d36;
     font-size: 12px;
@@ -679,7 +659,6 @@
     padding: 22px 19px;
     border: 1px solid rgba(173, 137, 87, .22);
     border-radius: 15px;
-    background: rgba(255, 252, 246, .68);
 }
 
 .forex-page .forex-broker-index {
@@ -696,7 +675,6 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: linear-gradient(140deg, #fff8e8, #e6d0ae);
     color: #8b642d;
     font-size: 16px;
     font-weight: 800;
@@ -722,7 +700,6 @@
     align-items: center;
     gap: 9px;
     border: 0;
-    background: transparent;
     color: #9a712e;
     font: 700 10px "Inter", sans-serif;
 }
@@ -758,6 +735,7 @@
 
 .forex-page .forex-faq-list {
     border-top: 1px solid rgba(167, 122, 61, .3);
+    background: transparent;
 }
 
 .forex-page .forex-faq-item {
@@ -777,6 +755,7 @@
     align-items: center;
     gap: 20px;
     border: 0;
+    appearance: none;
     background: transparent;
     color: #30271e;
     text-align: left;
@@ -809,7 +788,6 @@
     gap: 14px 30px;
     border: 1px solid rgba(174, 130, 73, .28);
     border-radius: 20px;
-    background: linear-gradient(120deg, rgba(255, 255, 255, .92), rgba(245, 232, 214, .78));
     box-shadow: 0 14px 40px rgba(76, 55, 31, .07);
 }
 
@@ -992,7 +970,6 @@
         left: 27px;
         width: 1px;
         height: auto;
-        background: linear-gradient(180deg, transparent, rgba(174, 130, 73, .55), transparent);
     }
 
     .forex-page .forex-method-step {
@@ -1183,7 +1160,6 @@
     padding: 0 0 78px;
     overflow: clip;
     color: var(--forex-ink);
-    background: #151615;
 }
 
 .forex-page .forex-hero {
@@ -1201,7 +1177,6 @@
     z-index: -2;
     inset: 0;
     content: "";
-    background: radial-gradient(ellipse at 78% 45%, rgba(185, 142, 61, .13), transparent 43%), linear-gradient(117deg, #171918, #1d1e1b 58%, #171817);
 }
 
 .forex-page .forex-hero::after {
@@ -1229,7 +1204,6 @@
 }
 
 .forex-page .forex-eyebrow>i {
-    background: #d4af63;
 }
 
 .forex-page .forex-hero h1 {
@@ -1242,9 +1216,6 @@
 }
 
 .forex-page .forex-hero h1 span {
-    background: linear-gradient(100deg, #c39a4c, #efd796 54%, #b88b3f);
-    -webkit-background-clip: text;
-    background-clip: text;
 }
 
 .forex-page .forex-hero-lede {
@@ -1274,23 +1245,19 @@
 .forex-page .forex-button-primary {
     border-color: transparent;
     color: #211a0d;
-    background: linear-gradient(125deg, #f1d48c, #c99b48);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
 }
 
 .forex-page .forex-button-primary:not(:disabled):hover {
-    background: linear-gradient(125deg, #f1d48c, #c99b48);
     box-shadow: 0 12px 28px rgba(0, 0, 0, .3);
 }
 
 .forex-page .forex-button-secondary {
     border-color: rgba(212, 175, 99, .43);
     color: #eee9dc;
-    background: rgba(255, 255, 255, .035);
 }
 
 .forex-page .forex-button-secondary:not(:disabled):hover {
-    background: rgba(212, 175, 99, .09);
 }
 
 .forex-page .forex-button:disabled {
@@ -1325,7 +1292,6 @@
     overflow: hidden;
     border: 1px solid rgba(212, 175, 99, .23);
     border-radius: 19px;
-    background: linear-gradient(145deg, rgba(42, 43, 39, .98), rgba(27, 29, 27, .98));
     box-shadow: 0 28px 64px rgba(0, 0, 0, .27), inset 0 1px rgba(255, 255, 255, .035);
     animation: forex-visual-in .9s .2s cubic-bezier(.22, 1, .36, 1) both;
 }
@@ -1338,7 +1304,6 @@
     height: 340px;
     content: "";
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 157, 76, .11), transparent 70%);
     pointer-events: none;
 }
 
@@ -1410,11 +1375,9 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #d4af63;
 }
 
 .forex-page .forex-visual-legend span:nth-child(2) i {
-    background: #8f9b85;
 }
 
 .forex-page .forex-session-stamp {
@@ -1479,7 +1442,6 @@
     padding: 21px;
     border: 1px solid rgba(212, 175, 99, .16);
     border-radius: 13px;
-    background: linear-gradient(145deg, #202220, #1b1d1b);
     box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
 }
 
@@ -1495,7 +1457,6 @@
 .forex-page .forex-feature-card:hover {
     transform: translateY(-4px);
     border-color: rgba(212, 175, 99, .4);
-    background: linear-gradient(145deg, #252722, #1d1f1d);
     box-shadow: 0 17px 35px rgba(0, 0, 0, .22);
 }
 
@@ -1507,7 +1468,6 @@
     border-color: rgba(212, 175, 99, .22);
     border-radius: 50%;
     color: #e0c77f;
-    background: rgba(212, 175, 99, .07);
 }
 
 .forex-page .forex-feature-card h3 {
@@ -1525,7 +1485,6 @@
     width: 100%;
     max-width: none;
     padding: 86px max(5.5%, calc((100% - 1280px)/2)) 96px;
-    background: linear-gradient(125deg, #1b1d1b, #20211e 52%, #191b19);
 }
 
 .forex-page .forex-packages .forex-section-heading {
@@ -1542,19 +1501,16 @@
     padding: 27px 24px 23px;
     border: 1px solid rgba(212, 175, 99, .2);
     border-radius: 15px;
-    background: linear-gradient(150deg, #242622, #1c1e1c);
     box-shadow: 0 15px 36px rgba(0, 0, 0, .17);
 }
 
 .forex-page .forex-package-card.is-recommended {
     border-color: rgba(212, 175, 99, .58);
-    background: linear-gradient(145deg, #29271f, #211f1a);
     box-shadow: 0 15px 40px rgba(0, 0, 0, .25), inset 0 1px rgba(239, 217, 165, .1);
 }
 
 .forex-page .forex-package-badge {
     border-radius: 18px;
-    background: #d4af63;
     color: #17130b;
 }
 
@@ -1627,14 +1583,12 @@
     border-color: rgba(212, 175, 99, .24);
     border-radius: 20px;
     color: #c3a86e;
-    background: rgba(212, 175, 99, .055);
 }
 
 .forex-page .forex-table-wrap {
     overflow: hidden;
     border: 1px solid rgba(212, 175, 99, .18);
     border-radius: 13px;
-    background: #1d1f1d;
     box-shadow: 0 15px 38px rgba(0, 0, 0, .16);
 }
 
@@ -1646,7 +1600,6 @@
 
 .forex-page .forex-table-wrap thead th {
     color: #b8aa88;
-    background: #242622;
 }
 
 .forex-page .forex-table-wrap tbody th {
@@ -1671,7 +1624,6 @@
     max-width: none;
     padding: 86px max(5.5%, calc((100% - 1280px)/2));
     overflow: hidden;
-    background: #1d1f1d;
 }
 
 .forex-page .forex-method::before {
@@ -1710,7 +1662,6 @@
     right: 7%;
     width: auto;
     height: 1px;
-    background: linear-gradient(90deg, rgba(212, 175, 99, .12), rgba(212, 175, 99, .62), rgba(212, 175, 99, .12));
 }
 
 .forex-page .forex-method-step {
@@ -1733,7 +1684,6 @@
     border: 1px solid rgba(212, 175, 99, .48);
     border-radius: 50%;
     color: #e4ce92;
-    background: #1d1f1d;
     font-size: 11px;
 }
 
@@ -1763,7 +1713,6 @@
     border: 1px solid rgba(181, 137, 101, .32);
     border-radius: 5px;
     color: #c4a18b;
-    background: rgba(181, 137, 101, .06);
     font-size: 9px;
     line-height: 1.5;
 }
@@ -1778,7 +1727,6 @@
     padding: 20px 17px;
     border: 1px solid rgba(212, 175, 99, .16);
     border-radius: 12px;
-    background: #1e201e;
 }
 
 .forex-page .forex-broker-index {
@@ -1787,7 +1735,6 @@
 
 .forex-page .forex-broker-monogram {
     color: #e2c47c;
-    background: linear-gradient(140deg, #383328, #28251e);
 }
 
 .forex-page .forex-broker-card h3 {
@@ -1844,7 +1791,6 @@
     padding: 39px 45px;
     border: 1px solid rgba(212, 175, 99, .26);
     border-radius: 17px;
-    background: radial-gradient(ellipse at 92% 48%, rgba(173, 130, 55, .11), transparent 35%), linear-gradient(120deg, #22231f, #1b1d1b);
     box-shadow: 0 20px 45px rgba(0, 0, 0, .23);
 }
 
@@ -1987,7 +1933,6 @@
         right: auto;
         width: 1px;
         height: auto;
-        background: linear-gradient(180deg, rgba(212, 175, 99, .12), rgba(212, 175, 99, .62), rgba(212, 175, 99, .12));
     }
 
     .forex-page .forex-faq {
@@ -2154,12 +2099,10 @@
     --forex-muted: #756b60;
     --forex-gold: #b7832d;
     --forex-line: rgba(174, 130, 73, .24);
-    background: linear-gradient(180deg, #fffdf9 0%, #fffaf2 52%, #f8f0e4 100%);
     color: #171717;
 }
 
 .forex-page .forex-hero::before {
-    background: radial-gradient(ellipse at 78% 45%, rgba(226, 184, 100, .19), transparent 44%), linear-gradient(117deg, #fffefd, #fffaf2 58%, #f5e8d6);
 }
 
 .forex-page .forex-hero::after {
@@ -2177,9 +2120,6 @@
 }
 
 .forex-page .forex-hero h1 span {
-    background: linear-gradient(100deg, #98631c 0%, #d9ae5e 58%, #ae7928 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
 }
 
 .forex-page .forex-hero-lede {
@@ -2208,34 +2148,28 @@
 
 .forex-page .forex-button-primary {
     color: #251b0c;
-    background: linear-gradient(135deg, #f5d38a, #d9a640);
     box-shadow: 0 8px 20px rgba(181, 133, 46, .18);
 }
 
 .forex-page .forex-button-primary:not(:disabled):hover {
-    background: linear-gradient(135deg, #f5d38a, #d9a640);
     box-shadow: 0 12px 25px rgba(181, 133, 46, .28);
 }
 
 .forex-page .forex-button-secondary {
     border-color: #efcf91;
     color: #282828;
-    background: rgba(255, 255, 255, .84);
 }
 
 .forex-page .forex-button-secondary:not(:disabled):hover {
-    background: #fff8e9;
 }
 
 .forex-page .forex-market-visual {
     border-color: rgba(174, 130, 73, .25);
     border-radius: 22px;
-    background: radial-gradient(circle at 50% 48%, rgba(212, 175, 99, .19), transparent 55%), linear-gradient(145deg, #fffdf8, #f4e8d5);
     box-shadow: 0 18px 45px rgba(76, 55, 31, .1);
 }
 
 .forex-page .forex-market-visual::before {
-    background: radial-gradient(circle, rgba(200, 157, 76, .13), transparent 70%);
 }
 
 .forex-page .forex-visual-heading {
@@ -2269,7 +2203,6 @@
 }
 
 .forex-page .forex-visual-legend i {
-    background: #b7832d;
 }
 
 .forex-page .forex-session-stamp {
@@ -2294,13 +2227,11 @@
 .forex-page .forex-feature-card {
     border-color: rgba(173, 137, 87, .22);
     border-radius: 16px;
-    background: rgba(255, 252, 246, 0.72);
     box-shadow: 0 7px 22px rgba(122, 91, 51, .045);
 }
 
 .forex-page .forex-feature-card:hover {
     border-color: rgba(173, 137, 87, .48);
-    background: linear-gradient(145deg, #fffdf8, #f8efdf);
     box-shadow: 0 14px 30px rgba(122, 91, 51, .09);
 }
 
@@ -2311,7 +2242,6 @@
 .forex-page .forex-feature-top i {
     border-color: rgba(173, 137, 87, .2);
     color: #a77a3d;
-    background: rgba(255, 255, 255, .72);
 }
 
 .forex-page .forex-feature-card h3 {
@@ -2323,25 +2253,21 @@
 }
 
 .forex-page .forex-packages {
-    background: linear-gradient(125deg, #f6efe4, #f3e8d9 55%, #f7f1e8);
 }
 
 .forex-page .forex-package-card {
     border-color: rgba(173, 137, 87, .24);
     border-radius: 16px;
-    background: linear-gradient(150deg, #fffdf9, #f5e9d7);
     box-shadow: 0 9px 27px rgba(76, 55, 31, .07);
 }
 
 .forex-page .forex-package-card.is-recommended {
     border-color: rgba(174, 130, 73, .62);
-    background: linear-gradient(145deg, #fffdf8, #f2e2c7);
     box-shadow: 0 14px 35px rgba(122, 91, 51, .13);
 }
 
 .forex-page .forex-package-badge {
     color: #251b0c;
-    background: linear-gradient(135deg, #f5d38a, #d9a640);
 }
 
 .forex-page .forex-package-category {
@@ -2390,13 +2316,11 @@
 .forex-page .forex-snapshot-note {
     border-color: rgba(174, 130, 73, .3);
     color: #8a6b39;
-    background: rgba(255, 252, 246, .75);
 }
 
 .forex-page .forex-table-wrap {
     border-color: rgba(173, 137, 87, .25);
     border-radius: 14px;
-    background: rgba(255, 252, 246, .82);
     box-shadow: 0 10px 30px rgba(76, 55, 31, .06);
 }
 
@@ -2408,7 +2332,6 @@
 
 .forex-page .forex-table-wrap thead th {
     color: #806331;
-    background: #f4eadb;
 }
 
 .forex-page .forex-table-wrap tbody th {
@@ -2428,7 +2351,6 @@
 }
 
 .forex-page .forex-method {
-    background: linear-gradient(125deg, #fffdf9, #f2e7d7);
 }
 
 .forex-page .forex-method::before {
@@ -2447,17 +2369,14 @@
 .forex-page .forex-method-number {
     border-color: rgba(174, 130, 73, .45);
     color: #986d36;
-    background: #fffaf2;
 }
 
 .forex-page .forex-method-steps::before {
-    background: linear-gradient(90deg, rgba(174, 130, 73, .12), rgba(174, 130, 73, .55), rgba(174, 130, 73, .12));
 }
 
 .forex-page .forex-broker-card {
     border-color: rgba(173, 137, 87, .22);
     border-radius: 15px;
-    background: rgba(255, 252, 246, .72);
 }
 
 .forex-page .forex-broker-index {
@@ -2466,7 +2385,6 @@
 
 .forex-page .forex-broker-monogram {
     color: #8b642d;
-    background: linear-gradient(140deg, #fff8e8, #e6d0ae);
 }
 
 .forex-page .forex-broker-card h3 {
@@ -2480,7 +2398,6 @@
 .forex-page .forex-broker-disclaimer {
     border-color: rgba(154, 91, 61, .3);
     color: #89553f;
-    background: rgba(154, 91, 61, .06);
 }
 
 .forex-page .forex-text-action {
@@ -2510,7 +2427,6 @@
 .forex-page .forex-final-cta {
     border-color: rgba(174, 130, 73, .28);
     border-radius: 20px;
-    background: linear-gradient(120deg, rgba(255, 255, 255, .92), rgba(245, 232, 214, .78));
     box-shadow: 0 14px 40px rgba(76, 55, 31, .07);
 }
 
@@ -2528,6 +2444,643 @@
 
 @media (max-width:760px) {
     .forex-page .forex-method-steps::before {
-        background: linear-gradient(180deg, rgba(174, 130, 73, .12), rgba(174, 130, 73, .55), rgba(174, 130, 73, .12));
+    }
+}
+
+/* Align the Forex hero copy and image as a responsive two-column layout. */
+.forex-page .forex-hero {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(400px, 1.1fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+.forex-page .forex-hero-content {
+    width: 100%;
+    max-width: 650px;
+    justify-self: start;
+}
+
+.forex-page .forex-image-space {
+    position: relative;
+    top: auto;
+    right: auto;
+    z-index: auto;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    height: clamp(480px, 60vh, 680px);
+    min-height: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    pointer-events: none;
+}
+
+.forex-page .forex-trading-image {
+    display: block;
+    width: 128%;
+    height: auto;
+    max-width: 900px;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    transform: translateX(4%);
+}
+
+@media (max-width: 1050px) {
+    .forex-page .forex-hero {
+        grid-template-columns: minmax(0, .88fr) minmax(320px, 1.12fr);
+        gap: 28px;
+    }
+
+    .forex-page .forex-trading-image {
+        width: 120%;
+        transform: translateX(3%);
+    }
+
+    .forex-page .forex-image-space {
+        height: clamp(400px, 58vh, 580px);
+    }
+}
+
+@media (max-width: 760px) {
+    .forex-page .forex-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .forex-page .forex-hero-content {
+        max-width: none;
+    }
+
+    .forex-page .forex-image-space {
+        grid-column: 1;
+        grid-row: auto;
+        width: min(100%, 540px);
+        height: clamp(260px, 70vw, 400px);
+        margin: 0 auto;
+    }
+
+    .forex-page .forex-trading-image {
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .forex-page .forex-image-space {
+        height: clamp(220px, 70vw, 330px);
+    }
+}
+
+/* Premium detail without adding page or card backgrounds. */
+.forex-page .forex-hero h1 {
+    max-width: 640px;
+    font-size: clamp(48px, 5.7vw, 76px);
+    letter-spacing: -.055em;
+    line-height: 1.02;
+}
+
+.forex-page .forex-hero h1 span {
+    color: #a87522;
+}
+
+.forex-page .forex-eyebrow {
+    color: #9a7133;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .22em;
+}
+
+.forex-page .forex-trading-image {
+    filter: drop-shadow(0 30px 45px rgba(36, 29, 19, .2));
+}
+
+.forex-page .forex-section {
+    padding-top: clamp(76px, 9vw, 116px);
+    padding-bottom: clamp(76px, 9vw, 116px);
+}
+
+.forex-page .forex-section-heading h2,
+.forex-page .forex-faq-heading h2 {
+    max-width: 760px;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    line-height: 1.08;
+}
+
+.forex-page .forex-section-heading > p,
+.forex-page .forex-faq-heading > p {
+    max-width: 620px;
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.forex-page .forex-feature-grid {
+    gap: 18px;
+}
+
+.forex-page .forex-feature-card,
+.forex-page .forex-broker-card {
+    border: 1px solid rgba(153, 113, 51, .22);
+    border-radius: 18px;
+    box-shadow: 0 14px 34px rgba(39, 31, 20, .055);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.forex-page .forex-feature-card:hover,
+.forex-page .forex-broker-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(153, 113, 51, .56);
+    box-shadow: 0 22px 42px rgba(39, 31, 20, .1);
+}
+
+.forex-page .forex-feature-top i,
+.forex-page .forex-broker-monogram {
+    border: 1px solid rgba(153, 113, 51, .35);
+    box-shadow: 0 6px 16px rgba(39, 31, 20, .07);
+}
+
+.forex-page .forex-feature-card h3,
+.forex-page .forex-broker-card h3 {
+    color: #2d261c;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+
+.forex-page .forex-feature-card p,
+.forex-page .forex-broker-card p {
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.forex-page .forex-packages {
+    border-top: 1px solid rgba(153, 113, 51, .18);
+    border-bottom: 1px solid rgba(153, 113, 51, .18);
+}
+
+.forex-page .forex-package-grid {
+    gap: 18px;
+    align-items: stretch;
+}
+
+.forex-page .forex-package-card {
+    border: 1px solid rgba(153, 113, 51, .25);
+    border-radius: 20px;
+    box-shadow: 0 16px 38px rgba(39, 31, 20, .065);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.forex-page .forex-package-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(153, 113, 51, .62);
+    box-shadow: 0 24px 46px rgba(39, 31, 20, .11);
+}
+
+.forex-page .forex-package-card.is-recommended {
+    border: 2px solid rgba(153, 113, 51, .72);
+    box-shadow: 0 20px 48px rgba(153, 113, 51, .14);
+}
+
+.forex-page .forex-package-card h3 {
+    font-size: 23px;
+    letter-spacing: .04em;
+}
+
+.forex-page .forex-price {
+    font-size: clamp(38px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -.055em;
+}
+
+.forex-page .forex-package-card li {
+    line-height: 1.65;
+}
+
+.forex-page .forex-button {
+    min-height: 50px;
+    border-color: #b7832d;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .035em;
+    box-shadow: 0 8px 22px rgba(110, 77, 29, .1);
+}
+
+.forex-page .forex-button:not(:disabled):hover {
+    box-shadow: 0 14px 28px rgba(110, 77, 29, .16);
+}
+
+.forex-page .forex-table-wrap {
+    border: 1px solid rgba(153, 113, 51, .27);
+    border-radius: 16px;
+    box-shadow: 0 16px 38px rgba(39, 31, 20, .07);
+}
+
+.forex-page .forex-table-wrap th,
+.forex-page .forex-table-wrap td {
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(153, 113, 51, .14);
+}
+
+.forex-page .forex-method-step {
+    gap: 16px;
+}
+
+.forex-page .forex-method-number {
+    width: 58px;
+    height: 58px;
+    border-width: 1px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 8px 22px rgba(39, 31, 20, .08);
+    /* margin-top: 
+    20px; */
+}
+
+.forex-page .forex-faq-list {
+    border-top: 1px solid rgba(153, 113, 51, .28);
+}
+
+.forex-page .forex-faq-item {
+    border-bottom: 1px solid rgba(153, 113, 51, .2);
+}
+
+.forex-page .forex-faq-item h3 button {
+    min-height: 72px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.forex-page .forex-faq-item h3 button > span {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(153, 113, 51, .38);
+    border-radius: 50%;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.forex-page .forex-faq-answer p {
+    max-width: 680px;
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.forex-page .forex-method {
+    padding-top: clamp(32px, 4vw, 48px);
+}
+
+@media (max-width: 760px) {
+    .forex-page .forex-method {
+        padding-top: 30px;
+    }
+
+    .forex-page .forex-hero h1 {
+        font-size: clamp(42px, 10vw, 58px);
+    }
+
+    .forex-page .forex-feature-grid {
+        gap: 14px;
+    }
+
+    .forex-page .forex-faq-item h3 button {
+        min-height: 66px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .forex-page .forex-feature-card,
+    .forex-page .forex-broker-card,
+    .forex-page .forex-package-card,
+    .forex-page .forex-button {
+        transition: none;
+    }
+}
+
+/* Forex overview and live market feed */
+.forex-page {
+    background-image: url("../assets/ForexBG.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.forex-page .forex-overview .forex-section-heading {
+    max-width: 880px;
+    margin: 0 auto 36px;
+    text-align: center;
+}
+
+.forex-page .forex-overview .forex-section-heading > .forex-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.forex-page .forex-overview .forex-section-heading > .forex-eyebrow::before,
+.forex-page .forex-overview .forex-section-heading > .forex-eyebrow::after {
+    width: 30px;
+    height: 1px;
+    background: rgba(153, 113, 51, .68);
+    content: "";
+}
+
+.forex-page .forex-overview .forex-section-heading h2 {
+    max-width: 850px;
+    margin: 18px auto 12px;
+    font-size: clamp(38px, 5vw, 66px);
+    line-height: 1.08;
+    text-align: center;
+}
+
+.forex-page .forex-overview .forex-section-heading h2 span {
+    display: block;
+    color: #8f6123;
+}
+
+.forex-page .forex-overview .forex-section-heading > p {
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: clamp(14px, 1.35vw, 17px);
+    line-height: 1.75;
+    text-align: center;
+}
+
+.forex-page .forex-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
+}
+
+.forex-page .forex-overview-card {
+    position: relative;
+    display: flex;
+    min-height: 320px;
+    flex-direction: column;
+    padding: 28px 30px 24px;
+    border: 1px solid rgba(183, 131, 45, .25);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .24);
+    box-shadow: 0 18px 46px rgba(95, 67, 31, .055);
+    backdrop-filter: blur(3px);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.forex-page .forex-overview-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(153, 103, 34, .55);
+    box-shadow: 0 22px 48px rgba(95, 67, 31, .1);
+}
+
+.forex-page .forex-overview-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.forex-page .forex-overview-number {
+    color: #94621f;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.forex-page .forex-overview-card-top > i {
+    display: grid;
+    width: 72px;
+    height: 72px;
+    place-items: center;
+    border: 1px solid rgba(183, 131, 45, .2);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .27);
+    color: #91621f;
+    font-size: 25px;
+    font-style: normal;
+}
+
+.forex-page .forex-overview-card h3 {
+    margin: 0 0 10px;
+    color: #201c17;
+    font-size: clamp(21px, 2vw, 28px);
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 1.2;
+}
+
+.forex-page .forex-overview-card > p {
+    margin: 0 0 22px;
+    color: #625d55;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.forex-page .forex-overview-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: auto;
+    color: #885b1e;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.forex-page .forex-overview-link > i {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    place-items: center;
+    border: 1px solid rgba(153, 103, 34, .7);
+    border-radius: 50%;
+    font-size: 16px;
+    font-style: normal;
+    transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.forex-page .forex-overview-link:hover > i {
+    transform: translateX(3px);
+    background: #94621f;
+    color: #fff;
+}
+
+.forex-page .forex-overview-link:focus-visible,
+.forex-page .forex-live-disclaimer a:focus-visible {
+    outline: 2px solid #94621f;
+    outline-offset: 4px;
+}
+
+.forex-page .forex-market-heading {
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.forex-page .forex-market-heading h2,
+.forex-page .forex-market-heading > p {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.forex-page .forex-live-panel {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 24px 14px;
+    border: 1px solid rgba(153, 113, 51, .27);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .23);
+    box-shadow: 0 16px 38px rgba(39, 31, 20, .065);
+    color-scheme: light;
+    --tv-widget-background-color: transparent;
+    --tv-widget-text-color: #312a20;
+    --tv-widget-price-text-color: #312a20;
+    --tv-widget-positive-color: #39774f;
+    --tv-widget-negative-color: #b3473d;
+}
+
+.forex-page .forex-live-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+    color: #382f23;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.forex-page .forex-live-panel-heading > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.forex-page .forex-live-panel-heading small {
+    color: #817565;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.forex-page .forex-live-dot,
+.forex-page .forex-live-panel-heading i {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #3f9660;
+    box-shadow: 0 0 0 4px rgba(63, 150, 96, .12);
+}
+
+.forex-page tv-ticker-tape {
+    display: block;
+    width: 100%;
+    min-height: 72px;
+    overflow: hidden;
+}
+
+.forex-page .forex-ticker-placeholder {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #766b5e;
+    font-size: 13px;
+}
+
+.forex-page .forex-live-disclaimer {
+    margin: 12px 0 0;
+    color: #766b5e;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.forex-page .forex-live-disclaimer a {
+    color: #885b1e;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.forex-page .forex-package-badge {
+    z-index: 2;
+    padding: 7px 14px;
+    border: 1px solid rgba(153, 103, 34, .48);
+    border-radius: 999px;
+    background: #f6e8cd;
+    box-shadow: 0 4px 12px rgba(95, 67, 31, .12);
+    color: #684616;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .forex-page .forex-overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .forex-page .forex-overview-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 620px) {
+    .forex-page {
+        background-attachment: scroll;
+        background-position: center top;
+        background-size: auto 100vh;
+    }
+
+    .forex-page .forex-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .forex-page .forex-overview-card:last-child {
+        grid-column: auto;
+    }
+
+    .forex-page .forex-overview-card {
+        min-height: 290px;
+        padding: 24px 22px 20px;
+    }
+
+    .forex-page .forex-overview .forex-section-heading h2 {
+        font-size: clamp(34px, 10vw, 48px);
+    }
+
+    .forex-page .forex-live-panel {
+        padding: 17px 14px 12px;
+    }
+
+    .forex-page .forex-live-panel-heading small {
+        text-align: right;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .forex-page .forex-overview-card,
+    .forex-page .forex-overview-link > i {
+        transition: none;
     }
 }
