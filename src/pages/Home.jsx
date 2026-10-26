@@ -489,7 +489,7 @@ export default function Home() {
                         </p>
 
                         <div className="hero-buttons">
-                            <Link to="/trading" className="hero-btn primary-btn">
+                            <Link to="/contact-us" className="hero-btn primary-btn">
                                 Start Trading
                             </Link>
 

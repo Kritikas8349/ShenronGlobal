@@ -10,10 +10,9 @@ import {
 import "./Comex.css";
 
 import marketImage from "../assets/comex.png";
+import goldImage from "../assets/goldImg.png";
 
 
-const goldImage =
-  "https://images.unsplash.com/photo-1718752773174-6e10495fdcf2?auto=format&fit=crop&w=1000&q=85";
 const silverImage =
   "https://images.unsplash.com/photo-1720637595085-cd0b84ed67ad?auto=format&fit=crop&w=1000&q=85";
 
@@ -122,7 +121,7 @@ function Eyebrow({ children, light = false }) {
 function ComexHero() {
   return (
     <section className="comex-hero" aria-labelledby="comex-title">
-    
+
       <div className="comex-hero-layout comex-container">
         <div className="comex-hero-copy">
           <Eyebrow>GOLD · SILVER · OIL · MARKET CONTEXT</Eyebrow>
@@ -190,20 +189,19 @@ function Introduction() {
         <Eyebrow>INTRODUCTION</Eyebrow>
         <h2>COMEX trading guidance <em>with risk in view.</em></h2>
         <p>
-          Get COMEX-focused recommendations, market analysis, and strategy notes
-          for gold, silver, oil, and commodity-linked opportunities. Our desk
-          shares research and market updates to help traders understand price
-          movements and evaluate potential setups.
+          Get COMEX market analysis and strategy notes for gold, silver, oil, and
+          related markets. Our desk shares research to help traders understand
+          price movements and assess potential setups.
         </p>
         <p>
-          Trading hours matter when analysing futures markets. Exchange schedules
-          and holidays can affect activity, so check the latest calendar when
-          planning around gold and silver sessions.
+          Trading hours, exchange schedules, and holidays can shape futures
+          activity. Check the latest calendar when planning around gold and
+          silver sessions.
         </p>
         <p>
-          Whether you are exploring COMEX or looking for broader commodity
-          insights, Shenron Global focuses on structured guidance and risk
-          awareness. Trading involves risk; no recommendation guarantees profit.
+        Whether you are exploring COMEX markets or looking for commodity trading insights, 
+        Shenron Global focuses on market analysis, structured guidance, and risk awareness.
+         Trading involves risk, and no recommendation guarantees profits.
         </p>
         <a className="comex-text-link" href="#overview">
           Understand the desk <FaArrowRight aria-hidden="true" />
@@ -371,7 +369,6 @@ export default function Comex() {
       <OverviewSection />
       <ServicesSection />
       <PlansSection />
-
     </main>
   );
 }

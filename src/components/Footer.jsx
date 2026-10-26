@@ -15,16 +15,16 @@ import logo from "../assets/shenron-logo.png";
 
 const quickLinks = [
   { label: "Home", to: "/" },
-  { label: "About Us", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "FAQ", to: "/faq" },
-  { label: "Contact Us", to: "/contact" },
+  { label: "About Us", to: "/#about" },
+  { label: "Services", to: "/services/forex" },
+  { label: "FAQ", to: "/#faq" },
+  { label: "Contact Us", to: "/contact-us" },
 ];
 
 const serviceLinks = [
-  { label: "Forex", to: "/services" },
-  { label: "Crypto", to: "/services" },
-  { label: "Comex", to: "/services" },
+  { label: "Forex", to: "/services/forex" },
+  { label: "Crypto", to: "/services/crypto" },
+  { label: "Comex", to: "/services/comex" },
 ];
 
 
@@ -45,11 +45,6 @@ const resourceLinks = [
     label: "Phone no: +971565702852",
     value: "+971565702852",
     to: "tel:+971565702852",
-  },
-  {
-    label: "Timings: Mon - Fri: 9:00 AM - 6:00 PM (GST)",
-    value: "Mon - Fri, 9 AM - 6 PM",
-    to: null,
   },
 ];
 
@@ -73,23 +68,43 @@ const socialLinks = [
   {
     label: "Telegram",
     icon: <FaTelegram />,
-    href: "https://t.me/YOUR_CHANNEL_NAME",
+    href: "https://t.me/shenronglobal",
   },
 ];
 
 function FooterLinks({ title, links }) {
   return (
     <div className="footer-column">
-      <h3 className="footer-column-title">{title}</h3>
+    <h3 className="footer-column-title">{title}</h3>
 
-      <ul className="footer-link-list">
-        {links.map((item) => (
-          <li key={item.label}>
-            <Link to={item.to}>{item.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="footer-link-list">
+      {links.map((item) => (
+        <li key={item.label}>
+          {item.to ? (
+            item.external ? (
+              <a
+                href={item.to}
+                target={
+                  item.to.startsWith("http") ? "_blank" : undefined
+                }
+                rel={
+                  item.to.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link to={item.to}>{item.label}</Link>
+            )
+          ) : (
+            <span>{item.label}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
   );
 }
 
