@@ -688,208 +688,49 @@
   
 
 
-  
-/* =====================================
-   MARKET TICKER STRIP
-===================================== */
 
-
-.market-ticker {
-    width: calc(100% - 80px);
-    height: 76px;
-    margin: 0 40px;
-    position: relative;
-    z-index: 5;
+  .market-ticker {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0 0;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-  
-    background: linear-gradient(
-      100deg,
-      #100613 0%,
-      #18091f 50%,
-      #100613 100%
-    );
-  
-    border: 1px solid rgba(210, 170, 79, 0.2);
-    border-radius: 3px;
+    background: #08090b;
+    /* border-top: 1px solid rgba(200, 155, 60, 0.35); */
+    /* border-bottom: 1px solid rgba(200, 155, 60, 0.35); */
     box-sizing: border-box;
   }
   
-  
-  /* Moving track */
-  
-  .market-ticker-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    flex-shrink: 0;
-    animation: marketTickerScroll 35s linear infinite;
-    will-change: transform;
+  /* Reduce widget height and remove extra spacing */
+  .market-ticker .tradingview-widget-container__widget {
+    width: 100%;
+    background: #08090b;
+    padding: 0;
+    margin: 0;
   }
   
-  .market-ticker:hover .market-ticker-track {
-    animation-play-state: paused;
+  /* Compact ticker height */
+  .market-ticker iframe {
+    display: block;
+    width: 100%;
+    border: 0;
   }
   
-  /* Individual market item */
-  
-  .market-ticker-item {
-    min-width: 188px;
-    height: 52px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-right: 1px solid rgba(222, 211, 228, 0.17);
-    flex-shrink: 0;
+  /* Hide the attribution line */
+  .market-ticker .tradingview-widget-copyright {
+    display: none !important;
   }
   
-  /* Small symbol badge */
-  
-  .market-ticker-icon {
-    width: 19px;
-    height: 19px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  
-    background: #169db5;
-    color: #fff;
-    font-size: 9px;
-    font-weight: 800;
+  .market-ticker .tradingview-widget-copyright a {
+    color: #c89b3c;
+    text-decoration: none;
   }
-  
-  .market-ticker-item:nth-child(2) .market-ticker-icon,
-  .market-ticker-item:nth-child(9) .market-ticker-icon {
-    background: #d9254d;
-  }
-  
-  .market-ticker-item:nth-child(3) .market-ticker-icon,
-  .market-ticker-item:nth-child(10) .market-ticker-icon {
-    background: #315caa;
-  }
-  
-  .market-ticker-item:nth-child(4) .market-ticker-icon,
-  .market-ticker-item:nth-child(11) .market-ticker-icon {
-    background: #287c59;
-  }
-  
-  /* Symbol, price and change */
-  
-  .market-ticker-details {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  
-  .market-ticker-symbol {
-    color: #c8becd;
-    font-size: 10px;
-    font-weight: 650;
-    line-height: 1.2;
-    white-space: nowrap;
-    letter-spacing: 0.15px;
-  }
-  
-  .market-ticker-price {
-    color: #1bd1b0;
-    font-size: 13px;
-    font-weight: 750;
-    line-height: 1.2;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-  
-  .market-ticker-change {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 11px;
-    line-height: 1.2;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-  
-  .market-ticker-change.negative {
-    color: #fa3655;
-  }
-  
-  .market-ticker-change.positive {
-    color: #1bd1a4;
-  }
-  
-  /* Seamless animation:
-     one full set = half the duplicated track */
-  
-  @keyframes marketTickerScroll {
-    from {
-      transform: translateX(0);
-    }
-  
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  
-  /* Tablet */
-  
-  @media (max-width: 768px) {
-    .market-ticker {
-      height: 70px;
-    }
-  
-    .market-ticker-item {
-      min-width: 170px;
-      padding: 0 16px;
-    }
-  
-    .market-ticker-track {
-      animation-duration: 30s;
-    }
-  }
-  
-  /* Mobile */
   
   @media (max-width: 480px) {
     .market-ticker {
-      height: 65px;
-    }
-  
-    .market-ticker-item {
-      min-width: 155px;
-      height: 45px;
-      padding: 0 13px;
-      gap: 8px;
-    }
-  
-    .market-ticker-symbol {
-      font-size: 9px;
-    }
-  
-    .market-ticker-price {
-      font-size: 12px;
-    }
-  
-    .market-ticker-change {
-      font-size: 10px;
-    }
-  
-    .market-ticker-track {
-      animation-duration: 25s;
+      width: 100%;
     }
   }
   
-  /* Accessibility */
-  
-  @media (prefers-reduced-motion: reduce) {
-    .market-ticker-track {
-      animation-duration: 80s;
-    }
-  }
   
 
 
