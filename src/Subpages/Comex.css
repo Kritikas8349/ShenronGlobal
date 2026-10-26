@@ -1419,7 +1419,7 @@ body, html{
 
   .comex-hero-actions {
     align-items: stretch;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 9px;
   }
 
