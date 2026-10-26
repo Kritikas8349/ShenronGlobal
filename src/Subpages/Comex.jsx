@@ -351,31 +351,6 @@ function PlansSection() {
   );
 }
 
-function RiskSection() {
-  return (
-    <section className="comex-risk-section">
-      <div className="comex-risk-inner comex-container">
-        <div className="comex-risk-icon"><FaShieldAlt aria-hidden="true" /></div>
-        <div className="comex-risk-copy">
-          <Eyebrow light>RISK DISCLOSURE</Eyebrow>
-          <h2>Market recommendations <em>do not remove trading risk.</em></h2>
-          <p>
-            COMEX and commodity markets can move sharply due to leverage,
-            contract size, liquidity, and macro events. Recommendations are
-            informational and do not guarantee outcomes. Consider whether the
-            risks are suitable for your circumstances.
-          </p>
-        </div>
-        <div className="comex-risk-actions">
-          <a className="comex-button comex-button--light" href="https://shenronglobal.com/legal/risk-disclosure" target="_blank" rel="noopener noreferrer">
-            Read full risk disclosure <FaArrowRight aria-hidden="true" />
-          </a>
-          <Link className="comex-risk-consult" to="/contact-us">Ask about COMEX services</Link>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function Comex() {
   useEffect(() => {
@@ -396,13 +371,7 @@ export default function Comex() {
       <OverviewSection />
       <ServicesSection />
       <PlansSection />
-      <RiskSection />
-      <footer className="comex-image-credit comex-container">
-        <span>
-          Photography: <a href="https://unsplash.com/photos/trader-analyzing-stock-market-charts-on-tablet-and-monitor-tFecc1boKYc" target="_blank" rel="noopener noreferrer">Jakub Żerdzicki / Unsplash</a>, <a href="https://unsplash.com/photos/a-stack-of-gold-bars-sitting-on-top-of-each-other-dvdAdJxxvv0" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>, and <a href="https://unsplash.com/photos/a-pile-of-silver-bars-stacked-on-top-of-each-other-dPahQ_Q56zY" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>.
-        </span>
-        <a href="#comex-top">Back to top <FaArrowRight aria-hidden="true" /></a>
-      </footer>
+
     </main>
   );
 }
