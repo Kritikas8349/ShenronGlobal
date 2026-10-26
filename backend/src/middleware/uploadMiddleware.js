@@ -5,7 +5,7 @@ const acceptedMimeTypes = new Set(["image/jpeg", "image/png", "image/webp", "ima
 export function createUploadMiddleware(env) {
   return multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: env.maxVideoSize, files: 1, fields: 0 },
+    limits: { fileSize: Math.max(env.maxImageSize, env.maxVideoSize), files: 1, fields: 0 },
     fileFilter(_req, file, callback) {
       if (!acceptedMimeTypes.has(file.mimetype)) {
         const error = new Error("Upload an image (JPEG, PNG, WebP, GIF) or a video (MP4, WebM).");

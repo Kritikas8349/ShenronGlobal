@@ -9,9 +9,9 @@
     justify-content: space-between;
     width: min(1070px, 100%);
     margin: 0 auto 31px;
-    padding: 12px 15px;
+    padding: 12px 16px;
     border: 1px solid #d7c398;
-    border-radius: 3px;
+    border-radius: 14px;
     color: #6c5424;
     background: #f0e7d2;
     font-family: "Inter", sans-serif;
@@ -21,8 +21,19 @@
 }
 
 .admin-preview-banner a {
+    display: inline-flex;
+    min-height: 33px;
+    align-items: center;
+    padding: 0 12px;
+    border: 1px solid rgba(112, 86, 32, .32);
+    border-radius: 999px;
     color: #705620;
     text-decoration: none;
+}
+
+.admin-preview-banner a:hover {
+    border-color: #705620;
+    background: rgba(255, 255, 255, .38);
 }
 
 @media(max-width:640px) {

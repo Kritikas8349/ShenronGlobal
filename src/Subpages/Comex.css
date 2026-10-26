@@ -77,7 +77,7 @@
   text-transform: uppercase;
 }
 
-.comex-eyebrow > i {
+.comex-eyebrow>i {
   width: 26px;
   height: 1px;
   background: var(--comex-gold);
@@ -227,7 +227,7 @@
   color: #93601f;
 }
 
-.comex-hero-copy > p {
+.comex-hero-copy>p {
   max-width: 530px;
   margin-bottom: 0;
   color: #5d584f;
@@ -252,7 +252,7 @@
   border-top: 1px solid var(--comex-line);
 }
 
-.comex-coverage > span {
+.comex-coverage>span {
   width: 100%;
   color: #786e60;
   font-size: 9px;
@@ -266,7 +266,7 @@
   font-weight: 650;
 }
 
-.comex-coverage > i {
+.comex-coverage>i {
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -284,7 +284,7 @@
   animation: comex-arrive 780ms 100ms both;
 }
 
-.comex-hero-visual > img {
+.comex-hero-visual>img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -358,7 +358,7 @@
   box-shadow: 0 0 0 4px rgba(75, 149, 99, 0.12);
 }
 
-.comex-desk-card > p {
+.comex-desk-card>p {
   margin: 11px 0 13px;
   color: #5f594f;
   font-size: 11px;
@@ -468,7 +468,7 @@
   text-transform: uppercase;
 }
 
-.comex-live-heading > span {
+.comex-live-heading>span {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -506,7 +506,7 @@
   font-size: 12px;
 }
 
-.comex-live-panel > p {
+.comex-live-panel>p {
   margin: 8px 0 0;
   color: #817667;
   font-size: 10px;
@@ -538,7 +538,7 @@
   color: #93601f;
 }
 
-.comex-intro-copy > p {
+.comex-intro-copy>p {
   max-width: 655px;
   margin-bottom: 13px;
   color: #5e594f;
@@ -680,7 +680,7 @@
   gap: 35px;
 }
 
-.comex-section-heading > div {
+.comex-section-heading>div {
   max-width: 700px;
 }
 
@@ -697,7 +697,7 @@
   color: #93601f;
 }
 
-.comex-section-heading > p {
+.comex-section-heading>p {
   max-width: 370px;
   margin: 0 0 4px;
   color: #686157;
@@ -739,7 +739,7 @@
   font-weight: 800;
 }
 
-.comex-card-topline > i {
+.comex-card-topline>i {
   width: 52px;
   height: 52px;
   display: grid;
@@ -761,7 +761,7 @@
   letter-spacing: -0.7px;
 }
 
-.comex-overview-card > p {
+.comex-overview-card>p {
   margin: 0;
   color: #686157;
   font-size: 12px;
@@ -792,7 +792,7 @@
   color: #d4b16c;
 }
 
-.comex-services .comex-section-heading > p {
+.comex-services .comex-section-heading>p {
   color: #c4bdae;
 }
 
@@ -885,7 +885,7 @@
   margin-bottom: 22px;
 }
 
-.comex-plans-heading > p {
+.comex-plans-heading>p {
   max-width: 330px;
 }
 
@@ -930,7 +930,7 @@
   box-shadow: 0 5px 13px rgba(42, 33, 21, 0.16);
 }
 
-.comex-billing > p {
+.comex-billing>p {
   max-width: 520px;
   margin: 0;
   color: #786e60;
@@ -1126,7 +1126,7 @@
   color: #d6b778;
 }
 
-.comex-risk-copy > p {
+.comex-risk-copy>p {
   max-width: 720px;
   margin: 0;
   color: #c5bdae;
@@ -1178,7 +1178,7 @@
   text-underline-offset: 2px;
 }
 
-.comex-image-credit > a {
+.comex-image-credit>a {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
@@ -1188,18 +1188,32 @@
   text-decoration: none;
 }
 
-.comex-image-credit > a svg {
+.comex-image-credit>a svg {
   font-size: 9px;
 }
 
 @keyframes comex-rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes comex-arrive {
-  from { opacity: 0; transform: translateX(14px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 1050px) {
@@ -1282,7 +1296,7 @@
     gap: 15px;
   }
 
-  .comex-section-heading > p {
+  .comex-section-heading>p {
     max-width: 610px;
   }
 
@@ -1343,7 +1357,7 @@
     letter-spacing: -2.5px;
   }
 
-  .comex-hero-copy > p {
+  .comex-hero-copy>p {
     font-size: 14px;
     line-height: 1.75;
   }
@@ -1390,7 +1404,7 @@
     padding: 13px 13px 12px;
   }
 
-  .comex-desk-card > p {
+  .comex-desk-card>p {
     margin: 8px 0 9px;
     font-size: 10px;
   }
@@ -1440,7 +1454,7 @@
     font-size: 10px;
   }
 
-  .comex-live-panel > p {
+  .comex-live-panel>p {
     font-size: 9px;
   }
 
@@ -1456,7 +1470,7 @@
     letter-spacing: -1.8px;
   }
 
-  .comex-intro-copy > p {
+  .comex-intro-copy>p {
     font-size: 12px;
   }
 
@@ -1505,7 +1519,7 @@
     gap: 11px;
   }
 
-  .comex-section-heading > p {
+  .comex-section-heading>p {
     font-size: 12px;
   }
 
@@ -1553,7 +1567,7 @@
     padding-inline: 8px;
   }
 
-  .comex-billing > p {
+  .comex-billing>p {
     text-align: left;
   }
 
@@ -1593,7 +1607,7 @@
     letter-spacing: -1px;
   }
 
-  .comex-risk-copy > p {
+  .comex-risk-copy>p {
     font-size: 10px;
   }
 
@@ -1622,6 +1636,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .comex-page *,
   .comex-page *::before,
   .comex-page *::after {

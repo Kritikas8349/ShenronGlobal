@@ -39,9 +39,11 @@ export function loadEnv() {
   if (storageProvider === "s3" && (!process.env.S3_BUCKET || !process.env.S3_REGION || !mediaBaseUrl)) throw new Error("S3_BUCKET, S3_REGION, and MEDIA_BASE_URL are required when STORAGE_PROVIDER=s3.");
   const cookieSameSite = (process.env.COOKIE_SAME_SITE || "lax").toLowerCase();
   if (!["lax", "strict", "none"].includes(cookieSameSite)) throw new Error("COOKIE_SAME_SITE must be lax, strict, or none.");
-  if (cookieSameSite === "none" && process.env.NODE_ENV === "production" && !process.env.COOKIE_SECURE) throw new Error("COOKIE_SECURE=true is required when COOKIE_SAME_SITE=none in production.");
+  const nodeEnv = process.env.NODE_ENV || "development";
+  const cookieSecure = process.env.COOKIE_SECURE === "true" || nodeEnv === "production";
+  if (cookieSameSite === "none" && !cookieSecure) throw new Error("COOKIE_SECURE=true is required whenever COOKIE_SAME_SITE=none.");
   return {
-    nodeEnv: process.env.NODE_ENV || "development",
+    nodeEnv,
     port: integer("PORT", 5000),
     mongoUri: process.env.MONGODB_URI,
     clientOrigins,
@@ -51,7 +53,7 @@ export function loadEnv() {
     jwtSecret,
     jwtCookieName: process.env.JWT_COOKIE_NAME || "sg_admin_session",
     cookieSameSite,
-    cookieSecure: process.env.COOKIE_SECURE === "true" || process.env.NODE_ENV === "production",
+    cookieSecure,
     uploadDir: path.resolve(process.env.UPLOAD_DIR || path.join(process.cwd(), "uploads")),
     frontendDistDir: process.env.FRONTEND_DIST_DIR?.trim() ? path.resolve(process.env.FRONTEND_DIST_DIR) : "",
     mediaBaseUrl,

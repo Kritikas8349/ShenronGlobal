@@ -52,7 +52,10 @@ export function sanitizeContent(document, { mediaBaseUrl = "" } = {}) {
     if (!node || typeof node !== "object" || Array.isArray(node) || !ALLOWED_NODES.has(node.type)) invalid("Article content contains an unsupported block.");
     if (node.type === "text") {
       if (typeof node.text !== "string" || node.text.length > 20000) invalid("Article text is invalid or too long.");
-      const marks = (node.marks || []).map((mark) => {
+      const sourceMarks = node.marks === undefined ? [] : node.marks;
+      if (!Array.isArray(sourceMarks)) invalid("Article text formatting is invalid.");
+      const marks = sourceMarks.map((mark) => {
+        if (!mark || typeof mark !== "object" || Array.isArray(mark)) invalid("Article text contains unsupported formatting.");
         if (!ALLOWED_MARKS.has(mark.type)) invalid("Article text contains unsupported formatting.");
         if (mark.type === "link") {
           const href = mark.attrs?.href;
@@ -63,10 +66,13 @@ export function sanitizeContent(document, { mediaBaseUrl = "" } = {}) {
       });
       return { type: "text", text: node.text, ...(marks.length ? { marks } : {}) };
     }
+    const hasChildren = ["doc", "paragraph", "heading", "bulletList", "orderedList", "listItem", "blockquote", "codeBlock"].includes(node.type);
+    if (node.content !== undefined && (!hasChildren || !Array.isArray(node.content))) invalid("Article content has an invalid block structure.");
+    const children = node.content || [];
     if (node.type === "heading") {
       const level = Number(node.attrs?.level);
       if (![2, 3, 4].includes(level)) invalid("Headings must use H2, H3, or H4.");
-      return { type: "heading", attrs: { level }, content: (node.content || []).map((child) => visit(child, depth + 1)) };
+      return { type: "heading", attrs: { level }, content: children.map((child) => visit(child, depth + 1)) };
     }
     if (node.type === "image") {
       return { type: "image", attrs: { src: sanitizeUrl(node.attrs?.src), alt: String(node.attrs?.alt || "").slice(0, 300), title: String(node.attrs?.title || "").slice(0, 300) } };
@@ -78,7 +84,7 @@ export function sanitizeContent(document, { mediaBaseUrl = "" } = {}) {
     if (node.type === "hardBreak") return { type: "hardBreak" };
     if (node.type === "doc" || ["paragraph", "bulletList", "orderedList", "listItem", "blockquote", "codeBlock"].includes(node.type)) {
       if (node.type === "doc" && depth !== 0) invalid("Article content contains a nested document.");
-      return { type: node.type, ...(node.type === "codeBlock" && node.attrs?.language ? { attrs: { language: String(node.attrs.language).slice(0, 40) } } : {}), ...(node.content ? { content: node.content.map((child) => visit(child, depth + 1)) } : {}) };
+      return { type: node.type, ...(node.type === "codeBlock" && node.attrs?.language ? { attrs: { language: String(node.attrs.language).slice(0, 40) } } : {}), ...(node.content ? { content: children.map((child) => visit(child, depth + 1)) } : {}) };
     }
     return { type: "horizontalRule" };
   };
