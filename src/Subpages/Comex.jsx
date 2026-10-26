@@ -8,8 +8,9 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import "./Comex.css";
+import goldImg from "../assets/commoditie.jpg";
 
-const goldImage = "https://images.unsplash.com/photo-1718752773271-5bec84137916?auto=format&fit=crop&w=1600&q=85";
+
 const goldDetailImage = "https://images.unsplash.com/photo-1718752773174-6e10495fdcf2?auto=format&fit=crop&w=1200&q=85";
 const silverImage = "https://images.unsplash.com/photo-1720637595085-cd0b84ed67ad?auto=format&fit=crop&w=1200&q=85";
 
@@ -117,7 +118,7 @@ export default function Comex() {
           <p className="comex-hero-note"><FaShieldAlt aria-hidden="true" /> Market education and analysis involve risk. No outcome is guaranteed.</p>
         </div>
         <figure className="comex-hero-art">
-          <img src={goldImage} alt="Gold bullion bars arranged against a dark background" fetchPriority="high" />
+          <img src={goldImg} alt="Gold bullion bars arranged against a dark background" fetchPriority="high" />
           <figcaption><span>COMMODITY RESEARCH</span><span>GOLD / SILVER / MARKETS</span></figcaption>
           <span className="comex-art-index" aria-hidden="true">01</span>
         </figure>
