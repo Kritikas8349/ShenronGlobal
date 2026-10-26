@@ -188,67 +188,6 @@ function useSectionReveal() {
     return ref;
 }
 
-
-const marketData = [
-    {
-        symbol: "NASDAQ",
-        code: "100",
-        price: "29,607.00",
-        change: "-100.00",
-        percent: "-0.34%",
-        type: "negative",
-    },
-    {
-        symbol: "S&P 500",
-        code: "500",
-        price: "7,726.7",
-        change: "-16.00",
-        percent: "-0.21%",
-        type: "negative",
-    },
-    {
-        symbol: "EUR/USD",
-        code: "🌐",
-        price: "1.12226",
-        change: "-0.00",
-        percent: "-0.13%",
-        type: "negative",
-    },
-    {
-        symbol: "GBP/USD",
-        code: "£",
-        price: "1.3348",
-        change: "+0.0021",
-        percent: "+0.16%",
-        type: "positive",
-    },
-    {
-        symbol: "GOLD",
-        code: "Au",
-        price: "4,125.60",
-        change: "+12.40",
-        percent: "+0.30%",
-        type: "positive",
-    },
-    {
-        symbol: "BITCOIN",
-        code: "₿",
-        price: "108,420.00",
-        change: "+840.00",
-        percent: "+0.78%",
-        type: "positive",
-    },
-    {
-        symbol: "DOW JONES",
-        code: "DJ",
-        price: "46,120.50",
-        change: "-45.20",
-        percent: "-0.10%",
-        type: "negative",
-    },
-];
-
-
 const processItems = [
     {
         number: "01",
@@ -304,6 +243,57 @@ const features = [
     },
 ];
 
+
+
+
+function TradingViewMarketTicker() {
+    useEffect(() => {
+      const container = document.getElementById("shenron-trading-ticker");
+      if (!container) return;
+  
+      container.innerHTML = "";
+  
+      const widget = document.createElement("div");
+      widget.className = "tradingview-widget-container__widget";
+  
+      container.appendChild(widget);
+  
+      const script = document.createElement("script");
+      script.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script.async = true;
+  
+      script.innerHTML = JSON.stringify({
+        symbols: [
+          { proName: "FOREXCOM:NSXUSD", title: "NASDAQ" },
+          { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+          { proName: "FX:EURUSD", title: "EUR/USD" },
+          { proName: "FX:GBPUSD", title: "GBP/USD" },
+          { proName: "TVC:GOLD", title: "GOLD" },
+          { proName: "BITSTAMP:BTCUSD", title: "BITCOIN" },
+          { proName: "FOREXCOM:DJI", title: "DOW JONES" },
+        ],
+        showSymbolLogo: false,
+        isTransparent: true,
+        displayMode: "regular",
+        colorTheme: "dark",
+        locale: "en",
+      });
+  
+      container.appendChild(script);
+  
+      return () => {
+        container.innerHTML = "";
+      };
+    }, []);
+  
+    return (
+      <div id="shenron-trading-ticker" className="market-ticker" />
+    );
+  }
+  
+  
+
 function PortfolioM() {
     const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
@@ -327,7 +317,6 @@ function PortfolioM() {
         return () => observer.disconnect();
     }, []);
 
-    const tickerItems = [...marketData, ...marketData];
 
     const processRef = useRef(null);
     useEffect(() => {
@@ -464,41 +453,7 @@ function PortfolioM() {
                 </section>
             </main>
 
-            <section
-                className="market-ticker"
-                aria-label="Market prices ticker"
-            >
-                <div className="market-ticker-track">
-                    {tickerItems.map((item, index) => (
-                        <div
-                            className="market-ticker-item"
-                            key={`${item.symbol}-${index}`}
-                            aria-hidden={index >= marketData.length}
-                        >
-                            <div className="market-ticker-icon">
-                                {item.code}
-                            </div>
-
-                            <div className="market-ticker-details">
-                                <div className="market-ticker-symbol">
-                                    {item.symbol}
-                                </div>
-
-                                <div className="market-ticker-price">
-                                    {item.price}
-                                </div>
-
-                                <div
-                                    className={`market-ticker-change ${item.type}`}
-                                >
-                                    <span>{item.change}</span>
-                                    <span>({item.percent})</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            <TradingViewMarketTicker />
 
 
 

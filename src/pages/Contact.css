@@ -662,7 +662,7 @@
   
   @media (max-width: 700px) {
     .sg-contact-hero {
-      padding: 38px 0 28px;
+      padding: 78px 0 28px;
     }
   
     .sg-contact-container {
@@ -671,7 +671,7 @@
   
     .sg-contact-heading {
       min-height: auto;
-      padding: 4px 0 28px;
+      padding: 20px 0 28px;
     }
   
     .sg-contact-eyebrow {

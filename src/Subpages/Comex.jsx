@@ -118,6 +118,8 @@ function Eyebrow({ children, light = false }) {
   );
 }
 
+
+
 function ComexHero() {
   return (
     <section className="comex-hero" aria-labelledby="comex-title">
@@ -169,7 +171,6 @@ function ComexHero() {
               <span>Gold</span><span>Silver</span><span>Oil</span><span>Macro</span>
             </div>
           </div>
-          <span className="comex-image-index" aria-hidden="true">01 <i /> MARKET DESK</span>
         </figure>
       </div>
 
@@ -199,9 +200,9 @@ function Introduction() {
           silver sessions.
         </p>
         <p>
-        Whether you are exploring COMEX markets or looking for commodity trading insights, 
-        Shenron Global focuses on market analysis, structured guidance, and risk awareness.
-         Trading involves risk, and no recommendation guarantees profits.
+          Whether you are exploring COMEX markets or looking for commodity trading insights,
+          Shenron Global focuses on market analysis, structured guidance, and risk awareness.
+          Trading involves risk, and no recommendation guarantees profits.
         </p>
         <a className="comex-text-link" href="#overview">
           Understand the desk <FaArrowRight aria-hidden="true" />

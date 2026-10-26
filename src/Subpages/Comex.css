@@ -538,7 +538,7 @@ body, html{
 
 .comex-intro {
   padding-top: 104px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
@@ -1942,3 +1942,299 @@ body, html{
     transform: translateY(18px);
   }
 }
+
+
+
+/* Black TradingView ticker */
+.comex-page .comex-live-section {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.comex-page .comex-live-panel {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: #000;
+  box-shadow: none;
+  color: #fff;
+  color-scheme: dark;
+  overflow: hidden;
+
+  --tv-widget-background-color: #000;
+  --tv-widget-text-color: #fff;
+  --tv-widget-price-text-color: #fff;
+  --tv-widget-positive-color: #26a69a;
+  --tv-widget-negative-color: #ef5350;
+}
+
+.comex-page tv-ticker-tape {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  background: #000;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .comex-page .comex-live-section {
+    width: 100%;
+  }
+
+  .comex-page .comex-live-panel {
+    padding: 0;
+  }
+
+  .comex-page tv-ticker-tape {
+    min-height: 46px;
+  }
+}
+
+/* =====================================
+   RESPONSIVE ABOUT / INTRODUCTION
+===================================== */
+
+.comex-intro {
+  width: min(calc(100% - 112px), 1480px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  padding-top: 80px;
+  padding-bottom: 65px;
+}
+
+.comex-intro-copy {
+  width: 100%;
+  min-width: 0;
+}
+
+.comex-intro-copy h2 {
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  overflow-wrap: anywhere;
+}
+
+.comex-intro-copy > p {
+  max-width: 600px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.comex-intro-visuals {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.comex-intro-photo {
+  width: 100%;
+  min-width: 0;
+  height: clamp(240px, 28vw, 400px);
+}
+
+.comex-intro-photo--silver {
+  height: clamp(190px, 22vw, 310px);
+  margin-top: 35px;
+  transform: none;
+}
+
+.comex-intro-note {
+  right: 8px;
+  bottom: -16px;
+  width: min(300px, 85%);
+  max-width: calc(100% - 16px);
+  padding: 14px;
+  overflow-wrap: anywhere;
+  z-index: 4;
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+  .comex-live-panel {
+    width: calc(100% - 40px);
+  }
+
+  .comex-intro {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 65px;
+    padding-bottom: 75px;
+  }
+
+  .comex-intro-copy {
+    max-width: 720px;
+  }
+
+  .comex-intro-copy h2 {
+    max-width: 650px;
+  }
+
+  .comex-intro-visuals {
+    width: min(100%, 650px);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+
+  .comex-intro-photo {
+    height: 340px;
+  }
+
+  .comex-intro-photo--silver {
+    height: 260px;
+    margin-top: 25px;
+  }
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+  .comex-live-section {
+    padding: 8px 0 14px;
+  }
+
+  .comex-live-panel {
+    width: 100%;
+    padding: 10px 0 4px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .comex-live-heading {
+    padding: 0 14px;
+    font-size: 9px;
+  }
+
+  .comex-live-heading small {
+    font-size: 9px;
+  }
+
+  .comex-page tv-ticker-tape {
+    min-height: 48px;
+  }
+
+  .comex-intro {
+    width: calc(100% - 36px);
+    padding-top: 48px;
+    padding-bottom: 60px;
+    gap: 24px;
+  }
+
+  .comex-eyebrow {
+    margin-bottom: 16px;
+    font-size: 9px;
+    letter-spacing: 1.3px;
+  }
+
+  .comex-intro-copy h2 {
+    margin-bottom: 18px;
+    font-size: clamp(29px, 8.2vw, 38px);
+    line-height: 1.18;
+    letter-spacing: -1.1px;
+  }
+
+  .comex-intro-copy > p {
+    margin: 0 0 15px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .comex-intro-visuals {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+    gap: 10px;
+    padding-bottom: 55px;
+  }
+
+  .comex-intro-photo {
+    height: clamp(200px, 58vw, 270px);
+    border-radius: 12px;
+  }
+
+  .comex-intro-photo--silver {
+    height: clamp(155px, 44vw, 215px);
+    margin-top: 22px;
+    transform: none;
+  }
+
+  .comex-intro-photo figcaption {
+    right: 9px;
+    bottom: 10px;
+    left: 9px;
+    gap: 4px;
+  }
+
+  .comex-intro-photo figcaption span {
+    font-size: 8px;
+  }
+
+  .comex-intro-photo figcaption strong {
+    font-size: 10px;
+  }
+
+  .comex-intro-note {
+    right: 4px;
+    bottom: 0;
+    width: min(245px, 90%);
+    max-width: calc(100% - 8px);
+    padding: 11px;
+    border-radius: 10px;
+  }
+
+  .comex-intro-note span {
+    font-size: 8px;
+  }
+
+  .comex-intro-note strong {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+}
+
+/* Avoid horizontal overflow on very small phones */
+@media (max-width: 360px) {
+  .comex-intro {
+    width: calc(100% - 28px);
+  }
+
+  .comex-intro-copy h2 {
+    font-size: 28px;
+  }
+
+  .comex-intro-visuals {
+    gap: 7px;
+  }
+
+  .comex-intro-photo {
+    height: 190px;
+  }
+
+  .comex-intro-photo--silver {
+    height: 150px;
+    margin-top: 16px;
+  }
+
+  .comex-intro-note {
+    padding: 9px;
+  }
+}
+
