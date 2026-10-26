@@ -1,4 +1,4 @@
-import { createElement, useEffect, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import {
   FaArrowRight,
   FaBitcoin,
@@ -81,8 +81,144 @@ const plans = [
   },
 ];
 
+const cryptoSignals = [
+  {
+    symbol: "BTC/USD",
+    tradingViewSymbol: "BINANCE:BTCUSDT",
+    status: "Review",
+    subtitle: "Breakout watch",
+    session: "Crypto market",
+    risk: "Medium",
+    description: "Bitcoin market context from TradingView. Monitor momentum and changing market conditions.",
+    border: "gold",
+  },
+  {
+    symbol: "ETH/USD",
+    tradingViewSymbol: "BINANCE:ETHUSDT",
+    status: "Review",
+    subtitle: "Trend review",
+    session: "Crypto market",
+    risk: "Medium",
+    description: "Review Ethereum price structure, liquidity, and market momentum with live chart context.",
+    border: "green",
+  },
+  {
+    symbol: "SOL/USD",
+    tradingViewSymbol: "BINANCE:SOLUSDT",
+    status: "Review",
+    subtitle: "Momentum check",
+    session: "Altcoin market",
+    risk: "Elevated",
+    description: "Track Solana market movement and review changing momentum and volatility conditions.",
+    border: "green",
+  },
+  {
+    symbol: "XRP/USD",
+    tradingViewSymbol: "BINANCE:XRPUSDT",
+    status: "Review",
+    subtitle: "Volatility review",
+    session: "Altcoin market",
+    risk: "Elevated",
+    description: "Follow XRP market context while reviewing price movement and broader crypto sentiment.",
+    border: "red",
+  },
+];
+
 function Eyebrow({ children }) {
   return <span className="crypto-eyebrow"><i aria-hidden="true" />{children}</span>;
+}
+
+function CryptoSignalChart({ symbol, visible }) {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (!visible || !chartRef.current) return undefined;
+
+    const container = chartRef.current;
+    container.innerHTML = "";
+
+    const widget = document.createElement("div");
+    widget.className = "tradingview-widget-container crypto-tradingview-widget";
+    widget.style.width = "100%";
+    widget.style.height = "100%";
+
+    const widgetBody = document.createElement("div");
+    widgetBody.className = "tradingview-widget-container__widget";
+    widgetBody.style.width = "100%";
+    widgetBody.style.height = "100%";
+
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+    script.async = true;
+    script.type = "text/javascript";
+    script.innerHTML = JSON.stringify({
+      symbols: [[symbol, `${symbol}|1D`]],
+      chartOnly: false,
+      width: "100%",
+      height: "100%",
+      locale: "en",
+      colorTheme: "dark",
+      autosize: true,
+      showVolume: false,
+      showMA: false,
+      hideDateRanges: true,
+      hideMarketStatus: true,
+      hideSymbolLogo: false,
+      scalePosition: "right",
+      scaleMode: "Normal",
+      fontFamily: "Inter, sans-serif",
+      fontSize: "10",
+      noTimeScale: false,
+      valuesTracking: "1",
+      changeMode: "price-and-percent",
+      chartType: "area",
+      lineWidth: 2,
+      lineType: 0,
+      dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D"],
+      backgroundColor: "rgba(10, 10, 12, 0)",
+      gridLineColor: "rgba(255, 255, 255, 0.05)",
+      upColor: "#00c896",
+      downColor: "#f04452",
+      borderUpColor: "#00c896",
+      borderDownColor: "#f04452",
+      wickUpColor: "#00c896",
+      wickDownColor: "#f04452",
+      isTransparent: true,
+    });
+
+    widget.append(widgetBody, script);
+    container.appendChild(widget);
+
+    return () => {
+      container.innerHTML = "";
+    };
+  }, [symbol, visible]);
+
+  return <div className="crypto-signal-chart" ref={chartRef} />;
+}
+
+function CryptoSignalCard({ signal, index, visible }) {
+  return (
+    <article
+      className={`crypto-signal-card crypto-signal-card-${signal.border}${visible ? " is-visible" : ""}`}
+      style={{ "--crypto-signal-delay": `${index * 130}ms` }}
+    >
+      <div className="crypto-signal-card-top">
+        <h3>{signal.symbol}</h3>
+        <span className="crypto-signal-status">{signal.status}</span>
+      </div>
+      <p className="crypto-signal-subtitle">{signal.subtitle}<span aria-hidden="true">&bull;</span>{signal.session}</p>
+      <div className="crypto-signal-chart-frame">
+        <CryptoSignalChart symbol={signal.tradingViewSymbol} visible={visible} />
+      </div>
+      <div className="crypto-signal-meta">
+        <div><span>SOURCE</span><strong>TradingView</strong></div>
+        <div><span>RISK PROFILE</span><strong>{signal.risk}</strong></div>
+      </div>
+      <p className="crypto-signal-description">{signal.description}</p>
+      <div className="crypto-signal-footer"><span aria-hidden="true" />Market data by TradingView</div>
+    </article>
+  );
 }
 
 function CoinArtwork() {
@@ -162,7 +298,7 @@ function CryptoPlans() {
   return (
     <section className="crypto-section crypto-plans" id="plans" data-crypto-reveal>
       <div className="crypto-section-heading crypto-plans-heading">
-        <div><Eyebrow>PLANS</Eyebrow><h2>Choose Your Guidance Level</h2></div>
+        <div><Eyebrow>PLANS</Eyebrow><h2>Choose Your <span>Guidance Level</span></h2></div>
         <p>Select monthly, quarterly or yearly billing. Prices are listed in AED as per the current service package sheet.</p>
       </div>
       <div className="crypto-billing-control">
@@ -183,54 +319,41 @@ function CryptoPlans() {
   );
 }
 
-function CryptoMarketTicker() {
+function CryptoMarketSignals({ visible }) {
   return (
-    <section className="crypto-market-section crypto-section" id="crypto-market" data-crypto-reveal>
-      <div className="crypto-market-heading">
-        <Eyebrow>LIVE CRYPTO MARKETS</Eyebrow>
-        <h2>Digital assets, moving live.</h2>
-        <p>Follow current quotes for Bitcoin and Ethereum as you explore the research desk.</p>
-      </div>
-      <div className="crypto-live-panel">
-        <div className="crypto-live-panel-heading"><span><i aria-hidden="true" /> Live market feed</span><small>BTC / ETH</small></div>
-        <tv-ticker-tape
-          symbols="BITSTAMP:BTCUSD,BITSTAMP:ETHUSD"
-          item-size="compact"
-          hide-chart
-          theme="light"
-          transparent
-        >
-          <div className="crypto-ticker-placeholder"><i />Connecting to crypto quotes…</div>
-        </tv-ticker-tape>
-        <p className="crypto-live-disclaimer">Quotes provided by TradingView from Bitstamp. Prices can vary by exchange and quote availability may be delayed.</p>
+    <section className="crypto-signals-section" id="crypto-market" data-crypto-reveal>
+      <div className="crypto-signals-container">
+        <header className="crypto-signals-heading">
+          <span className="crypto-signals-eyebrow">MARKET INTELLIGENCE</span>
+          <h2>Real-time Crypto Signals - <br /><span>Free &amp; Premium</span></h2>
+          <p>Explore live market charts and market context across Bitcoin, Ethereum, and leading digital assets. These cards are for educational market review, not automated trade execution.</p>
+        </header>
+        <div className="crypto-signals-grid">
+          {cryptoSignals.map((signal, index) => (
+            <CryptoSignalCard key={signal.symbol} signal={signal} index={index} visible={visible} />
+          ))}
+        </div>
+        <p className="crypto-signals-disclaimer">Market data availability and refresh frequency depend on the instrument and provider. Trading involves risk, and market context cannot guarantee future results.</p>
       </div>
     </section>
   );
 }
 
 export default function Crypto() {
-  useEffect(() => {
-    if (window.customElements?.get("tv-ticker-tape")) return;
-    if (document.getElementById("tradingview-ticker-tape-script")) return;
-
-    const script = document.createElement("script");
-    script.id = "tradingview-ticker-tape-script";
-    script.type = "module";
-    script.src = "https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js";
-    document.head.appendChild(script);
-  }, []);
-
+  const [signalsVisible, setSignalsVisible] = useState(false);
   useEffect(() => {
     const root = document.querySelector(".crypto-page");
     if (!root) return undefined;
     const sections = root.querySelectorAll("[data-crypto-reveal]");
     if (!("IntersectionObserver" in window)) {
       sections.forEach((section) => section.classList.add("is-visible"));
+      setSignalsVisible(true);
       return undefined;
     }
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
+        if (entry.target.classList.contains("crypto-signals-section")) setSignalsVisible(true);
         observer.unobserve(entry.target);
       }
     }), { threshold: .12 });
@@ -244,7 +367,7 @@ export default function Crypto() {
 
       <section className="crypto-intro crypto-section" data-crypto-reveal>
         <div className="crypto-intro-visual" aria-hidden="true"><div className="crypto-intro-coin"><FaBitcoin /></div><div className="crypto-intro-eth"><FaEthereum /></div><span className="crypto-intro-orbit crypto-orbit-a" /><span className="crypto-intro-orbit crypto-orbit-b" /><span className="crypto-intro-note">BTC <i /> ETH <i /> DIGITAL ASSETS</span></div>
-        <div className="crypto-intro-copy"><Eyebrow>CRYPTO RESEARCH</Eyebrow><h2>Crypto Trading Guidance and Risk Management Frameworks</h2>
+        <div className="crypto-intro-copy"><Eyebrow>CRYPTO RESEARCH</Eyebrow><h2>Crypto Trading Guidance and <span>Risk Management Frameworks</span></h2>
           <p>Get crypto recommendations, market insights and risk-aware strategy notes for Bitcoin, Ethereum and other major digital assets.</p>
           <p>Our research helps traders understand market movements, evaluate opportunities, and approach digital-asset markets with a structured risk-management framework.</p>
           <div className="crypto-risk-inline"><FaShieldAlt aria-hidden="true" /><span>Crypto trading involves volatility, liquidity risks, and potential capital loss.</span></div>
@@ -261,10 +384,10 @@ export default function Crypto() {
         </article>)}</div>
       </section>
 
-      <CryptoMarketTicker />
+      <CryptoMarketSignals visible={signalsVisible} />
 
       <section className="crypto-section crypto-services" id="services" data-crypto-reveal>
-        <div className="crypto-section-heading"><div><Eyebrow>WHAT YOU GET</Eyebrow><h2>Crypto Research, Updates and Actionable Guidance</h2></div>
+        <div className="crypto-section-heading"><div><Eyebrow>WHAT YOU GET</Eyebrow><h2>Crypto Research, Updates and <span>Actionable Guidance</span></h2></div>
           <p>Get research-driven crypto insights, digital-asset market updates, and risk-focused recommendations to help evaluate market opportunities.</p></div>
         <div className="crypto-service-layout"><article className="crypto-service-feature"><div className="crypto-service-feature-art"><div className="crypto-token-ring"><FaEthereum aria-hidden="true" /></div><span>MARKET STRUCTURE / VOLATILITY / NARRATIVE</span></div>
           <span className="crypto-service-number">01 / RESEARCH</span><h3>{services[0].title}</h3><p>{services[0].text}</p></article>
@@ -274,15 +397,15 @@ export default function Crypto() {
 
       <CryptoPlans />
 
-      <section className="crypto-risk-section" data-crypto-reveal>
+      {/* <section className="crypto-risk-section" data-crypto-reveal>
         <div className="crypto-risk-emblem"><FaLock aria-hidden="true" /><span>RISK<br />FIRST</span></div>
         <div className="crypto-risk-copy"><Eyebrow>RISK AWARENESS</Eyebrow><h2>Market Recommendations Do Not Remove Trading Risk</h2>
           <p>Crypto trading is highly volatile and may involve liquidity, slippage, exchange, custody and leverage risks. Recommendations are informational and should be tested against your own rules.</p></div>
         <a className="crypto-button crypto-button-secondary" href="https://shenronglobal.com/legal/risk-disclosure" target="_blank" rel="noreferrer">Read Full Risk Disclosure <FaArrowRight aria-hidden="true" /></a>
-      </section>
+      </section> */}
 
       <section className="crypto-final" data-crypto-reveal>
-        <div><Eyebrow>CRYPTO DESK / SHENRON GLOBAL</Eyebrow><h2>Bring a clearer framework to your next market decision.</h2><p>Talk with our team about crypto research, guidance and the support that fits your approach.</p></div>
+        <div><Eyebrow>CRYPTO DESK / SHENRON GLOBAL</Eyebrow><h2>Bring a clearer framework to your next <span>market decision.</span></h2><p>Talk with our team about crypto research, guidance and the support that fits your approach.</p></div>
         <a className="crypto-button crypto-button-primary" href="/contact">Book Consultation <FaArrowRight aria-hidden="true" /></a>
         <span className="crypto-final-orbit" aria-hidden="true" />
       </section>

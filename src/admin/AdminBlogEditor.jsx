@@ -4,6 +4,25 @@ import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
+import {
+  LuBold,
+  LuHeading2,
+  LuHeading3,
+  LuHeading4,
+  LuImagePlus,
+  LuItalic,
+  LuLink,
+  LuList,
+  LuListOrdered,
+  LuMinus,
+  LuQuote,
+  LuRedo2,
+  LuRemoveFormatting,
+  LuUnderline,
+  LuUndo2,
+  LuUpload,
+  LuVideo,
+} from "react-icons/lu";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiRequest, jsonBody } from "../lib/api";
 import { BLOG_CATEGORIES, normalizeMedia, resolveMediaUrl, safeVideoSource, slugify } from "../blogs/content";
@@ -31,6 +50,9 @@ export default function AdminBlogEditor() {
   const [notice, setNotice] = useState("");
   const [dirty, setDirty] = useState(false);
   const [slugTouched, setSlugTouched] = useState(false);
+  const [linkComposerOpen, setLinkComposerOpen] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("");
+  const [linkInSelection, setLinkInSelection] = useState(false);
   const loadedContentRef = useRef(EMPTY_CONTENT);
   const extensions = useMemo(() => [StarterKit.configure({ heading: { levels: [2, 3, 4] }, link: false, underline: false }), Underline, Link.configure({ openOnClick: false, autolink: true, protocols: ["https", "http", "mailto"] }), BlogImage.configure({ inline: false, allowBase64: false }), VideoNode], []);
   const editor = useEditor({ extensions, content: EMPTY_CONTENT, editorProps: { attributes: { class: "article-editor-prose", "aria-label": "Article content" } }, onUpdate: ({ editor: current }) => { setContent(current.getJSON()); setDirty(true); } });
@@ -54,6 +76,25 @@ export default function AdminBlogEditor() {
   }, [dirty]);
 
   const setField = (key, value) => { setForm((current) => ({ ...current, [key]: value })); setDirty(true); setError(""); setNotice(""); };
+  const openLinkComposer = () => {
+    const currentLink = editor?.getAttributes("link")?.href || "";
+    setLinkUrl(currentLink);
+    setLinkInSelection(Boolean(currentLink));
+    setLinkComposerOpen(true);
+  };
+  const applyLink = (event) => {
+    event.preventDefault();
+    const href = linkUrl.trim();
+    if (!href || !editor) return;
+    editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
+    setDirty(true);
+    setLinkComposerOpen(false);
+  };
+  const removeLink = () => {
+    editor?.chain().focus().extendMarkRange("link").unsetLink().run();
+    setDirty(true);
+    setLinkComposerOpen(false);
+  };
   const upload = async (file) => {
     const data = new FormData(); data.append("file", file);
     const response = await apiRequest("/blogs/admin/upload", { method: "POST", body: data });
@@ -121,17 +162,57 @@ export default function AdminBlogEditor() {
           <div className="admin-field"><label htmlFor="blog-description">Short description <span>*</span></label><textarea id="blog-description" required value={form.description} maxLength={320} rows={3} onChange={(event) => setField("description", event.target.value)} placeholder="A concise summary for cards and search engines" /><small>{form.description.length}/320</small></div>
         </section>
 
-        <section className="admin-panel content-panel"><div className="admin-section-title"><div><h2>Article content</h2><p>Arrange headings, text, images, and video in the sequence they should appear.</p></div><span>RICH TEXT</span></div>
+        <section className="admin-panel content-panel"><div className="admin-section-title"><div><h2>Article content</h2><p>Format your story, add media, or select text and add a source link or backlink.</p></div><span>RICH TEXT</span></div>
           <div className="editor-toolbar" role="toolbar" aria-label="Article formatting">
-            <button type="button" title="Bold" aria-label="Bold" className={editor?.isActive("bold") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBold().run()}><b>B</b></button><button type="button" title="Italic" aria-label="Italic" className={editor?.isActive("italic") ? "active" : ""} onClick={() => editor?.chain().focus().toggleItalic().run()}><i>I</i></button><button type="button" title="Underline" aria-label="Underline" onClick={() => editor?.chain().focus().toggleUnderline().run()}><u>U</u></button><span className="toolbar-divider" />
-            {[2, 3, 4].map((level) => <button type="button" key={level} title={`Heading ${level}`} aria-label={`Heading ${level}`} className={editor?.isActive("heading", { level }) ? "active" : ""} onClick={() => editor?.chain().focus().toggleHeading({ level }).run()}>H{level}</button>)}
-            <span className="toolbar-divider" /><button type="button" title="Bulleted list" aria-label="Bulleted list" className={editor?.isActive("bulletList") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBulletList().run()}>• List</button><button type="button" title="Numbered list" aria-label="Numbered list" onClick={() => editor?.chain().focus().toggleOrderedList().run()}>1. List</button><button type="button" title="Blockquote" aria-label="Blockquote" onClick={() => editor?.chain().focus().toggleBlockquote().run()}>“</button>
-            <button type="button" title="Add link" aria-label="Add link" onClick={() => { const href = window.prompt("Link URL"); if (href) editor?.chain().focus().extendMarkRange("link").setLink({ href }).run(); }}>↗</button><button type="button" title="Insert horizontal rule" aria-label="Insert horizontal rule" onClick={() => editor?.chain().focus().setHorizontalRule().run()}>―</button><span className="toolbar-divider" />
-            <label className="toolbar-upload" title="Upload an image at the current cursor" aria-label="Upload inline image">▧ Image<input type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Upload inline image" onChange={uploadInlineImage} /></label><button type="button" title="Insert a YouTube or Vimeo link" aria-label="Insert video link" onClick={addVideoLink}>▶ Video link</button><label className="toolbar-upload" title="Upload an MP4 or WebM video at the current cursor" aria-label="Upload inline video">⇧ Video<input type="file" accept="video/mp4,video/webm" aria-label="Upload article video" onChange={uploadInlineVideo} /></label><span className="toolbar-divider" /><button type="button" title="Undo" aria-label="Undo" disabled={!editor?.can().undo()} onClick={() => editor?.chain().focus().undo().run()}>↶</button><button type="button" title="Redo" aria-label="Redo" disabled={!editor?.can().redo()} onClick={() => editor?.chain().focus().redo().run()}>↷</button><button type="button" title="Clear text formatting while keeping article content" aria-label="Clear formatting" onClick={() => editor?.chain().focus().unsetAllMarks().clearNodes().run()}>Clear</button>
+            <div className="toolbar-group" role="group" aria-label="Text style">
+              <button type="button" title="Bold" aria-label="Bold" aria-pressed={editor?.isActive("bold") || false} className={editor?.isActive("bold") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBold().run()}><LuBold aria-hidden="true" /></button>
+              <button type="button" title="Italic" aria-label="Italic" aria-pressed={editor?.isActive("italic") || false} className={editor?.isActive("italic") ? "active" : ""} onClick={() => editor?.chain().focus().toggleItalic().run()}><LuItalic aria-hidden="true" /></button>
+              <button type="button" title="Underline" aria-label="Underline" aria-pressed={editor?.isActive("underline") || false} className={editor?.isActive("underline") ? "active" : ""} onClick={() => editor?.chain().focus().toggleUnderline().run()}><LuUnderline aria-hidden="true" /></button>
+            </div>
+            <div className="toolbar-group" role="group" aria-label="Headings">
+              {[
+                { level: 2, Icon: LuHeading2 },
+                { level: 3, Icon: LuHeading3 },
+                { level: 4, Icon: LuHeading4 },
+              ].map(({ level, Icon }) => <button type="button" key={level} title={`Heading ${level}`} aria-label={`Heading ${level}`} aria-pressed={editor?.isActive("heading", { level }) || false} className={editor?.isActive("heading", { level }) ? "active" : ""} onClick={() => editor?.chain().focus().toggleHeading({ level }).run()}><Icon aria-hidden="true" /></button>)}
+            </div>
+            <div className="toolbar-group" role="group" aria-label="Lists and quote">
+              <button type="button" title="Bulleted list" aria-label="Bulleted list" aria-pressed={editor?.isActive("bulletList") || false} className={editor?.isActive("bulletList") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBulletList().run()}><LuList aria-hidden="true" /></button>
+              <button type="button" title="Numbered list" aria-label="Numbered list" aria-pressed={editor?.isActive("orderedList") || false} className={editor?.isActive("orderedList") ? "active" : ""} onClick={() => editor?.chain().focus().toggleOrderedList().run()}><LuListOrdered aria-hidden="true" /></button>
+              <button type="button" title="Block quote" aria-label="Block quote" aria-pressed={editor?.isActive("blockquote") || false} className={editor?.isActive("blockquote") ? "active" : ""} onClick={() => editor?.chain().focus().toggleBlockquote().run()}><LuQuote aria-hidden="true" /></button>
+            </div>
+            <div className="toolbar-group" role="group" aria-label="Links and separators">
+              <button className="toolbar-action toolbar-link-action" type="button" title="Select text, then add a source link or backlink" aria-label="Add source link or backlink" aria-expanded={linkComposerOpen} aria-controls="article-link-composer" onClick={openLinkComposer}><LuLink aria-hidden="true" /><span>Add link</span></button>
+              <button type="button" title="Insert a horizontal divider" aria-label="Insert a horizontal divider" onClick={() => editor?.chain().focus().setHorizontalRule().run()}><LuMinus aria-hidden="true" /></button>
+            </div>
+            <div className="toolbar-group toolbar-media-group" role="group" aria-label="Add media">
+              <label className="toolbar-upload" title="Upload an image at the current cursor" aria-label="Upload image">
+                <LuImagePlus aria-hidden="true" /><span>Image upload</span>
+                <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Upload image" onChange={uploadInlineImage} />
+              </label>
+              <button className="toolbar-action" type="button" title="Embed a YouTube or Vimeo video link" aria-label="Add YouTube or Vimeo video link" onClick={addVideoLink}><LuVideo aria-hidden="true" /><span>Video link</span></button>
+              <label className="toolbar-upload" title="Upload an MP4 or WebM video at the current cursor" aria-label="Upload video">
+                <LuUpload aria-hidden="true" /><span>Video upload</span>
+                <input type="file" accept="video/mp4,video/webm" aria-label="Upload video" onChange={uploadInlineVideo} />
+              </label>
+            </div>
+            <div className="toolbar-group" role="group" aria-label="Editing history">
+              <button type="button" title="Undo last change" aria-label="Undo" disabled={!editor?.can().undo()} onClick={() => editor?.chain().focus().undo().run()}><LuUndo2 aria-hidden="true" /></button>
+              <button type="button" title="Redo last change" aria-label="Redo" disabled={!editor?.can().redo()} onClick={() => editor?.chain().focus().redo().run()}><LuRedo2 aria-hidden="true" /></button>
+              <button className="toolbar-action toolbar-clear-action" type="button" title="Remove formatting while keeping article content" aria-label="Clear formatting" onClick={() => editor?.chain().focus().unsetAllMarks().clearNodes().run()}><LuRemoveFormatting aria-hidden="true" /><span>Clear format</span></button>
+            </div>
           </div>
-          <EditorContent editor={editor} />
+          {linkComposerOpen && <form className="link-composer" id="article-link-composer" aria-labelledby="link-composer-title" onSubmit={applyLink}>
+            <div className="link-composer-heading"><span className="link-composer-icon"><LuLink aria-hidden="true" /></span><div><strong id="link-composer-title">{linkInSelection ? "Update this link" : "Add a source link or backlink"}</strong><small>Select the text you want linked before opening this panel.</small></div></div>
+            <label htmlFor="article-link-url">Destination URL<input id="article-link-url" type="url" required autoFocus value={linkUrl} onChange={(event) => setLinkUrl(event.target.value)} placeholder="https://example.com/source" /></label>
+            <div className="link-composer-footer">{linkInSelection && <button className="admin-text-danger" type="button" onClick={removeLink}>Remove link</button>}<div><button className="admin-secondary" type="button" onClick={() => setLinkComposerOpen(false)}>Cancel</button><button className="admin-primary" type="submit">{linkInSelection ? "Update link" : "Add link"}</button></div></div>
+          </form>}
+          <div className="article-editor-canvas">
+            <EditorContent editor={editor} />
+            {editor && !editor.getText().trim() && <div className="editor-placeholder" aria-hidden="true">Start writing your article here…</div>}
+          </div>
           {!editor && <div className="editor-loading">Preparing editor…</div>}
-          <p className="editor-help">Use H2 for main sections, H3/H4 for subheadings. Uploaded images and videos stay in order with your text.</p>
+          <p className="editor-help"><strong>Structure:</strong> Use H2 for main sections and H3/H4 for subheadings. <strong>Link/backlink:</strong> Select text, choose <strong>Add link</strong>, then paste the URL. Video and image uploads are inserted at the cursor.</p>
         </section>
 
         <section className="admin-panel"><div className="admin-section-title"><div><h2>Search appearance</h2><p>Optional metadata for search and social sharing.</p></div><span>SEO</span></div>

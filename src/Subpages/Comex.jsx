@@ -122,7 +122,7 @@ function Eyebrow({ children, light = false }) {
 function ComexHero() {
   return (
     <section className="comex-hero" aria-labelledby="comex-title">
-    
+
       <div className="comex-hero-layout comex-container">
         <div className="comex-hero-copy">
           <Eyebrow>GOLD · SILVER · OIL · MARKET CONTEXT</Eyebrow>
@@ -190,20 +190,14 @@ function Introduction() {
         <Eyebrow>INTRODUCTION</Eyebrow>
         <h2>COMEX trading guidance <em>with risk in view.</em></h2>
         <p>
-          Get COMEX-focused recommendations, market analysis, and strategy notes
-          for gold, silver, oil, and commodity-linked opportunities. Our desk
-          shares research and market updates to help traders understand price
-          movements and evaluate potential setups.
+          Get COMEX market analysis and strategy notes for gold, silver, oil, and
+          related markets. Our desk shares research to help traders understand
+          price movements and assess potential setups.
         </p>
         <p>
-          Trading hours matter when analysing futures markets. Exchange schedules
-          and holidays can affect activity, so check the latest calendar when
-          planning around gold and silver sessions.
-        </p>
-        <p>
-          Whether you are exploring COMEX or looking for broader commodity
-          insights, Shenron Global focuses on structured guidance and risk
-          awareness. Trading involves risk; no recommendation guarantees profit.
+          Trading hours, exchange schedules, and holidays can shape futures
+          activity. Check the latest calendar when planning around gold and
+          silver sessions.
         </p>
         <a className="comex-text-link" href="#overview">
           Understand the desk <FaArrowRight aria-hidden="true" />
@@ -353,7 +347,8 @@ function PlansSection() {
 
 function RiskSection() {
   return (
-    <section className="comex-risk-section">
+    <>
+      {/* <section className="comex-risk-section">
       <div className="comex-risk-inner comex-container">
         <div className="comex-risk-icon"><FaShieldAlt aria-hidden="true" /></div>
         <div className="comex-risk-copy">
@@ -373,7 +368,8 @@ function RiskSection() {
           <Link className="comex-risk-consult" to="/contact-us">Ask about COMEX services</Link>
         </div>
       </div>
-    </section>
+    </section> */}
+    </>
   );
 }
 
@@ -399,9 +395,9 @@ export default function Comex() {
       <RiskSection />
       <footer className="comex-image-credit comex-container">
         <span>
-          Photography: <a href="https://unsplash.com/photos/trader-analyzing-stock-market-charts-on-tablet-and-monitor-tFecc1boKYc" target="_blank" rel="noopener noreferrer">Jakub Żerdzicki / Unsplash</a>, <a href="https://unsplash.com/photos/a-stack-of-gold-bars-sitting-on-top-of-each-other-dvdAdJxxvv0" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>, and <a href="https://unsplash.com/photos/a-pile-of-silver-bars-stacked-on-top-of-each-other-dPahQ_Q56zY" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>.
+          {/* Photography: <a href="https://unsplash.com/photos/trader-analyzing-stock-market-charts-on-tablet-and-monitor-tFecc1boKYc" target="_blank" rel="noopener noreferrer">Jakub Żerdzicki / Unsplash</a>, <a href="https://unsplash.com/photos/a-stack-of-gold-bars-sitting-on-top-of-each-other-dvdAdJxxvv0" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>, and <a href="https://unsplash.com/photos/a-pile-of-silver-bars-stacked-on-top-of-each-other-dPahQ_Q56zY" target="_blank" rel="noopener noreferrer">Scottsdale Mint / Unsplash</a>. */}
         </span>
-        <a href="#comex-top">Back to top <FaArrowRight aria-hidden="true" /></a>
+        {/* <a href="#comex-top">Back to top <FaArrowRight aria-hidden="true" /></a> */}
       </footer>
     </main>
   );

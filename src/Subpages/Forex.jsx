@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect} from "react";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -106,19 +106,19 @@ const overviewCards = [
   },
 ];
 
-const faqs = [
-  ["Do you give buy and sell signals?", "We publish market context and structured scenarios with defined entry, invalidation, and target levels. You make the final execution decision."],
-  ["Which forex sessions do you cover?", "The desk tracks four global sessions and describes session structure from Sydney through London and New York. Written commentary is specified during London and New York overlaps; no additional service hours are stated here."],
-  ["What delivery channels are used for signals?", "Delivery channel details are pending confirmation."],
-  ["Is there a free trial available?", "You can request the free trial through the trial call to action. Duration and terms have not been specified."],
-];
+// const faqs = [
+//   ["Do you give buy and sell signals?", "We publish market context and structured scenarios with defined entry, invalidation, and target levels. You make the final execution decision."],
+//   ["Which forex sessions do you cover?", "The desk tracks four global sessions and describes session structure from Sydney through London and New York. Written commentary is specified during London and New York overlaps; no additional service hours are stated here."],
+//   ["What delivery channels are used for signals?", "Delivery channel details are pending confirmation."],
+//   ["Is there a free trial available?", "You can request the free trial through the trial call to action. Duration and terms have not been specified."],
+// ];
 
 function InactiveAction({ children, className = "" }) {
   return <button className={className} type="button" disabled title="A destination has not been configured yet">{children}</button>;
 }
 
 export default function Forex() {
-  const [openFaq, setOpenFaq] = useState(0);
+  // const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
     if (window.customElements?.get("tv-ticker-tape")) return;
@@ -176,12 +176,12 @@ export default function Forex() {
       </section>
 
       <section className="forex-features forex-section" id="features" data-forex-reveal>
-        <div className="forex-section-heading"><span className="forex-eyebrow">THE DAILY WORKFLOW</span><h2>Inside the forex desk</h2><p>Cutting-edge tools built to make trading smarter and faster - every card here is part of the daily workflow.</p></div>
+        <div className="forex-section-heading"><span className="forex-eyebrow">THE DAILY WORKFLOW</span><h2>Inside the <span className="forex-title-highlight">forex desk</span></h2><p>Cutting-edge tools built to make trading smarter and faster - every card here is part of the daily workflow.</p></div>
         <div className="forex-feature-grid">{features.map((feature) => <article className="forex-feature-card" key={feature.number}><div className="forex-feature-top"><span>{feature.number}</span><i>{feature.icon}</i></div><h3>{feature.title}</h3><p>{feature.text}</p></article>)}</div>
       </section>
 
       <section className="forex-packages forex-section" id="packages" data-forex-reveal>
-        <div className="forex-section-heading"><span className="forex-eyebrow">MEMBERSHIP OPTIONS</span><h2>Forex Membership &amp; Packages</h2><p>Choose the membership package that fits your capital size and trading style. Transparent pricing with verified features.</p></div>
+        <div className="forex-section-heading"><span className="forex-eyebrow">MEMBERSHIP OPTIONS</span><h2>Forex Membership &<span className="forex-title-highlight"> Packages</span></h2><p>Choose the membership package that fits your capital size and trading style. Transparent pricing with verified features.</p></div>
         <div className="forex-package-grid">{packages.map((plan) => <article className={`forex-package-card ${plan.badge ? "is-recommended" : ""}`} key={plan.name}>
           {plan.badge && <div className="forex-package-badge">{plan.badge}</div>}
           {plan.category && <span className="forex-package-category">{plan.category}</span>}<h3>{plan.name}</h3>
@@ -194,7 +194,7 @@ export default function Forex() {
       </section>
 
       <section className="forex-market-board forex-section" id="market-board" data-forex-reveal>
-        <div className="forex-section-heading forex-market-heading"><span className="forex-eyebrow">LIVE FOREX MARKET</span><h2>Major pairs on the move.</h2><p>Follow current quotes for the most traded currency pairs while you explore the desk.</p></div>
+        <div className="forex-section-heading forex-market-heading"><span className="forex-eyebrow">LIVE FOREX MARKET</span><h2>Major pairs on the <span className="forex-title-highlight">move.</span></h2><p>Follow current quotes for the most traded currency pairs while you explore the desk.</p></div>
         <div className="forex-live-panel">
           <div className="forex-live-panel-heading"><span><i aria-hidden="true" /> Live market feed</span><small>Major currency pairs</small></div>
           <tv-ticker-tape
@@ -211,7 +211,7 @@ export default function Forex() {
       </section>
 
       <section className="forex-method forex-section" id="method" data-forex-reveal>
-        <div className="forex-section-heading"><span className="forex-eyebrow">A REPEATABLE ROUTINE</span><h2>Three moves, every single session.</h2></div>
+        <div className="forex-section-heading forex-method-heading"><span className="forex-eyebrow">A REPEATABLE ROUTINE</span><h2>Three moves, <span className="forex-method-highlight">every single session.</span></h2></div>
         <div className="forex-method-steps">{method.map(([number, title, text]) => <article className="forex-method-step" key={number}><span className="forex-method-number">{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
       </section>
 
@@ -224,10 +224,10 @@ export default function Forex() {
         </article>)}</div>
         </section>
 
-      <section className="forex-faq forex-section" id="faq" data-forex-reveal>
+      {/* <section className="forex-faq forex-section" id="faq" data-forex-reveal>
         <div className="forex-faq-heading"><span className="forex-eyebrow">CLEAR ANSWERS</span><h2>What traders ask us first</h2><p>Review the desk details before deciding whether it fits your approach.</p></div>
         <div className="forex-faq-list">{faqs.map(([question, answer], index) => <article className={`forex-faq-item ${openFaq === index ? "is-open" : ""}`} key={question}><h3><button type="button" aria-expanded={openFaq === index} aria-controls={`forex-faq-answer-${index}`} onClick={() => setOpenFaq(openFaq === index ? -1 : index)}>{question}<span aria-hidden="true">{openFaq === index ? "\u2212" : "+"}</span></button></h3><div className="forex-faq-answer" id={`forex-faq-answer-${index}`} hidden={openFaq !== index}><p>{answer}</p></div></article>)}</div>
-      </section>
+      </section> */}
 
       {/* <section className="forex-final-cta" id="final-cta" data-forex-reveal><div><span className="forex-eyebrow">FOREX DESK</span><h2>What can we help you achieve?</h2><p>Join the community, take the free trial, and see the forex desk in action for a week.</p></div><InactiveAction className="forex-button forex-button-primary">Book your FREE trial <FaArrowRight /></InactiveAction><a className="forex-back-link" href="#top">Back to the radar <FaArrowDown /></a></section> */}
     </main>
