@@ -1,15 +1,14 @@
 
 import { useEffect, useState } from "react";
+import { apiRequest, jsonBody } from "../lib/api";
 import "./EnquiryPopup.css";
-
-const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxwoPo7seysSYFfLxm8Iqf8B2MbANlcT41fQ0CWsLu6OUStWUp40Ph4eAlsW8d62BsT6w/exec";
 
 const initialForm = {
   name: "",
   email: "",
   phone: "",
   message: "",
+  website: "",
 };
 
 export default function EnquiryPopup({ onClose, openOnMount = false }) {
@@ -67,43 +66,23 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
       email: form.email.trim(),
       phone: form.phone.trim(),
       message: form.message.trim(),
-      source: "Shenron Global Website - Popup",
-      submittedAt: new Date().toISOString(),
+      website: form.website,
+      source: "Portfolio enquiry popup",
     };
 
     try {
-      if (
-        !SCRIPT_URL.startsWith("https://script.google.com/") ||
-        SCRIPT_URL.includes("YOUR_GOOGLE_APPS_SCRIPT")
-      ) {
-        throw new Error(
-          "Please configure your Google Apps Script URL."
-        );
-      }
-
-      /*
-       * Apps Script web apps can have cross-origin response
-       * restrictions. no-cors avoids the browser preflight,
-       * but the response cannot be read by JavaScript.
-       */
-      await fetch(SCRIPT_URL, {
+      await apiRequest("/enquiries", {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify(payload),
+        body: jsonBody(payload),
       });
 
       setStatus(
-        "Your enquiry has been submitted. Thank you for contacting Shenron Global!"
+        "Your enquiry has been received. Our team will get back to you as soon as possible."
       );
       setForm(initialForm);
     } catch (error) {
-      console.error("Enquiry submission error:", error);
-
       setStatus(
-        "We couldn't send your enquiry. Please try again or contact us directly."
+        error.message || "We couldn't send your enquiry. Please try again or contact us directly."
       );
     } finally {
       setIsSubmitting(false);
@@ -169,6 +148,10 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
                 className="enquiry-form"
                 onSubmit={handleSubmit}
               >
+                <label className="enquiry-honeypot" aria-hidden="true" tabIndex={-1}>
+                  Leave this field empty
+                  <input name="website" value={form.website} onChange={handleChange} autoComplete="off" tabIndex={-1} />
+                </label>
                 <div className="enquiry-field">
                   <label htmlFor="enquiry-name">
                     Full Name <span>*</span>
@@ -182,7 +165,7 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    maxLength={120}
+                    maxLength={100}
                   />
                 </div>
 

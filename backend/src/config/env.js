@@ -40,11 +40,31 @@ export function loadEnv() {
   const cookieSameSite = (process.env.COOKIE_SAME_SITE || "lax").toLowerCase();
   if (!["lax", "strict", "none"].includes(cookieSameSite)) throw new Error("COOKIE_SAME_SITE must be lax, strict, or none.");
   const nodeEnv = process.env.NODE_ENV || "development";
+  const host = process.env.HOST?.trim() || (nodeEnv === "production" ? "127.0.0.1" : "0.0.0.0");
+  const smtpHost = process.env.SMTP_HOST?.trim() || "";
+  const smtpPort = integer("SMTP_PORT", 587);
+  const smtpSecureValue = process.env.SMTP_SECURE?.trim().toLowerCase() || "false";
+  if (!["true", "false"].includes(smtpSecureValue)) throw new Error("SMTP_SECURE must be true or false.");
+  const smtpUser = process.env.SMTP_USER?.trim() || "";
+  const smtpPassword = process.env.SMTP_PASSWORD || "";
+  const smtpFromEmail = process.env.SMTP_FROM_EMAIL?.trim().toLowerCase() || "";
+  const smtpFromName = process.env.SMTP_FROM_NAME?.trim() || "Shenron Global";
+  if (smtpFromEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(smtpFromEmail)) throw new Error("SMTP_FROM_EMAIL must be a valid sender email address.");
+  if (smtpFromName.length > 120) throw new Error("SMTP_FROM_NAME must be 120 characters or fewer.");
   const cookieSecure = process.env.COOKIE_SECURE === "true" || nodeEnv === "production";
   if (cookieSameSite === "none" && !cookieSecure) throw new Error("COOKIE_SECURE=true is required whenever COOKIE_SAME_SITE=none.");
   return {
     nodeEnv,
+    host,
     port: integer("PORT", 5000),
+    smtpHost,
+    smtpPort,
+    smtpSecure: smtpSecureValue === "true",
+    smtpUser,
+    smtpPassword,
+    smtpFromEmail,
+    smtpFromName,
+    smtpConfigured: Boolean(smtpHost && smtpUser && smtpPassword && smtpFromEmail),
     mongoUri: process.env.MONGODB_URI,
     clientOrigins,
     publicSiteUrl,

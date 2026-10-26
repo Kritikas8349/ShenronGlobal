@@ -1,6 +1,6 @@
 # Shenron Global Blog API
 
-The API serves published blog articles and protects the content desk with an admin-only, HTTP-only cookie session. It is a separate Express application from the Vite frontend.
+The API serves published blog articles, stores private website enquiries, and protects the content desk with an admin-only, HTTP-only cookie session. With `FRONTEND_DIST_DIR` configured, it also serves the Vite frontend.
 
 ## Project structure
 
@@ -15,12 +15,14 @@ backend/
       database.js                   Shared Mongoose connection
       env.js                        Startup validation and environment parsing
     models/Blog.js                  Blog, media, and FAQ Mongoose schemas/indexes
+    models/Enquiry.js               Private contact enquiry records and indexes
     controllers/
       blogController.js             Public and admin blog request handlers
       uploadController.js           Upload signature checks and responses
     routes/
       publicBlogRoutes.js           Published blog endpoints
       adminBlogRoutes.js            Authenticated admin CRUD and upload endpoints
+      enquiryRoutes.js              Public enquiry intake and authenticated admin actions
       authRoutes.js                 Admin login, session check, and logout
     middleware/
       authMiddleware.js             JWT cookie checks and same-origin mutation guard
@@ -69,7 +71,7 @@ Requirements: Node.js 20 or newer and a reachable MongoDB instance.
    npm.cmd run dev
    ```
 
-After configuring MongoDB and backend environment values, run the API checks from `backend/` with `npm.cmd run check:api`. They create and remove an isolated test database and temporary upload directory; do not point the script at a production database.
+After configuring MongoDB and backend environment values, run `npm.cmd run check:connections` from `backend/` to verify MongoDB and SMTP connectivity; this check does not send email. For full API checks, run `npm.cmd run check:api`. They create and remove an isolated test database and temporary upload directory; do not point that script at a production database.
 
    Vite proxies `/api`, `/uploads`, and `/sitemap.xml` to `VITE_DEV_API_ORIGIN` (default `http://localhost:5000`). The frontend API client uses `VITE_API_BASE_URL` (default `/api`).
 
@@ -89,6 +91,7 @@ Other backend values:
 | Name | Default | Purpose |
 | --- | --- | --- |
 | `PORT` | `5000` | API listener port. |
+| `HOST` | `0.0.0.0` if unset; example file uses `localhost`; production uses `127.0.0.1` | Listener interface. Keep production on loopback behind the local Nginx proxy. |
 | `NODE_ENV` | `development` | Enables production cookie, proxy, and error behavior. |
 | `CLIENT_ORIGIN` | `http://localhost:5173` | Comma-separated exact frontend origins allowed by CORS and mutation checks. |
 | `PUBLIC_SITE_URL` | first `CLIENT_ORIGIN` | Canonical public origin used when building sitemap links. Set the real website origin in production. |
@@ -97,6 +100,9 @@ Other backend values:
 | `COOKIE_SAME_SITE` | `lax` | Cookie same-site behavior. For a cross-site API origin use `none` and `COOKIE_SECURE=true`. |
 | `COOKIE_SECURE` | production only | Set to `true` when using HTTPS. Required for `SameSite=None`. |
 | `UPLOAD_DIR` | `./uploads` | Local persistent upload folder, outside frontend source files. |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` | unset, `587`, `false` | Company mailbox SMTP server, port, and TLS mode. |
+| `SMTP_USER`, `SMTP_PASSWORD` | unset | SMTP mailbox login and provider-issued password/app password. Keep these in the private backend environment only. |
+| `SMTP_FROM_EMAIL`, `SMTP_FROM_NAME` | unset, `Shenron Global` | Sender identity shown to enquiry recipients. Email sending stays disabled until host, user, password, and sender email are configured. |
 | `MAX_IMAGE_SIZE` | 5 MiB | Maximum image file size. |
 | `MAX_VIDEO_SIZE` | 50 MiB | Maximum video file size. |
 | `STORAGE_PROVIDER` | `local` | Select `local` or `s3`. |
@@ -116,9 +122,17 @@ Public API:
 - `GET /api/blogs?search=&category=&page=&limit=` returns published articles and pagination data.
 - `GET /api/blogs/:slug` returns one published article and up to three same-category related articles; drafts return 404.
 
+Public contact API:
+
+- `POST /api/enquiries` validates and stores public website enquiries; submissions are rate-limited.
+
 Admin API (requires the admin cookie and an allowed origin for mutations):
 
 - `POST /api/auth/admin/login`, `GET /api/auth/admin/me`, `POST /api/auth/admin/logout`
+- `GET /api/enquiries/admin?search=&status=&page=&limit=` returns private enquiries to the signed-in admin.
+- `GET /api/enquiries/admin/mail-status` reports whether SMTP is configured and the sender address.
+- `PATCH /api/enquiries/admin/:id` updates `status`, `adminNote`, and/or `replyDraft`.
+- `POST /api/enquiries/admin/:id/reply` sends `{ "message": "...", "status": "in_progress" }` from the configured company mailbox.
 - `GET /api/blogs/admin?search=&category=&status=&page=&limit=`
 - `GET /api/blogs/admin/:id`
 - `POST /api/blogs/admin`
@@ -133,7 +147,7 @@ Slug uniqueness is enforced by a MongoDB unique index. Reading time is recalcula
 
 Locally, Vite proxies the same-origin paths to the API on port 5000. Do not set a production API URL in development.
 
-The repository does not identify a production host or API origin. For a same-origin deployment, build the Vite frontend and configure `FRONTEND_DIST_DIR` to that `dist/` directory. The backend then serves static files and the SPA shell, and serves published `/blogs/:slug` pages with article metadata and safe semantic article markup on the first response. If the frontend is hosted separately, route article paths through an equivalent SSR/prerender service and proxy `/api/*`, `/uploads/*`, and `/sitemap.xml` to the backend. Keep `/api` out of the SPA fallback. The committed production frontend setting uses `/api`; it does not invent a website domain.
+The production website domain is `https://shenronglobal.ae`. For the included same-origin VPS deployment, build the Vite frontend and set `FRONTEND_DIST_DIR=/var/www/shenronglobal/dist`. The backend serves static files and the SPA shell, and serves published `/blogs/:slug` pages with server-rendered article metadata/content on the first response. Nginx proxies website traffic, `/api/*`, `/uploads/*`, and `/sitemap.xml` to the backend; keep the Node port private. The Vite API path remains `/api`.
 
 If the backend has a separate origin, set `VITE_API_BASE_URL` to the real API origin plus `/api`, set `CLIENT_ORIGIN` to the exact frontend origin, set `COOKIE_SAME_SITE=none` and `COOKIE_SECURE=true` for cross-site cookies, and set `MEDIA_BASE_URL` to the HTTPS public media origin. Configure production CORS and cookie behavior only after the actual origins are known.
 
@@ -145,12 +159,17 @@ Local storage writes files to `UPLOAD_DIR` and serves them under `/uploads/`. Lo
 
 For ephemeral serverless/container disks, configure an S3 bucket or compatible object store with `STORAGE_PROVIDER=s3`, `S3_BUCKET`, `S3_REGION`, and an HTTPS `MEDIA_BASE_URL` (usually a CDN/public bucket origin). Provide credentials through the platform's secret manager or its AWS role; do not commit them. Set the bucket policy/CDN so only intended uploaded media is publicly readable. The API writes media references, never binary base64 data, to MongoDB. Deleting a post removes uploaded objects only when no other post references them.
 
-Use HTTPS, keep MongoDB network access restricted, rotate the admin password hash and JWT secret through the deployment environment, and set exact production origins. The backend does not serve the frontend bundle; configure the reverse proxy and SPA fallback described above.
+Use HTTPS, keep MongoDB network access restricted, rotate the admin password hash and JWT secret through the deployment environment, and set exact production origins. The backend serves the frontend bundle when `FRONTEND_DIST_DIR` is configured. Domain-specific Nginx and systemd files, DNS and TLS steps, environment setup, and operational notes are in [../deploy/README.md](../deploy/README.md).
+
+## Enquiry handling
+
+Contact page and portfolio popup submissions are stored in the `Enquiry` collection, with `new`, `in_progress`, and `resolved` statuses. The admin page at `/admin/enquiries` displays sender details and the message, allows a private note and reply draft to be saved, sends replies from the configured company mailbox over SMTP, and opens a prefilled WhatsApp message for the admin to review and send. Public enquiry data is never returned from a public read route.
 
 ## Common troubleshooting
 
 - **API exits immediately:** check required environment values and the bcrypt hash format; startup validates them before opening the listener.
 - **MongoDB timeout:** check the URI, database allowlist/firewall, and that MongoDB is reachable from the backend host.
+- **Local MongoDB connection refused on Windows:** confirm the `MongoDB` service is running. If it is stopped, open PowerShell as Administrator, run `Start-Service MongoDB`, then restart the backend.
 - **Sign-in fails:** confirm `ADMIN_EMAIL` matches and regenerate `ADMIN_PASSWORD_HASH` with the hidden prompt.
 - **Cookie does not persist:** use HTTPS in production, verify `CLIENT_ORIGIN`, `COOKIE_SAME_SITE`, credentials-enabled CORS, and that the proxy forwards `Set-Cookie`.
 - **Image/video upload fails:** check the file format and configured size caps; for S3 verify bucket permissions, region, role/credentials, and `MEDIA_BASE_URL`.

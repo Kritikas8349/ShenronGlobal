@@ -53,6 +53,7 @@ export default function AdminBlogEditor() {
   const [linkComposerOpen, setLinkComposerOpen] = useState(false);
   const [linkUrl, setLinkUrl] = useState("");
   const [linkInSelection, setLinkInSelection] = useState(false);
+  const linkUrlInputRef = useRef(null);
   const loadedContentRef = useRef(EMPTY_CONTENT);
   const extensions = useMemo(() => [StarterKit.configure({ heading: { levels: [2, 3, 4] }, link: false, underline: false }), Underline, Link.configure({ openOnClick: false, autolink: true, protocols: ["https", "http", "mailto"] }), BlogImage.configure({ inline: false, allowBase64: false }), VideoNode], []);
   const editor = useEditor({ extensions, content: EMPTY_CONTENT, editorProps: { attributes: { class: "article-editor-prose", "aria-label": "Article content" } }, onUpdate: ({ editor: current }) => { setContent(current.getJSON()); setDirty(true); } });
@@ -84,6 +85,8 @@ export default function AdminBlogEditor() {
   };
   const applyLink = (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    if (!linkUrlInputRef.current?.reportValidity()) return;
     const href = linkUrl.trim();
     if (!href || !editor) return;
     editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
@@ -202,11 +205,11 @@ export default function AdminBlogEditor() {
               <button className="toolbar-action toolbar-clear-action" type="button" title="Remove formatting while keeping article content" aria-label="Clear formatting" onClick={() => editor?.chain().focus().unsetAllMarks().clearNodes().run()}><LuRemoveFormatting aria-hidden="true" /><span>Clear format</span></button>
             </div>
           </div>
-          {linkComposerOpen && <form className="link-composer" id="article-link-composer" aria-labelledby="link-composer-title" onSubmit={applyLink}>
+          {linkComposerOpen && <div className="link-composer" id="article-link-composer" role="group" aria-labelledby="link-composer-title">
             <div className="link-composer-heading"><span className="link-composer-icon"><LuLink aria-hidden="true" /></span><div><strong id="link-composer-title">{linkInSelection ? "Update this link" : "Add a source link or backlink"}</strong><small>Select the text you want linked before opening this panel.</small></div></div>
-            <label htmlFor="article-link-url">Destination URL<input id="article-link-url" type="url" required autoFocus value={linkUrl} onChange={(event) => setLinkUrl(event.target.value)} placeholder="https://example.com/source" /></label>
-            <div className="link-composer-footer">{linkInSelection && <button className="admin-text-danger" type="button" onClick={removeLink}>Remove link</button>}<div><button className="admin-secondary" type="button" onClick={() => setLinkComposerOpen(false)}>Cancel</button><button className="admin-primary" type="submit">{linkInSelection ? "Update link" : "Add link"}</button></div></div>
-          </form>}
+            <label htmlFor="article-link-url">Destination URL<input ref={linkUrlInputRef} id="article-link-url" type="url" required autoFocus value={linkUrl} onChange={(event) => setLinkUrl(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") applyLink(event); }} placeholder="https://example.com/source" /></label>
+            <div className="link-composer-footer">{linkInSelection && <button className="admin-text-danger" type="button" onClick={removeLink}>Remove link</button>}<div><button className="admin-secondary" type="button" onClick={() => setLinkComposerOpen(false)}>Cancel</button><button className="admin-primary" type="button" onClick={applyLink}>{linkInSelection ? "Update link" : "Add link"}</button></div></div>
+          </div>}
           <div className="article-editor-canvas">
             <EditorContent editor={editor} />
             {editor && !editor.getText().trim() && <div className="editor-placeholder" aria-hidden="true">Start writing your article here…</div>}

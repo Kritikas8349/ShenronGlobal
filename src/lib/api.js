@@ -21,7 +21,7 @@ export async function apiRequest(path, options = {}) {
   }
 
   const payload = await response.json().catch(() => ({}));
-  if (response.status === 401 && typeof window !== "undefined" && (path.startsWith("/blogs/admin") || path.startsWith("/auth/admin/me"))) {
+  if (response.status === 401 && typeof window !== "undefined" && (path.startsWith("/blogs/admin") || path.startsWith("/enquiries/admin") || path.startsWith("/auth/admin/me"))) {
     window.dispatchEvent(new Event("sg:admin-session-expired"));
   }
   if (!response.ok) {

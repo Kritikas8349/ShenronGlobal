@@ -7,6 +7,7 @@ const services = [
   { name: "Forex Services", path: "/services/forex" },
   { name: "Crypto Services", path: "/services/crypto" },
   { name: "Comex Services", path: "/services/comex" },
+  // { name: "Mentorship", path: "/services/mentorship" },
 ];
 
 export default function Navbar() {

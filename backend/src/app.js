@@ -7,12 +7,14 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { publicBlogRoutes } from "./routes/publicBlogRoutes.js";
+import { adminEnquiryRoutes, publicEnquiryRoutes } from "./routes/enquiryRoutes.js";
 import { adminBlogRoutes } from "./routes/adminBlogRoutes.js";
 import { authRoutes } from "./routes/authRoutes.js";
 import { errorMiddleware, notFoundMiddleware } from "./middleware/errorMiddleware.js";
 import { publicReadLimiter } from "./middleware/rateLimitMiddleware.js";
 import { asyncHandler } from "./utils/asyncHandler.js";
 import { createSitemap } from "./services/blogService.js";
+import { createEnquiryMailer } from "./services/enquiryMailer.js";
 import { renderBlogDocument, renderMissingBlogDocument } from "./services/seoRenderService.js";
 import { Blog } from "./models/Blog.js";
 
@@ -59,6 +61,9 @@ export function createApp(env) {
     res.type("application/xml").send(await createSitemap(baseUrl));
   }));
   app.use("/uploads", express.static(env.uploadDir, { dotfiles: "deny", index: false, immutable: true, maxAge: "1y", setHeaders(res) { res.setHeader("X-Content-Type-Options", "nosniff"); } }));
+  const enquiryMailer = createEnquiryMailer(env);
+  app.use("/api/enquiries/admin", adminEnquiryRoutes(env, enquiryMailer));
+  app.use("/api/enquiries", publicEnquiryRoutes());
   app.use("/api/blogs/admin", adminBlogRoutes(env));
   app.use("/api/blogs", publicReadLimiter, publicBlogRoutes());
   app.use("/api/auth/admin", authRoutes(env));

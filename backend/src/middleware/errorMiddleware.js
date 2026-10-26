@@ -11,7 +11,7 @@ export function errorMiddleware(env) {
     if (error.name === "CastError") return res.status(400).json({ message: "The supplied identifier is invalid." });
     if (error.code === 11000) return res.status(409).json({ message: "That URL slug is already in use. Choose a different slug." });
     if (error.name === "MulterError") return res.status(error.code === "LIMIT_FILE_SIZE" ? 413 : 400).json({ message: error.code === "LIMIT_FILE_SIZE" ? "That file is larger than the configured upload limit." : "The upload could not be processed." });
-    if (Number.isInteger(error.status) && error.status >= 400 && error.status < 500) return res.status(error.status).json({ message: error.message });
+    if (Number.isInteger(error.status) && ((error.status >= 400 && error.status < 500) || error.status === 502 || error.status === 503)) return res.status(error.status).json({ message: error.message });
     if (env.nodeEnv !== "production") console.error(error);
     return res.status(500).json({ message: "The server could not complete this request." });
   };

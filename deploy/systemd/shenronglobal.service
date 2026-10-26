@@ -1,0 +1,23 @@
+[Unit]
+Description=Shenron Global website and API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=shenron
+Group=shenron
+WorkingDirectory=/var/www/shenronglobal/backend
+EnvironmentFile=/etc/shenronglobal/backend.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/shenronglobal/uploads
+
+[Install]
+WantedBy=multi-user.target
