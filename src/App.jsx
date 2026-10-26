@@ -17,6 +17,7 @@ const Forex = lazy(() => import("./Subpages/Forex"));
 const Comex = lazy(() => import("./Subpages/Comex"));
 const Crypto = lazy(() => import("./Subpages/Crypto"));
 const AdminBlogsPage = lazy(() => import("./admin/AdminBlogsPage"));
+const AdminEnquiriesPage = lazy(() => import("./admin/AdminEnquiriesPage"));
 const AdminBlogEditor = lazy(() => import("./admin/AdminBlogEditor"));
 const AdminBlogPreview = lazy(() => import("./admin/AdminBlogPreview"));
 
@@ -30,6 +31,7 @@ function AdminRoutes() {
     <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
       <Route index element={<Navigate to="/admin/blogs" replace />} />
       <Route path="blogs" element={<AdminBlogsPage />} />
+      <Route path="enquiries" element={<AdminEnquiriesPage />} />
       <Route path="blogs/new" element={<AdminBlogEditor />} />
       <Route path="blogs/edit/:id" element={<AdminBlogEditor />} />
       <Route path="blogs/preview/:id" element={<AdminBlogPreview />} />
@@ -65,4 +67,4 @@ export default function App() {
     </Suspense>
   </>;
 }
- 
+

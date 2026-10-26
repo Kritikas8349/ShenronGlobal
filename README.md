@@ -17,9 +17,10 @@ The frontend API path is configured in one place through `VITE_API_BASE_URL`, wh
 - Article: `/blogs/:slug`
 - Admin sign-in: `/admin/login`
 - Admin articles: `/admin/blogs`
+- Admin enquiries: `/admin/enquiries`
 
-Only published records are returned by public endpoints. Admin CRUD and upload requests require a valid HttpOnly cookie session.
+Only published articles are returned by public endpoints. Contact page and portfolio popup enquiries are stored privately in MongoDB and can only be read through the authenticated admin panel. Admin CRUD, enquiry management, and upload requests require a valid HttpOnly cookie session.
 
 ## Production notes
 
-No production hosting, MongoDB URI, or API domain is configured in this repository. Set those in the hosting environment, proxy backend paths, configure the public SPA fallback for direct article navigation, and choose persistent local disk or S3-compatible media storage. Full backend setup, routes, environment variables, deployment, and troubleshooting are in [backend/README.md](backend/README.md).
+The production domain is `shenronglobal.ae`. VPS setup files and instructions for Nginx, systemd, HTTPS, environment secrets, persistent uploads, MongoDB, and deployment are in [deploy/README.md](deploy/README.md). Production credentials and MongoDB access must be configured on the VPS; none are stored in the repository.

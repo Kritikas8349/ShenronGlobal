@@ -10,8 +10,8 @@ try { await connectDatabase(env.mongoUri); }
 catch { console.error("MongoDB connection failed. Check MONGODB_URI and database network access."); process.exit(1); }
 const app = createApp(env);
 const server = createServer(app);
-server.listen(env.port, () => {
-  console.log(`Shenron blog API listening on port ${env.port} (${env.nodeEnv})`);
+server.listen(env.port, env.host, () => {
+  console.log(`Shenron Global server listening on ${env.host}:${env.port} (${env.nodeEnv})`);
 });
 
 for (const signal of ["SIGINT", "SIGTERM"]) {

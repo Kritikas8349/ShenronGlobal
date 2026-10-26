@@ -7,17 +7,16 @@ import {
     FaExternalLinkAlt,
     FaShieldAlt,
 } from "react-icons/fa";
+import { apiRequest, jsonBody } from "../lib/api";
 import "./Contact.css";
 import earth from "../assets/earth.png";
-
-const GOOGLE_SHEETS_URL =
-    "https://script.google.com/macros/s/AKfycbxwoPo7seysSYFfLxm8Iqf8B2MbANlcT41fQ0CWsLu6OUStWUp40Ph4eAlsW8d62BsT6w/exec";
 
 const initialForm = {
     name: "",
     email: "",
     phone: "",
     message: "",
+    website: "",
 };
 
 export default function Contact() {
@@ -40,38 +39,28 @@ export default function Contact() {
         event.preventDefault();
         setStatus("");
 
-        if (!GOOGLE_SHEETS_URL) {
-            setStatus("The enquiry form is not configured yet.");
-            return;
-        }
-
         setSubmitting(true);
 
         try {
-            await fetch(GOOGLE_SHEETS_URL, {
+            await apiRequest("/enquiries", {
                 method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8",
-                },
-                body: JSON.stringify({
-                    ...form,
-                    submittedAt: new Date().toISOString(),
-                    source: "Shenron Global Website",
+                body: jsonBody({
+                    name: form.name.trim(),
+                    email: form.email.trim(),
+                    phone: form.phone.trim(),
+                    message: form.message.trim(),
+                    website: form.website,
+                    source: "Contact page",
                 }),
             });
 
             setStatus(
-                "Your enquiry has been submitted. Thank you for contacting Shenron Global."
+                "Your enquiry has been received. Our team will get back to you as soon as possible."
             );
 
             setForm(initialForm);
         } catch (error) {
-            console.error("Enquiry submission error:", error);
-
-            setStatus(
-                "Unable to submit your enquiry. Please try again."
-            );
+            setStatus(error.message || "Unable to submit your enquiry. Please try again.");
         } finally {
             setSubmitting(false);
         }
@@ -197,6 +186,10 @@ export default function Contact() {
                             </div>
 
                             <form onSubmit={handleSubmit}>
+                                <label className="sg-honeypot" aria-hidden="true" tabIndex={-1}>
+                                    Leave this field empty
+                                    <input name="website" value={form.website} onChange={handleChange} autoComplete="off" tabIndex={-1} />
+                                </label>
                                 <div className="sg-form-grid">
 
                                     {/* Name */}

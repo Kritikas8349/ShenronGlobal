@@ -67,7 +67,7 @@ export default function AdminLayout() {
         <div className="admin-nav-label">WORKSPACE</div>
         <NavLink to="/admin/blogs" end aria-label="All articles" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={closeMenu}><ArticleIcon />All articles</NavLink>
         <NavLink to="/admin/blogs/new" aria-label="New article" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={closeMenu}><PlusIcon />New article</NavLink>
-        <a className="admin-nav-link" aria-label="Enquiry form" href="/contact-us" target="_blank" rel="noreferrer" title="Open the existing contact enquiry form" onClick={closeMenu}><MailIcon />Enquiry form</a>
+        <NavLink to="/admin/enquiries" aria-label="Client enquiries" className={({ isActive }) => `admin-nav-link ${isActive ? "active" : ""}`} onClick={closeMenu}><MailIcon />Enquiries</NavLink>
       </nav>
       <div className="admin-sidebar-foot"><span className="admin-user-dot">{user?.email?.slice(0, 1)?.toUpperCase() || "A"}</span><div className="admin-user-info"><strong>{user?.email}</strong><small>Administrator</small></div><button aria-label="Sign out" title="Sign out" onClick={signOut}><SignOutIcon /></button></div>
     </aside>
