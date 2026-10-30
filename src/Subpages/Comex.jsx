@@ -297,7 +297,7 @@ function PlansSection() {
       <div className="comex-section-heading comex-container comex-plans-heading">
         <div>
           <Eyebrow>MEMBERSHIP OPTIONS</Eyebrow>
-          <h2>Crypto Membership &amp; <em>Packages</em></h2>
+          <h2>Comex Membership &amp; <em>Packages</em></h2>
         </div>
         <p>Select monthly, quarterly or yearly billing. Prices are listed in AED as per the current COMEX service package sheet.</p>
       </div>

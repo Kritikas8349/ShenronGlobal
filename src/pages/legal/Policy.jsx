@@ -15,8 +15,8 @@ const privacySections = [
         </p>
         <p>
           <strong>Privacy contact:</strong>{" "}
-          <a href="mailto:support@shenronglobal.com">
-            support@shenronglobal.com
+          <a href="mailto:support@shenronglobal.ae">
+            support@shenronglobal.ae
           </a>.
         </p>
       </>
@@ -158,7 +158,7 @@ const privacySections = [
         data, including encryption in transit, access controls, secure servers
         and regular security monitoring. While we strive to protect data, no
         system can be guaranteed completely secure; report suspected breaches
-        to <a href="mailto:support@shenronglobal.com">support@shenronglobal.com</a>{" "}
+        to <a href="mailto:support@shenronglobal.ae">support@shenronglobal.ae</a>{" "}
         immediately.
       </p>
     ),
@@ -180,7 +180,7 @@ const privacySections = [
         </ul>
         <p>
           To exercise your rights, contact{" "}
-          <a href="mailto:support@shenronglobal.com">support@shenronglobal.com</a>.
+          <a href="mailto:support@shenronglobal.ae">support@shenronglobal.ae</a>.
           We will respond within applicable legal timeframes and may require
           identity verification.
         </p>
@@ -206,7 +206,7 @@ const privacySections = [
         We will send marketing emails or messages if you consented or as
         permitted by law. You can opt out at any time using the unsubscribe
         link or by contacting{" "}
-        <a href="mailto:support@shenronglobal.com">support@shenronglobal.com</a>.
+        <a href="mailto:support@shenronglobal.ae">support@shenronglobal.ae</a>.
         Transactional and account-related communications (e.g., billing
         notices, security alerts) are not affected by marketing opt-out.
       </p>
@@ -243,7 +243,7 @@ const privacySections = [
       <p>
         If you have a complaint about our handling of your personal data,
         contact{" "}
-        <a href="mailto:support@shenronglobal.com">support@shenronglobal.com</a>.
+        <a href="mailto:support@shenronglobal.ae">support@shenronglobal.ae</a>.
         You may also have the right to lodge a complaint with a relevant data
         protection authority in your jurisdiction.
       </p>
@@ -275,8 +275,8 @@ const privacySections = [
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:support@shenronglobal.com">
-            support@shenronglobal.com
+          <a href="mailto:support@shenronglobal.ae">
+            support@shenronglobal.ae
           </a>
         </p>
         <p>

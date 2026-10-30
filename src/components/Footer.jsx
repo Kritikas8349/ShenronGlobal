@@ -36,9 +36,9 @@ const resourceLinks = [
     external: true,
   },
   {
-    label: "Email: support@shenronglobal.com",
-    value: "support@shenronglobal.com",
-    to: "mailto:support@shenronglobal.com",
+    label: "Email: support@shenronglobal.ae",
+    value: "support@shenronglobal.ae",
+    to: "mailto:support@shenronglobal.ae",
   },
   {
     label: "Phone no: +971565702852",

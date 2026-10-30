@@ -111,7 +111,7 @@ export default function Contact() {
 
                                     <div>
                                         <h3>Email Us</h3>
-                                        <p>support@shenronglobal.com</p>
+                                        <p>support@shenronglobal.ae</p>
                                         <span>Send us your questions anytime.</span>
                                     </div>
                                 </div>

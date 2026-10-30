@@ -113,7 +113,7 @@ const refundSections = [
         type: "list",
         items: [
           <>
-            <strong>Report promptly:</strong> Report billing errors promptly to support@shenronglobal.com. Shenron will investigate and, where appropriate, refund duplicate or erroneous charges.
+            <strong>Report promptly:</strong> Report billing errors promptly to support@shenronglobal.ae. Shenron will investigate and, where appropriate, refund duplicate or erroneous charges.
           </>,
           <>
             <strong>Chargebacks:</strong> Initiating a chargeback without contacting Shenron may result in immediate suspension. Shenron will cooperate with payment processor investigations; fraudulent chargebacks may lead to termination and collection actions.
@@ -130,10 +130,10 @@ const refundSections = [
         type: "list",
         items: [
           <>
-            <strong>Cancellation:</strong> Cancel subscriptions via your account dashboard or email support@shenronglobal.com with your account details.
+            <strong>Cancellation:</strong> Cancel subscriptions via your account dashboard or email support@shenronglobal.ae with your account details.
           </>,
           <>
-            <strong>Refund requests:</strong> Email support@shenronglobal.com with order details and reason. Provide supporting evidence where relevant. Shenron will acknowledge receipt and investigate within 5 business days.
+            <strong>Refund requests:</strong> Email support@shenronglobal.ae with order details and reason. Provide supporting evidence where relevant. Shenron will acknowledge receipt and investigate within 5 business days.
           </>,
           <>
             <strong>Resolution timeframe:</strong> Where a refund is approved, funds will be returned via the original payment method within 7–14 business days (times vary by payment provider).
@@ -299,8 +299,8 @@ const RefundPolicy = () => {
                 For cancellations, refunds or billing questions, reach out
                 to our support team.
               </p>
-              <a href="mailto:support@shenronglobal.com">
-                support@shenronglobal.com <span>↗</span>
+              <a href="mailto:support@shenronglobal.ae">
+                support@shenronglobal.ae <span>↗</span>
               </a>
             </div>
           </div>

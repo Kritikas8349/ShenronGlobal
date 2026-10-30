@@ -2337,8 +2337,8 @@ body, html{
   max-width: 700px;
   margin: 0;
   color: #17130f;
-  font-size: clamp(40px, 4.5vw, 62px);
-  line-height: 1.08;
+  font-size: clamp(40px, 4.1vw, 60px);
+  line-height: 1.0;
   letter-spacing: -2px;
 }
 
@@ -2371,7 +2371,7 @@ body, html{
 }
 
 .comex-plans .comex-billing-switch button {
-  min-height: 48px;
+  min-height: 40px;
   color: #e8dfcf;
   font-size: 13px;
 }
@@ -2474,8 +2474,8 @@ body, html{
 }
 
 .comex-plans .comex-plan-card .comex-button {
-  min-width: 148px;
-  min-height: 64px;
+  min-width: 108px;
+  min-height: 54px;
   padding-inline: 24px;
   border-radius: 999px;
   font-size: 15px;
@@ -2594,6 +2594,93 @@ body, html{
 
   .comex-plans .comex-plan-card li {
     font-size: 13px;
+  }
+}
+
+/* Keep the COMEX hero balanced between tablet and phone widths. */
+.comex-hero-visual > img {
+  object-fit: contain;
+}
+
+@media (max-width: 900px) and (min-width: 821px) {
+  .comex-hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .comex-hero-copy {
+    max-width: 690px;
+  }
+
+  .comex-hero-visual {
+    width: min(100%, 690px);
+    margin-inline: auto;
+    aspect-ratio: 1.4 / 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .comex-hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .comex-hero-actions .comex-button {
+    min-width: 0;
+    padding-inline: clamp(10px, 3vw, 18px);
+    white-space: normal;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 420px) {
+  .comex-hero h1 {
+    font-size: clamp(36px, 10vw, 42px);
+    letter-spacing: -2px;
+  }
+
+  .comex-hero-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .comex-plans .comex-plans-heading {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .comex-plans .comex-plans-heading .comex-eyebrow {
+    justify-content: center;
+  }
+
+  .comex-plans .comex-plans-heading > div {
+    width: 100%;
+  }
+
+  .comex-plans .comex-plans-heading > p {
+    width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .comex-plans .comex-plan-grid {
+    gap: 18px;
+  }
+
+  .comex-plans .comex-plan-card,
+  .comex-plans .comex-plan-card:last-child {
+    width: min(calc(100% - clamp(24px, 6vw, 36px)), 540px);
+    padding: 24px 22px 21px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comex-plans .comex-plan-card,
+  .comex-plans .comex-plan-card:last-child {
+    padding: 22px 20px 19px;
   }
 }
 

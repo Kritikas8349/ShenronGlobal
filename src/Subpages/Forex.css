@@ -1412,6 +1412,7 @@
 
 .forex-page [data-forex-reveal].is-visible {
     animation: forex-section-in .55s ease-out both;
+    margin-top: -90px;
 }
 
 .forex-section-heading {
@@ -3626,7 +3627,8 @@
         gap: 10px;
         width: min(100%, 460px);
         margin-bottom: 29px;
-        text-align: left;
+        justify-items: center;
+        text-align: center;
     }
 
     .forex-packages .forex-section-heading > .forex-eyebrow,
@@ -3636,18 +3638,34 @@
         grid-row: auto;
     }
 
+    .forex-packages .forex-section-heading > .forex-eyebrow {
+        justify-self: center;
+    }
+
+    .forex-packages .forex-section-heading h2,
+    .forex-packages .forex-section-heading > p {
+        width: 100%;
+    }
+
     .forex-packages .forex-section-heading > p {
         margin: 0;
     }
 
     .forex-billing-control {
         width: min(100%, 460px);
-        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         margin-bottom: 30px;
+        justify-items: center;
     }
 
     .forex-period-switch {
-        width: 100%;
+        width: min(100%, 460px);
+    }
+
+    .forex-billing-caption {
+        grid-column: 1;
+        justify-self: center;
+        text-align: center;
     }
 
     .forex-period-switch button {

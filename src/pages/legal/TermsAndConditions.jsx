@@ -185,7 +185,7 @@ export default function TermsAndConditions() {
               or promotion and the terms shown at purchase.
               Refunds for promotional trials and certain digital
               products may be limited. Disputes should be raised
-              with support@shenronglobal.com and will be
+              with support@shenronglobal.ae and will be
               investigated in accordance with our internal
               procedures.
             </p>
@@ -355,8 +355,8 @@ export default function TermsAndConditions() {
             </p>
             <p>
               Email:{" "}
-              <a href="mailto:support@shenronglobal.com">
-                support@shenronglobal.com
+              <a href="mailto:support@shenronglobal.ae">
+                support@shenronglobal.ae
               </a>
             </p>
             <p>

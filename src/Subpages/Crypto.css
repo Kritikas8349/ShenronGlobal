@@ -3133,6 +3133,8 @@
         margin-bottom: 29px;
         grid-template-columns: minmax(0, 1fr);
         gap: 10px;
+        justify-items: center;
+        text-align: center;
     }
 
     .crypto-plans .crypto-plans-heading > div,
@@ -3146,10 +3148,23 @@
         margin: 0;
     }
 
+    .crypto-plans .crypto-plans-heading > div,
+    .crypto-plans .crypto-plans-heading h2,
+    .crypto-plans .crypto-plans-heading > p {
+        width: 100%;
+    }
+
     .crypto-billing-control {
         width: min(100%, 460px);
-        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         margin-bottom: 30px;
+        justify-items: center;
+    }
+
+    .crypto-billing-caption {
+        grid-column: 1;
+        justify-self: center;
+        text-align: center;
     }
 
     .crypto-period-switch {

@@ -177,8 +177,8 @@ const disclaimerSections = [
                 If you have questions about this Disclaimer or our
                 policies, contact: <strong>Shenron Global</strong> —
                 Email:{" "}
-                <a href="mailto:support@shenronglobal.com">
-                    support@shenronglobal.com
+                <a href="mailto:support@shenronglobal.ae">
+                    support@shenronglobal.ae
                 </a>
             </p>
         ),
@@ -272,7 +272,7 @@ const Disclaimer = () => {
                         </p>
 
                         <a
-                            href="mailto:support@shenronglobal.com"
+                            href="mailto:support@shenronglobal.ae"
                             className="legal-contact-button"
                         >
                             Contact Shenron
