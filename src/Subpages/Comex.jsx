@@ -65,44 +65,44 @@ const plans = [
   {
     name: "COMEX Basic",
     category: "CORE SIGNALS",
-    price: "AED 349",
+    prices: { monthly: "AED 349", quarterly: "AED 899", yearly: "AED 2,999" },
     description:
-      "Core commodity signals and market updates for a focused COMEX routine.",
+      "Core commodity signals and market updates for quick, disciplined COMEX participation.",
     features: [
-      "1–2 focused trade ideas per day",
-      "Risk/reward context up to 1:1.5",
-      "Around 1,500 pips monthly target context",
-      "Scalping-focused ideas",
-      "Commodity calendar and market news",
+      "1-2 focused trade ideas per day",
+      "Risk/reward up to 1:1.5",
+      "Around 1500 pips monthly target context",
+      "Scalping-based signals",
+      "Commodity-focused economic calendar and market news",
     ],
   },
   {
     name: "COMEX Plus",
     category: "ENHANCED RESEARCH",
-    price: "AED 499",
+    prices: { monthly: "AED 499", quarterly: "AED 1,299", yearly: "AED 4,499" },
     description:
-      "More frequent setups with research, session context, and practical sizing notes.",
+      "More frequent commodity signals with research, session context and practical sizing guidance.",
     recommended: true,
     features: [
-      "1–3 curated setups per day",
-      "Risk/reward context up to 1:2.5",
-      "Around 2,500 pips monthly target context",
+      "1-3 curated setups per day",
+      "Risk/reward up to 1:2.5",
+      "Around 2500 pips monthly target context",
       "Scalping and day-trade setups",
-      "Weekly notes, sizing, and macro/inventory updates",
+      "Weekly commentary, sizing guidance and macro/inventory updates",
     ],
   },
   {
     name: "COMEX Pro",
     category: "DEDICATED SUPPORT",
-    price: "AED 799",
+    prices: { monthly: "AED 799", quarterly: "AED 1,999", yearly: "AED 6,999" },
     description:
-      "A deeper research and support option for experienced commodity traders.",
+      "Professional commodity signals, research and dedicated support for advanced traders.",
     features: [
-      "3–4 highly vetted setups per day",
-      "Risk/reward context up to 1:8",
-      "Around 4,000 pips monthly target context",
-      "Day trades, swing setups, and ICT-based entries",
-      "Dedicated relationship manager and inventory analysis",
+      "3-4 highly vetted setups per day",
+      "Risk/reward up to 1:8",
+      "Around 4000 pips monthly target context",
+      "Day trades, swing setups and ICT-based sniper entries",
+      "Dedicated relationship manager and in-depth inventory analysis",
     ],
   },
 ];
@@ -136,7 +136,7 @@ function ComexHero() {
           </p>
           <div className="comex-hero-actions">
             <a className="comex-button comex-button--dark" href="#plans">
-              View plans <FaArrowRight aria-hidden="true" />
+              View membership options <FaArrowRight aria-hidden="true" />
             </a>
             <Link className="comex-button comex-button--outline" to="/contact-us">
               Book consultation
@@ -280,7 +280,7 @@ function ServicesSection() {
       </div>
       <div className="comex-service-foot comex-container">
         <span>Ideas are shared for information and discussion.</span>
-        <a href="#plans">Compare plans <FaArrowRight aria-hidden="true" /></a>
+        <a href="#plans">Compare memberships <FaArrowRight aria-hidden="true" /></a>
       </div>
     </section>
   );
@@ -289,18 +289,17 @@ function ServicesSection() {
 function PlansSection() {
   const [period, setPeriod] = useState("monthly");
   const periodLabel = period[0].toUpperCase() + period.slice(1);
-  const billingMessage = period === "monthly"
-    ? "Monthly package rates shown as listed."
-    : `Monthly reference rates remain visible. Confirm the ${period} total with our team.`;
+  const periodUnit = { monthly: "mo", quarterly: "qtr", yearly: "yr" }[period];
+  const billingMessage = `${periodLabel} COMEX package prices shown in AED.`;
 
   return (
     <section className="comex-plans comex-section" id="plans">
       <div className="comex-section-heading comex-container comex-plans-heading">
         <div>
           <Eyebrow>MEMBERSHIP OPTIONS</Eyebrow>
-          <h2>Choose your <em>guidance level.</em></h2>
+          <h2>Comex Membership &amp; <em>Packages</em></h2>
         </div>
-        <p>Select a billing period. Prices are in AED and follow the current service package sheet.</p>
+        <p>Select monthly, quarterly or yearly billing. Prices are listed in AED as per the current COMEX service package sheet.</p>
       </div>
 
       <div className="comex-billing comex-container">
@@ -325,20 +324,16 @@ function PlansSection() {
           <article className={`comex-plan-card${plan.recommended ? " is-recommended" : ""}`} key={plan.name}>
             <div className="comex-plan-topline">
               <span>{plan.category}</span>
-              {plan.recommended && <strong>POPULAR</strong>}
             </div>
+            <div className="comex-plan-price"><strong>{plan.prices[period]}</strong><span>/{periodUnit}</span></div>
             <h3>{plan.name}</h3>
             <p className="comex-plan-description">{plan.description}</p>
-            <div className="comex-plan-price"><strong>{plan.price}</strong><span>/mo</span></div>
-            <span className="comex-plan-price-note">
-              {period === "monthly" ? "Monthly package rate" : `Monthly reference · ${periodLabel} quote on request`}
-            </span>
             <span className="comex-plan-divider" />
             <ul>
               {plan.features.map((feature) => <li key={feature}><i aria-hidden="true" />{feature}</li>)}
             </ul>
             <Link className={`comex-button ${plan.recommended ? "comex-button--dark" : "comex-button--plan"}`} to="/contact-us">
-              Choose {plan.name} <FaArrowRight aria-hidden="true" />
+              Buy Now <FaArrowRight aria-hidden="true" />
             </Link>
           </article>
         ))}

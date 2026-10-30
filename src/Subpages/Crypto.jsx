@@ -55,28 +55,30 @@ const services = [
 
 const plans = [
   {
+    category: "STANDARD PACKAGE",
     name: "Crypto Essentials",
-    price: "AED 1,299",
+    prices: { monthly: "AED 1,299", quarterly: "AED 3,299", yearly: "AED 10,999" },
     description: "Standard crypto advisory with futures signals, portfolio ideas and major market updates.",
     features: [
-      "Dedicated relationship manager with daily written briefings.",
-      "Daily futures signals with entry/exit zones and R/R guidance.",
-      "Spot portfolio recommendations and NFT highlights.",
-      "Cross and isolated margin ideas with management notes.",
-      "Farming/yield suggestions plus urgent Telegram or Discord alerts.",
+      "Dedicated relationship manager with daily written briefings",
+      "Daily futures signals with entry/exit zones and R/R guidance",
+      "Spot portfolio recommendations and NFT highlights",
+      "Cross and isolated margin ideas with management notes",
+      "Farming/yield suggestions plus urgent Telegram or Discord alerts",
     ],
   },
   {
+    category: "PREMIUM PACKAGE",
     name: "Crypto Concierge",
-    price: "AED 1,899",
+    prices: { monthly: "AED 1,899", quarterly: "AED 4,799", yearly: "AED 14,999" },
     description: "Premium crypto support with deeper research, advanced allocation guidance and priority communication.",
     recommended: true,
     features: [
-      "More frequent futures signals and intraday updates.",
-      "Tailored portfolio allocation by risk profile and horizon.",
-      "NFT due diligence, rarity analysis and flip timing.",
-      "Advanced farming, protocol research and security assessments.",
-      "On-chain analytics, tokenomics reports and scheduled check-ins.",
+      "More frequent futures signals and intraday updates",
+      "Tailored portfolio allocation by risk profile and horizon",
+      "NFT due diligence, rarity analysis and flip timing",
+      "Advanced farming, protocol research and security assessments",
+      "On-chain analytics, tokenomics reports and scheduled check-ins",
     ],
   },
 ];
@@ -273,7 +275,7 @@ function CryptoHero() {
         <p>Get crypto recommendations, market insights and risk-aware strategy notes for Bitcoin, Ethereum and other major digital assets.</p>
         <div className="crypto-hero-actions">
           <a className="crypto-button crypto-button-primary" href="/services/crypto#plans">View Plans <FaArrowRight aria-hidden="true" /></a>
-          <a className="crypto-button crypto-button-secondary" href="/contact">Book Consultation</a>
+          <a className="crypto-button crypto-button-secondary" href="/contact-us">Book Consultation</a>
         </div>
         <ul className="crypto-coverage" aria-label="Crypto desk coverage">
           <li><FaBitcoin aria-hidden="true" />BTC</li><li><FaEthereum aria-hidden="true" />ETH</li><li>Altcoins</li><li><FaShieldAlt aria-hidden="true" />24/5 support</li>
@@ -293,25 +295,27 @@ function CryptoHero() {
 
 function CryptoPlans() {
   const [period, setPeriod] = useState("monthly");
-  const billingLabel = period === "monthly" ? "Monthly price" : `${period[0].toUpperCase()}${period.slice(1)} pricing requires confirmation`;
+  const periodLabel = period[0].toUpperCase() + period.slice(1);
+  const periodUnit = { monthly: "mo", quarterly: "qtr", yearly: "yr" }[period];
 
   return (
     <section className="crypto-section crypto-plans" id="plans" data-crypto-reveal>
       <div className="crypto-section-heading crypto-plans-heading">
-        <div><Eyebrow>PLANS</Eyebrow><h2>Choose Your <span>Guidance Level</span></h2></div>
+        <div><Eyebrow>MEMBERSHIP OPTIONS</Eyebrow><h2>Crypto Membership &amp; <span>Packages</span></h2></div>
         <p>Select monthly, quarterly or yearly billing. Prices are listed in AED as per the current service package sheet.</p>
       </div>
       <div className="crypto-billing-control">
-        <span id="crypto-billing-label">Billing period</span>
-        <div className="crypto-period-switch" role="group" aria-labelledby="crypto-billing-label">
+        <div className="crypto-period-switch" role="group" aria-label="Billing period">
           {["monthly", "quarterly", "yearly"].map((option) => <button type="button" key={option} className={period === option ? "is-selected" : ""} aria-pressed={period === option} onClick={() => setPeriod(option)}>{option[0].toUpperCase() + option.slice(1)}</button>)}
         </div>
-        <p aria-live="polite">{period === "monthly" ? "Monthly package prices shown." : `${billingLabel}; monthly package prices remain shown until verified.`}</p>
+        <p className="crypto-billing-caption" aria-live="polite">{periodLabel} package prices shown.</p>
       </div>
       <div className="crypto-plan-grid">{plans.map((plan) => <article className={`crypto-plan ${plan.recommended ? "is-recommended" : ""}`} key={plan.name}>
-        <div className="crypto-plan-top"><span>{plan.recommended ? "PRIORITY SUPPORT" : "CORE MARKET GUIDANCE"}</span>{plan.recommended && <b>Recommended</b>}</div>
-        <h3>{plan.name}</h3><p className="crypto-plan-description">{plan.description}</p>
-        <div className="crypto-plan-price"><strong>{plan.price}</strong><span>/mo</span></div><span className="crypto-price-caption">{billingLabel}</span>
+        <div className="crypto-plan-top"><span>{plan.category}</span></div>
+        <h3>{plan.name}</h3>
+        <p className="crypto-plan-description">{plan.description}</p>
+        <div className="crypto-plan-price" aria-live="polite"><strong>{plan.prices[period]}</strong><span>/{periodUnit}</span></div>
+        <p className="crypto-price-caption">{periodLabel} price</p>
         <ul>{plan.features.map((feature) => <li key={feature}><i aria-hidden="true" />{feature}</li>)}</ul>
         <a className={`crypto-button ${plan.recommended ? "crypto-button-primary" : "crypto-button-secondary"}`} href="https://shenronglobal.com/contact" target="_blank" rel="noreferrer">Buy Now <FaArrowRight aria-hidden="true" /></a>
       </article>)}</div>

@@ -5,8 +5,8 @@ import logo from "../assets/shenron-logo.png";
 
 const services = [
   { name: "Forex Services", path: "/services/forex" },
-  { name: "Crypto Services", path: "/services/crypto" },
   { name: "Comex Services", path: "/services/comex" },
+  { name: "Crypto Services", path: "/services/crypto" },
   // { name: "Mentorship", path: "/services/mentorship" },
 ];
 

@@ -1,17 +1,17 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+
 import {
-    FaFacebookF,
-    FaInstagram,
-    FaTelegram,
-    FaArrowRight,
-  } from "react-icons/fa";
-  
-  import { FaXTwitter } from "react-icons/fa6";
+  FaFacebookF,
+  FaInstagram,
+  FaTelegram,
+  FaArrowRight,
+} from "react-icons/fa";
+
+import { FaXTwitter } from "react-icons/fa6";
 import "./Footer.css";
 import logo from "../assets/shenron-logo.png";
-
 
 const quickLinks = [
   { label: "Home", to: "/" },
@@ -27,7 +27,6 @@ const serviceLinks = [
   { label: "Comex", to: "/services/comex" },
 ];
 
-
 const resourceLinks = [
   {
     label:
@@ -37,9 +36,9 @@ const resourceLinks = [
     external: true,
   },
   {
-    label: "Email: support@shenronglobal.com",
-    value: "support@shenronglobal.com",
-    to: "mailto:support@shenronglobal.com",
+    label: "Email: support@shenronglobal.ae",
+    value: "support@shenronglobal.ae",
+    to: "mailto:support@shenronglobal.ae",
   },
   {
     label: "Phone no: +971565702852",
@@ -47,7 +46,6 @@ const resourceLinks = [
     to: "tel:+971565702852",
   },
 ];
-
 
 const socialLinks = [
   {
@@ -75,135 +73,175 @@ const socialLinks = [
 function FooterLinks({ title, links }) {
   return (
     <div className="footer-column">
-    <h3 className="footer-column-title">{title}</h3>
+      <h3 className="footer-column-title">{title}</h3>
 
-    <ul className="footer-link-list">
-      {links.map((item) => (
-        <li key={item.label}>
-          {item.to ? (
-            item.external ? (
-              <a
-                href={item.to}
-                target={
-                  item.to.startsWith("http") ? "_blank" : undefined
-                }
-                rel={
-                  item.to.startsWith("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
-              >
-                {item.label}
-              </a>
+      <ul className="footer-link-list">
+        {links.map((item) => (
+          <li key={item.label}>
+            {item.to ? (
+              item.external ? (
+                <a
+                  href={item.to}
+                  target={item.to.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    item.to.startsWith("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link to={item.to}>{item.label}</Link>
+              )
             ) : (
-              <Link to={item.to}>{item.label}</Link>
-            )
-          ) : (
-            <span>{item.label}</span>
-          )}
-        </li>
-      ))}
-    </ul>
-  </div>
+              <span>{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
 export default function Footer() {
   return (
-    <> 
+    <>
+      {/* HOME CTA SECTION */}
+      <section className="home-cta-section">
+        <div className="home-cta-container">
+          <div className="home-cta-card">
+            <div className="home-cta-content">
+              <span className="home-cta-eyebrow">
+                YOUR NEXT STEP
+              </span>
 
-<section className="home-cta-section">
-                <div className="home-cta-container">
-                    <div className="home-cta-card">
-                        <div className="home-cta-content">
-                            <span className="home-cta-eyebrow">
-                                YOUR NEXT STEP
-                            </span>
+              <h2>
+                What can we help you <span>achieve?</span>
+              </h2>
 
-                            <h2>
-                                What can we help you <span>achieve?</span>
-                            </h2>
+              <p>
+                Explore our services, discover market insights, and find
+                the right support for your financial learning journey.
+              </p>
+            </div>
 
-                            <p>
-                                Explore our services, discover market insights, and find
-                                the right support for your financial learning journey.
-                            </p>
-                        </div>
-
-                        <div className="home-cta-actions">
-                            <Link to="/services/forex" className="home-cta-button">
-                                Explore Our Services
-                                <FaArrowRight />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-    <footer className="site-footer">
-      <div className="footer-main">
-        <div className="footer-grid">
-          {/* Brand column */}
-          <div className="footer-brand">
-            <Link to="/" className="footer-logo-link" aria-label="Shenron Global Home">
-              <img
-                src={logo}
-                alt="Shenron Global"
-                className="footer-logo"
-              />
-            </Link>
-
-            <p className="footer-description">
-              Your gateway to global markets. We provide expert
-              insights, practical guidance and knowledge to help
-              you navigate Forex, Crypto and Comex markets
-              confidently.
-            </p>
-
-            <div className="footer-socials">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="footer-social-link"
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {social.icon}
-                </a>
-              ))}
+            <div className="home-cta-actions">
+              <Link
+                to="/services/forex"
+                className="home-cta-button"
+              >
+                Explore Our Services
+                <FaArrowRight />
+              </Link>
             </div>
           </div>
-
-          {/* Quick links */}
-          <FooterLinks title="Quick Links" links={quickLinks} />
-
-          {/* Services */}
-          <FooterLinks title="Our Services" links={serviceLinks} />
-
-          {/* Resources */}
-          <FooterLinks title="Contact Us" links={resourceLinks} />
         </div>
-      </div>
+      </section>
 
-      {/* Bottom bar */}
-      <div className="footer-bottom">
-        <div className="footer-bottom-inner">
-          <p className="footer-copyright">
-            © {new Date().getFullYear()} Shenron Global. All rights reserved.
-          </p>
+      {/* MAIN FOOTER */}
+      <footer className="site-footer">
+        <div className="footer-main">
+          <div className="footer-grid">
 
-          <nav className="footer-legal-links" aria-label="Legal links">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <span className="footer-legal-divider">|</span>
-            <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
-            <span className="footer-legal-divider">|</span>
-            <Link to="/disclaimer">Disclaimer</Link>
-          </nav>
+            {/* BRAND COLUMN */}
+            <div className="footer-brand">
+              <Link
+                to="/"
+                className="footer-logo-link"
+                aria-label="Shenron Global Home"
+              >
+                <img
+                  src={logo}
+                  alt="Shenron Global"
+                  className="footer-logo"
+                />
+              </Link>
+
+              <p className="footer-description">
+                Your gateway to global markets. We provide expert
+                insights, practical guidance and knowledge to help
+                you navigate Forex, Crypto and Comex markets
+                confidently.
+              </p>
+
+              <div className="footer-socials">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    className="footer-social-link"
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* QUICK LINKS */}
+            <FooterLinks
+              title="Quick Links"
+              links={quickLinks}
+            />
+
+            {/* SERVICES */}
+            <FooterLinks
+              title="Our Services"
+              links={serviceLinks}
+            />
+
+            {/* CONTACT US */}
+            <FooterLinks
+              title="Contact Us"
+              links={resourceLinks}
+            />
+
+          </div>
         </div>
-      </div>
-    </footer>
+
+        {/* BOTTOM BAR */}
+        <div className="footer-bottom">
+          <div className="footer-bottom-inner">
+
+            <p className="footer-copyright">
+              © {new Date().getFullYear()} Shenron Global.
+              All rights reserved.
+            </p>
+
+            {/* LEGAL LINKS */}
+            <nav
+              className="footer-legal-links"
+              aria-label="Legal links"
+            >
+              <Link to="/legal/disclaimer">
+                Disclaimer
+              </Link>
+
+              <span className="footer-legal-divider">|</span>
+
+              <Link to="/legal/terms-and-conditions">
+                Terms &amp; Conditions
+              </Link>
+
+              <span className="footer-legal-divider">|</span>
+
+              <Link to="/legal/privacy-policy">
+                Privacy Policy
+              </Link>
+
+              <span className="footer-legal-divider">|</span>
+
+              <Link to="/legal/refund-policy">
+                Refund Policy
+              </Link>
+            </nav>
+
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

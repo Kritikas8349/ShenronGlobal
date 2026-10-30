@@ -410,7 +410,7 @@
 .crypto-section-heading h2 {
     margin: 14px 0 15px;
     color: #101010;
-    font-size: clamp(31px, 4vw, 48px);
+    font-size: clamp(34px, 3.vw, 45px);
     font-weight: 800;
     line-height: 1.14;
     letter-spacing: -1.7px;
@@ -755,53 +755,48 @@
 }
 
 .crypto-billing-control {
-    margin-top: -7px;
-    margin-bottom: 24px;
-    display: grid;
-    grid-template-columns: auto 1fr;
+    margin-top: 18px;
+    margin-bottom: 42px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px 18px;
-}
-
-.crypto-billing-control>span {
-    color: #756b60;
-    font-size: 10px;
-    font-weight: 700;
+    gap: 9px;
 }
 
 .crypto-period-switch {
     width: fit-content;
-    padding: 4px;
+    padding: 2px;
     display: flex;
-    gap: 3px;
-    border: 1px solid rgba(173, 137, 87, .22);
-    border-radius: 26px;
-    background: #fffdf8;
+    gap: 2px;
+    border: 1px solid rgba(183, 131, 45, .42);
+    border-radius: 999px;
+    background: #211e19;
 }
 
 .crypto-period-switch button {
-    min-height: 32px;
-    padding: 0 15px;
+    min-width: 108px;
+    min-height: 48px;
+    padding: 0 22px;
     border: 0;
-    border-radius: 22px;
+    border-radius: 999px;
     background: transparent;
-    color: #756b60;
-    font: 600 10px Inter, sans-serif;
+    color: #e8dfcf;
+    font: 700 13px Inter, sans-serif;
     cursor: pointer;
     transition: color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
 .crypto-period-switch button.is-selected {
-    background: linear-gradient(135deg, #f5d38a, #d9a640);
-    color: #251b0c;
-    box-shadow: 0 3px 9px rgba(181, 133, 46, .15);
+    background: #f2c95f;
+    color: #1c1915;
+    box-shadow: 0 4px 13px rgba(181, 133, 46, .2);
 }
 
 .crypto-billing-control>p {
-    grid-column: 2;
     margin: 0;
     color: #9a825e;
     font-size: 9px;
+    text-align: center;
 }
 
 .crypto-plan-grid {
@@ -813,7 +808,8 @@
 
 .crypto-plan {
     min-width: 0;
-    padding: 27px 29px 26px;
+    min-height: 590px;
+    padding: 32px 34px 30px;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(173, 137, 87, .22);
@@ -843,25 +839,16 @@
 }
 
 .crypto-plan-top>span {
-    color: #9b8053;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1.4px;
-}
-
-.crypto-plan-top>b {
-    padding: 6px 10px;
-    border: 1px solid rgba(167, 122, 61, .34);
-    border-radius: 18px;
-    background: #fff8e9;
-    color: #806331;
-    font-size: 8px;
+    color: #8a6b38;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
 }
 
 .crypto-plan h3 {
-    margin: 7px 0 8px;
+    margin: 15px 0 8px;
     color: #201b14;
-    font-size: 23px;
+    font-size: 26px;
     letter-spacing: -.5px;
 }
 
@@ -869,7 +856,7 @@
     min-height: 44px;
     margin: 0;
     color: #756b60;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.7;
 }
 
@@ -881,8 +868,8 @@
 }
 
 .crypto-plan-price strong {
-    color: #201b14;
-    font-size: clamp(30px, 3vw, 40px);
+    color: #b7832d;
+    font-size: clamp(28px, 2.2vw, 28px);
     font-weight: 800;
     letter-spacing: -1.5px;
 }
@@ -890,12 +877,6 @@
 .crypto-plan-price span {
     color: #756b60;
     font-size: 11px;
-}
-
-.crypto-price-caption {
-    margin-top: 2px;
-    color: #9a825e;
-    font-size: 9px;
 }
 
 .crypto-plan ul {
@@ -910,24 +891,35 @@
 
 .crypto-plan li {
     display: grid;
-    grid-template-columns: 9px 1fr;
+    grid-template-columns: 18px minmax(0, 1fr);
     align-items: start;
-    gap: 10px;
+    gap: 11px;
     color: #625a4d;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.65;
 }
 
 .crypto-plan li i {
-    width: 5px;
-    height: 5px;
-    margin-top: 6px;
-    border: 1px solid #b7832d;
-    border-radius: 50%;
+    width: auto;
+    height: auto;
+    margin-top: -1px;
+    border: 0;
+    border-radius: 0;
+    color: #299765;
+    font-size: 17px;
+    font-style: normal;
+    line-height: 1;
+}
+
+.crypto-plan li i::before {
+    content: "\2713";
 }
 
 .crypto-plan .crypto-button {
-    width: 100%;
+    width: fit-content;
+    min-width: 148px;
+    min-height: 58px;
+    padding: 0 24px;
     margin-top: auto;
 }
 
@@ -1443,10 +1435,12 @@
 
     .crypto-period-switch button {
         flex: 1;
+        min-width: 0;
         padding: 0 8px;
     }
 
     .crypto-plan {
+        min-height: 0;
         padding: 22px 18px 19px;
     }
 
@@ -1976,7 +1970,7 @@
 .crypto-risk-copy h2,
 .crypto-final h2 {
     color: #101010;
-    font-size: clamp(34px, 3.5vw, 54px);
+    font-size: clamp(34px, 3.5vw, 48px);
     font-weight: 800;
     line-height: 1.2;
     letter-spacing: -1.5px;
@@ -1996,7 +1990,7 @@
 .crypto-risk-copy > p,
 .crypto-final > p {
     color: #626b7a;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.85;
 }
 
@@ -2376,3 +2370,927 @@
         animation: none;
     }
 }
+
+/* Membership pricing layout */
+.crypto-plans-heading {
+    margin-bottom: 0;
+    grid-template-columns: minmax(0, 1.05fr) minmax(260px, .95fr);
+    align-items: center;
+    column-gap: 7%;
+}
+
+.crypto-plans-heading .crypto-eyebrow {
+    color: #a96e13;
+}
+
+.crypto-plans-heading .crypto-eyebrow::after {
+    width: 22px;
+    height: 2px;
+    background: #e3b75d;
+    content: "";
+}
+
+.crypto-plans-heading h2 {
+    max-width: 760px;
+    margin-top: 24px;
+    font-size: clamp(34px, 3.5vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -2.2px;
+}
+
+.crypto-plans-heading h2 span {
+    display: block;
+}
+
+.crypto-plans-heading > p {
+    max-width: 540px;
+    color: #53483b;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+.crypto-billing-control {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: 28px;
+    margin-bottom: 38px;
+}
+
+.crypto-billing-control > p {
+    color: #806331;
+    font-size: 11px;
+    text-align: left;
+}
+
+.crypto-plan {
+    min-height: 570px;
+    padding: 34px 36px 30px;
+    border-color: rgba(174, 130, 73, .3);
+    border-radius: 22px;
+    background: rgba(255, 252, 246, .9);
+}
+
+.crypto-plan.is-recommended {
+    border-color: rgba(174, 130, 73, .55);
+    background: rgba(255, 252, 246, .96);
+}
+
+.crypto-plan h3 {
+    margin-top: 15px;
+    font-size: 27px;
+}
+
+.crypto-plan-description {
+    min-height: 48px;
+    font-size: 14px;
+}
+
+.crypto-plan-price {
+    margin-top: 24px;
+}
+
+/* .crypto-plan-price strong {
+    font-size: clamp(38px, 3.6vw, 58px);
+} */
+
+.crypto-plan ul {
+    margin-top: 22px;
+    gap: 13px;
+}
+
+.crypto-plan li {
+    font-size: 14px;
+}
+
+.crypto-plan li i {
+    color: #b7832d;
+}
+
+@media (max-width: 760px) {
+    .crypto-plans-heading {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .crypto-plans-heading h2 {
+        font-size: clamp(39px, 7vw, 52px);
+        letter-spacing: -1.6px;
+    }
+
+    .crypto-plans-heading > p {
+        font-size: 15px;
+    }
+
+    .crypto-billing-control,
+    .crypto-plans-heading,
+    .crypto-plan-grid {
+        width: 100%;
+    }
+
+    .crypto-billing-control {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 9px;
+        margin-top: 23px;
+        margin-bottom: 30px;
+    }
+
+    .crypto-period-switch {
+        width: min(100%, 450px);
+    }
+
+    .crypto-period-switch button {
+        flex: 1;
+        min-width: 0;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .crypto-billing-control > p {
+        text-align: center;
+    }
+
+    .crypto-plan {
+        min-height: 0;
+        padding: 28px 27px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .crypto-plans {
+        padding-inline: clamp(1px, .4vw, 16px);
+    }
+
+    .crypto-plans-heading h2 {
+        font-size: clamp(35px, 9vw, 42px);
+        letter-spacing: -1.2px;
+    }
+
+    .crypto-plans-heading > p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .crypto-period-switch {
+        padding: 4px;
+    }
+
+    .crypto-period-switch button {
+        min-height: 44px;
+        padding: 0 6px;
+        font-size: 12px;
+    }
+
+    .crypto-plan {
+        padding: 24px 21px 22px;
+    }
+
+    .crypto-plan h3 {
+        font-size: 24px;
+    }
+
+    .crypto-plan-price strong {
+        font-size: clamp(36px, 10vw, 43px);
+    }
+
+    .crypto-plan li {
+        font-size: 13px;
+    }
+}
+@media (min-width: 1101px) and (max-width: 1440px) {
+    .crypto-plan-price strong {
+        font-size: clamp(38px, 3.5vw, 50px);
+    }
+}
+
+@media (max-width: 760px) {
+    .crypto-plans {
+        background: #090909;
+    }
+}
+
+/* Dark Crypto membership cards */
+.crypto-plans {
+    width: 100%;
+    max-width: none;
+    padding: 82px max(5.5%, calc((100% - 1280px) / 2)) 92px;
+    color: #f1eee7;
+    background: #090909;
+}
+
+.crypto-plans-heading {
+    margin-bottom: 0;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+    align-items: center;
+    column-gap: 7%;
+}
+
+.crypto-plans-heading .crypto-eyebrow {
+    color: #c9b788;
+}
+
+.crypto-plans-heading .crypto-eyebrow::after {
+    width: 22px;
+    height: 2px;
+    background: #d4af63;
+    content: "";
+}
+
+.crypto-plans-heading h2 {
+    max-width: 760px;
+    margin-top: 24px;
+    color: #f2f0eb;
+    font-size: clamp(40px, 4.5vw, 62px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+}
+
+.crypto-plans-heading h2 span {
+    color: #e4bd69;
+}
+
+.crypto-plans-heading > p {
+    max-width: 540px;
+    margin: 0;
+    color: #aaa69c;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.crypto-billing-control {
+    margin-top: 30px;
+    margin-bottom: 42px;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.crypto-period-switch {
+    padding: 5px;
+    gap: 2px;
+    border-color: rgba(212, 175, 99, .26);
+    background: #080808;
+}
+
+.crypto-period-switch button {
+    min-width: 108px;
+    min-height: 52px;
+    color: #b7b8be;
+    font-size: 14px;
+}
+
+.crypto-period-switch button:hover {
+    color: #f5f1e7;
+}
+
+.crypto-period-switch button.is-selected {
+    color: #17130b;
+    background: #f2c95f;
+    box-shadow: 0 5px 15px rgba(242, 201, 95, .18);
+}
+
+.crypto-plan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+}
+
+.crypto-plan {
+    min-height: 710px;
+    padding: 42px 40px 36px;
+    border-color: rgba(212, 175, 99, .2);
+    border-radius: 26px;
+    color: #f1eee7;
+    background: linear-gradient(145deg, #151515 0%, #101010 100%);
+    box-shadow: 0 15px 36px rgba(0, 0, 0, .2);
+}
+
+.crypto-plan:hover {
+    border-color: rgba(212, 175, 99, .42);
+    background: linear-gradient(145deg, #191919 0%, #111 100%);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, .3);
+}
+
+.crypto-plan.is-recommended {
+    border-color: rgba(212, 175, 99, .65);
+    background:
+        radial-gradient(ellipse at 20% 0%, rgba(181, 133, 46, .14), transparent 54%),
+        linear-gradient(145deg, #211d14 0%, #11100d 56%, #0a090b 100%);
+    box-shadow: 0 17px 42px rgba(0, 0, 0, .28), inset 0 1px rgba(239, 217, 165, .1);
+}
+
+.crypto-plan-top {
+    min-height: 24px;
+}
+
+.crypto-plan-top > span {
+    color: #aaa69c;
+    font-size: 12px;
+    letter-spacing: 2.2px;
+}
+
+.crypto-plan-price {
+    margin-top: 34px;
+    margin-bottom: 18px;
+    gap: 8px;
+    color: #f2c95f;
+}
+
+.crypto-plan-price strong {
+    color: inherit;
+    font-size: clamp(44px, 4.2vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -2.5px;
+    white-space: nowrap;
+}
+
+.crypto-plan-price span {
+    color: #96918a;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.crypto-plan h3 {
+    margin: 0 0 14px;
+    color: #f4f1eb;
+    font-size: 27px;
+    letter-spacing: -.8px;
+}
+
+.crypto-plan-description {
+    min-height: 68px;
+    color: #c1c0bd;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.crypto-plan ul {
+    margin: 26px 0 34px;
+    padding-top: 22px;
+    gap: 14px;
+    border-color: rgba(207, 193, 163, .18);
+}
+
+.crypto-plan li {
+    color: #c7c6c3;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.crypto-plan li i {
+    color: #35ef8a;
+    font-size: 19px;
+}
+
+.crypto-plan .crypto-button {
+    min-width: 148px;
+    min-height: 64px;
+    padding-inline: 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.crypto-plan .crypto-button-secondary {
+    border-color: #a98236;
+    color: #f2c95f;
+    background: rgba(174, 129, 49, .1);
+}
+
+.crypto-plan .crypto-button-secondary:hover {
+    border-color: #d0a944;
+    color: #f2c95f;
+    background: rgba(174, 129, 49, .18);
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+    .crypto-plan-price strong {
+        font-size: clamp(40px, 3.5vw, 50px);
+    }
+}
+
+@media (max-width: 760px) {
+    .crypto-plans {
+        padding: 68px 6% 76px;
+    }
+
+    .crypto-plans-heading {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .crypto-plans-heading h2 {
+        font-size: clamp(38px, 8vw, 52px);
+        letter-spacing: -1.6px;
+    }
+
+    .crypto-plans-heading > p {
+        font-size: 14px;
+    }
+
+    .crypto-billing-control {
+        margin-top: 23px;
+        margin-bottom: 30px;
+    }
+
+    .crypto-period-switch {
+        width: min(100%, 450px);
+    }
+
+    .crypto-period-switch button {
+        flex: 1;
+        min-width: 0;
+        padding-inline: 10px;
+    }
+
+    .crypto-plan-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .crypto-plan {
+        min-height: 0;
+        padding: 30px 28px 26px;
+    }
+
+    .crypto-plan-price {
+        margin-top: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .crypto-plans {
+        padding: 58px 14px 66px;
+    }
+
+    .crypto-plans-heading h2 {
+        font-size: clamp(35px, 9vw, 42px);
+        letter-spacing: -1.2px;
+    }
+
+    .crypto-period-switch {
+        padding: 4px;
+    }
+
+    .crypto-period-switch button {
+        min-height: 44px;
+        padding-inline: 6px;
+        font-size: 12px;
+    }
+
+    .crypto-plan {
+        padding: 25px 21px 22px;
+    }
+
+    .crypto-plan-price strong {
+        font-size: clamp(36px, 10vw, 43px);
+    }
+
+    .crypto-plan li {
+        font-size: 13px;
+    }
+}
+
+/* Match the Forex membership section; Crypto plan copy and rates stay intact. */
+.crypto-plans {
+    --crypto-pricing-ink: #1c1915;
+    --crypto-pricing-muted: #756b60;
+    --crypto-pricing-gold: #b7832d;
+    --crypto-pricing-accent: #c9a24a;
+    --crypto-pricing-line: rgba(174, 130, 73, .24);
+    width: calc(100% + 11vw);
+    max-width: none;
+    margin: 0 0 0 -5.5vw;
+    padding: 90px max(8vw, calc((100% - 1100px) / 2)) 102px;
+    color: var(--crypto-pricing-ink);
+    background: transparent;
+    border: 0;
+}
+
+.crypto-plans .crypto-plans-heading {
+    width: min(100%, 1280px);
+    max-width: 1280px;
+    margin: 0 auto 34px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+    align-items: end;
+    gap: 12px 8%;
+    text-align: left;
+}
+
+.crypto-plans .crypto-plans-heading > div {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    max-width: 640px;
+}
+
+.crypto-plans .crypto-eyebrow {
+    margin-bottom: 5px;
+    color: var(--crypto-pricing-gold);
+}
+
+.crypto-plans .crypto-eyebrow i,
+.crypto-plans .crypto-eyebrow::after {
+    background: rgba(183, 131, 45, .5);
+}
+
+.crypto-plans .crypto-eyebrow::after {
+    width: 22px;
+    height: 2px;
+    content: "";
+}
+
+.crypto-plans .crypto-plans-heading h2 {
+    max-width: 640px;
+    margin: 0;
+    color: var(--crypto-pricing-ink);
+    font-size: clamp(42px, 4.3vw, 60px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -2px;
+}
+
+.crypto-plans .crypto-plans-heading h2 span {
+    color: var(--crypto-pricing-accent);
+}
+
+.crypto-plans .crypto-plans-heading > p {
+    grid-column: 2;
+    grid-row: 2;
+    max-width: 500px;
+    margin: 0 0 5px;
+    color: var(--crypto-pricing-muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.crypto-billing-control {
+    width: min(100%, 1280px);
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: auto minmax(0, auto);
+    align-items: center;
+    justify-content: start;
+    gap: 8px 18px;
+}
+
+.crypto-period-switch {
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid rgba(183, 131, 45, .48);
+    border-radius: 999px;
+    background: #211e19;
+}
+
+.crypto-period-switch button {
+    min-width: 102px;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: #e8dfcf;
+    font: 600 13px/1.2 "Inter", sans-serif;
+}
+
+.crypto-period-switch button.is-selected {
+    color: #1c1915;
+    background: #e5c878;
+    box-shadow: 0 4px 12px rgba(183, 131, 45, .2);
+}
+
+.crypto-billing-caption {
+    grid-column: 2;
+    margin: 0;
+    color: #8a6b38;
+    font-size: 10px;
+}
+
+.crypto-plan-grid {
+    width: min(100%, 1100px);
+    max-width: 1100px;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.crypto-plans .crypto-plan {
+    min-height: 560px;
+    padding: 30px 29px 27px;
+    border: 1px solid var(--crypto-pricing-line);
+    border-radius: 24px;
+    color: var(--crypto-pricing-ink);
+    background: rgba(255, 253, 248, .9);
+    box-shadow: 0 12px 30px rgba(74, 56, 29, .07);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.crypto-plans .crypto-plan:hover {
+    transform: translateY(-4px);
+    border-color: rgba(183, 131, 45, .48);
+    background: rgba(255, 254, 251, .96);
+    box-shadow: 0 17px 34px rgba(74, 56, 29, .11);
+}
+
+.crypto-plans .crypto-plan.is-recommended {
+    border-color: rgba(183, 131, 45, .48);
+    background: linear-gradient(145deg, rgba(255, 253, 248, .97), rgba(242, 231, 213, .9));
+    box-shadow: 0 14px 34px rgba(74, 56, 29, .1);
+}
+
+.crypto-plans .crypto-plan.is-recommended:hover {
+    border-color: rgba(183, 131, 45, .65);
+    background: linear-gradient(145deg, #fffefa, rgba(242, 231, 213, .96));
+}
+
+.crypto-plans .crypto-plan-top > span {
+    color: #8a6b38;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.crypto-plans .crypto-plan h3 {
+    margin: 9px 0 8px;
+    color: var(--crypto-pricing-ink);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -.8px;
+}
+
+.crypto-plans .crypto-plan-description {
+    min-height: 42px;
+    margin: 0;
+    color: var(--crypto-pricing-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.crypto-plans .crypto-plan-price {
+    margin: 21px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--crypto-pricing-gold);
+}
+
+.crypto-plans .crypto-plan-price strong {
+    color: inherit;
+    font-size: clamp(40px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2.7px;
+    line-height: 1.08;
+    white-space: nowrap;
+}
+
+.crypto-plans .crypto-plan-price span {
+    color: var(--crypto-pricing-muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.crypto-price-caption {
+    margin: 3px 0 0;
+    color: #8a6b38;
+    font-size: 10px;
+}
+
+.crypto-plans .crypto-plan ul {
+    margin: 22px 0 24px;
+    padding: 18px 0 0;
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    border-top: 1px solid var(--crypto-pricing-line);
+}
+
+.crypto-plans .crypto-plan li {
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    color: #625a4d;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.crypto-plans .crypto-plan li i {
+    margin-top: 3px;
+    color: var(--crypto-pricing-gold);
+    font-size: 16px;
+}
+
+.crypto-plans .crypto-plan > .crypto-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    margin-top: auto;
+    padding: 0 27px;
+    border: 1px solid #b99138;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-decoration: none;
+    box-shadow: none;
+    justify-content: center;
+}
+
+.crypto-plans .crypto-plan > .crypto-button-secondary {
+    border-color: var(--crypto-pricing-gold);
+    color: #8a6426;
+    background: rgba(183, 131, 45, .08);
+}
+
+.crypto-plans .crypto-plan > .crypto-button-primary {
+    border-color: #c99535;
+    color: #1c1915;
+    background: linear-gradient(135deg, #f5d38a, #d9a640);
+}
+
+.crypto-plans .crypto-plan > .crypto-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(145, 101, 44, .14);
+}
+
+@media (max-width: 900px) {
+    .crypto-plan-grid {
+        max-width: 600px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 760px) {
+    .crypto-plans {
+        width: calc(100% + 12vw);
+        margin-left: -6vw;
+        padding: 80px clamp(32px, 8vw, 44px) 90px;
+    }
+
+    .crypto-plans .crypto-plans-heading {
+        width: min(100%, 460px);
+        margin-bottom: 29px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .crypto-plans .crypto-plans-heading > div,
+    .crypto-plans .crypto-plans-heading h2,
+    .crypto-plans .crypto-plans-heading > p {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .crypto-plans .crypto-plans-heading > p {
+        margin: 0;
+    }
+
+    .crypto-plans .crypto-plans-heading > div,
+    .crypto-plans .crypto-plans-heading h2,
+    .crypto-plans .crypto-plans-heading > p {
+        width: 100%;
+    }
+
+    .crypto-billing-control {
+        width: min(100%, 460px);
+        grid-template-columns: minmax(0, 1fr);
+        margin-bottom: 30px;
+        justify-items: center;
+    }
+
+    .crypto-billing-caption {
+        grid-column: 1;
+        justify-self: center;
+        text-align: center;
+    }
+
+    .crypto-period-switch {
+        width: 100%;
+    }
+
+    .crypto-period-switch button {
+        min-width: 0;
+        min-height: 46px;
+        padding: 0 15px;
+        font-size: 13px;
+    }
+
+    .crypto-plan-grid {
+        width: 100%;
+        max-width: 460px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 21px;
+    }
+
+    .crypto-plans .crypto-plan {
+        min-height: 0;
+        padding: 28px 28px 25px;
+        border-radius: 25px;
+    }
+
+    .crypto-plans .crypto-plan-price {
+        margin: 17px 0 0;
+    }
+
+    .crypto-plans .crypto-plan-price strong {
+        font-size: clamp(40px, 9vw, 54px);
+    }
+
+    .crypto-plans .crypto-plan-description {
+        min-height: 0;
+    }
+
+    .crypto-plans .crypto-plan ul {
+        margin: 26px 0 22px;
+        padding-top: 16px;
+        gap: 10px;
+    }
+
+    .crypto-plans .crypto-plan li {
+        font-size: 12.5px;
+    }
+
+    .crypto-plans .crypto-plan > .crypto-button {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .crypto-plans {
+        width: calc(100% + 10vw);
+        margin-left: -5vw;
+        padding: 68px clamp(30px, 8vw, 36px) 76px;
+    }
+
+    .crypto-billing-control {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .crypto-billing-caption {
+        grid-column: 1;
+    }
+
+    .crypto-period-switch {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .crypto-period-switch button {
+        flex: 1;
+        padding: 0 8px;
+        font-size: 12px;
+    }
+
+    .crypto-plans .crypto-plan {
+        padding: 26px 26px 23px;
+    }
+
+    .crypto-plans .crypto-plan-top > span {
+        font-size: 11px;
+    }
+
+    .crypto-plans .crypto-plan-price strong {
+        font-size: clamp(37px, 10vw, 46px);
+        letter-spacing: -2px;
+    }
+}
+
+@media (max-width: 380px) {
+    .crypto-plans {
+        padding-top: 60px;
+        padding-bottom: 68px;
+    }
+
+    .crypto-plans .crypto-plans-heading {
+        margin-bottom: 23px;
+    }
+
+    .crypto-period-switch {
+        padding: 4px;
+    }
+
+    .crypto-period-switch button {
+        min-height: 42px;
+        padding: 0 5px;
+        font-size: 11px;
+    }
+
+    .crypto-plans .crypto-plan {
+        padding: 25px 24px 22px;
+    }
+
+    .crypto-plans .crypto-plan-price strong {
+        font-size: 35px;
+        letter-spacing: -1.8px;
+    }
+
+    .crypto-plans .crypto-plan-description,
+    .crypto-plans .crypto-plan li {
+        font-size: 12px;
+    }
+}
+

@@ -1,7 +1,9 @@
-﻿import { useEffect} from "react";
+﻿import { useEffect } from "react";
+import { useState } from "react";
 import {
   FaArrowRight,
   FaCalendarAlt,
+  FaCheck,
   FaChartLine,
   FaClock,
   FaGlobe,
@@ -31,46 +33,37 @@ const features = [
 
 const packages = [
   {
-    name: "STARTER",
-    category: "Essential Coverage",
-    price: "$699",
+    name: "Forex Starter",
+    category: "STARTER PACKAGE",
+    prices: { monthly: "499", quarterly: "1,299", yearly: "3,999" },
+    description: "A simple, repeatable risk process for new traders.",
     features: [
-      "Premium services & daily 3-4 signals",
-      "Newsletter & Weekly Calendar",
-      "Risk-to-Reward Ratio: 1:1.5 / 1:2",
-      "Access to Experts Panel & Real-time global news stream",
-      "Major economic updates & Risk profiling",
-      "24/7 Assistance & Dedicated Relationship Manager",
+      "2-3 curated trade ideas each day",
+      "Typical targets around 1:1 risk/reward",
+      "70-75% stated accuracy range",
+      "Daily economic calendar, newsletter and data bulletins",
+      "SMC-focused technical analysis with stop-loss zones",
     ],
-    account: "$5,000",
   },
   {
-    name: "PRO",
-    badge: "Most Popular / Recommended",
-    price: "$999",
+    name: "Forex Pro",
+    category: "PRO PACKAGE",
+    prices: { monthly: "1,099", quarterly: "2,699", yearly: "8,999" },
+    description: "Professional signals and risk support for funded traders.",
     features: [
-      "Daily 2-3 signals with Live monitoring",
-      "Risk-to-Reward Ratio: 1:1 / 1:1.5",
-      "Access to Experts Panel & Important News alerts",
-      "Real-time global news stream & Major Economic updates",
-      "Custom Risk profiling & 24/7 Assistance",
+      "4-5 handpicked setups per day",
+      "Potential setups around 1:3 risk/reward",
+      "85-90% stated accuracy range",
+      "Daily live briefings with daily and weekly calendars",
+      "Research reports, real-time assistance and dedicated account manager",
     ],
-    account: "$500",
   },
-  {
-    name: "ELITE+",
-    category: "Maximum Precision",
-    price: "$1499",
-    features: [
-      "Daily 4-6 signals & High Accuracy Level",
-      "Newsletter & Weekly Calendar with Pre-session briefing",
-      "Risk-to-Reward Ratio: 1:2 / 1:4",
-      "Sniper entries & Dynamic Market Strategies",
-      "Access to Experts Panel & Real-time global news stream",
-      "Dedicated Relationship Manager & 24/7 Assistance",
-    ],
-    account: "$10,000",
-  },
+];
+
+const billingPeriods = [
+  { key: "monthly", label: "Monthly", unit: "mo" },
+  { key: "quarterly", label: "Quarterly", unit: "qtr" },
+  { key: "yearly", label: "Yearly", unit: "yr" },
 ];
 
 const method = [
@@ -119,6 +112,8 @@ function InactiveAction({ children, className = "" }) {
 
 export default function Forex() {
   // const [openFaq, setOpenFaq] = useState(0);
+  const [billingPeriod, setBillingPeriod] = useState("monthly");
+  const selectedBillingPeriod = billingPeriods.find((period) => period.key === billingPeriod);
 
   useEffect(() => {
     if (window.customElements?.get("tv-ticker-tape")) return;
@@ -158,8 +153,20 @@ export default function Forex() {
           <p className="forex-hero-lede">Currency-pair recommendations, session analysis and risk context.</p>
           <p className="forex-hero-description">Read majors, minors and exotics through session structure, correlation, liquidity and volatility bands. Understand the context behind a move before deciding whether it fits your plan.</p>
           <div className="forex-hero-actions">
-            <a className="forex-button forex-button-primary" href="#final-cta">Claim your free trial <FaArrowRight /></a>
-            <InactiveAction className="forex-button forex-button-secondary">Book your call</InactiveAction>
+            <a
+              className="forex-button forex-button-primary"
+              href="/contact-us"
+            >
+              Claim your free trial <FaArrowRight />
+            </a>
+            <a
+              href="https://wa.me/971565702852"
+              className="forex-button forex-button-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book your call
+            </a>
           </div>
           <div className="forex-stats" aria-label="Forex desk statistics">
             {stats.map(([value, label]) => <div className="forex-stat" key={label}><strong>{value}</strong><span>{label}</span></div>)}
@@ -181,15 +188,22 @@ export default function Forex() {
       </section>
 
       <section className="forex-packages forex-section" id="packages" data-forex-reveal>
-        <div className="forex-section-heading"><span className="forex-eyebrow">MEMBERSHIP OPTIONS</span><h2>Forex Membership &<span className="forex-title-highlight"> Packages</span></h2><p>Choose the membership package that fits your capital size and trading style. Transparent pricing with verified features.</p></div>
-        <div className="forex-package-grid">{packages.map((plan) => <article className={`forex-package-card ${plan.badge ? "is-recommended" : ""}`} key={plan.name}>
-          {plan.badge && <div className="forex-package-badge">{plan.badge}</div>}
-          {plan.category && <span className="forex-package-category">{plan.category}</span>}<h3>{plan.name}</h3>
-          <div className="forex-price">{plan.price}<span>Per subscription</span></div>
-          <p className="forex-annual">Save 30% on Annual</p>
-          <ul>{plan.features.map((item) => <li key={item}><FaArrowRight />{item}</li>)}</ul>
-          <div className="forex-account"><span>Recommended account size</span><strong>{plan.account}</strong></div>
-          <InactiveAction className="forex-button forex-button-secondary">Claim Package Access</InactiveAction>
+        <div className="forex-section-heading"><span className="forex-eyebrow">MEMBERSHIP OPTIONS</span><h2>Forex Membership &<span className="forex-title-highlight"> Packages</span></h2><p>Select monthly, quarterly or yearly billing. Prices are listed in AED as per the current service package sheet.</p></div>
+        <div className="forex-billing-control">
+          {/* <span className="forex-billing-label" id="forex-billing-label">Billing period</span> */}
+          <div className="forex-period-switch" role="group" aria-labelledby="forex-billing-label">
+            {billingPeriods.map((period) => <button type="button" key={period.key} className={billingPeriod === period.key ? "is-selected" : ""} aria-pressed={billingPeriod === period.key} onClick={() => setBillingPeriod(period.key)}>{period.label}</button>)}
+          </div>
+          <p className="forex-billing-caption" aria-live="polite">{selectedBillingPeriod.label} package prices shown.</p>
+        </div>
+        <div className="forex-package-grid">{packages.map((plan, index) => <article className={`forex-package-card ${index === 1 ? "is-recommended" : ""}`} key={plan.name}>
+          <span className="forex-package-category">{plan.category}</span>
+          <h3>{plan.name}</h3>
+          <p className="forex-package-description">{plan.description}</p>
+          <div className="forex-price"><strong>AED {plan.prices[billingPeriod]}</strong><span>/{selectedBillingPeriod.unit}</span></div>
+          <p className="forex-price-caption">{selectedBillingPeriod.label} price</p>
+          <ul>{plan.features.map((item) => <li key={item}><FaCheck aria-hidden="true" />{item}</li>)}</ul>
+          <a className={`forex-button ${index === 1 ? "forex-button-primary" : "forex-button-secondary"}`} href="/contact-us">Buy Now <FaArrowRight aria-hidden="true" /></a>
         </article>)}</div>
       </section>
 
@@ -222,7 +236,7 @@ export default function Forex() {
           <h3>{card.title}</h3><p>{card.text}</p>
           <a className="forex-overview-link" href={card.link}><span>{card.label}</span><i aria-hidden="true"><FaArrowRight /></i></a>
         </article>)}</div>
-        </section>
+      </section>
 
       {/* <section className="forex-faq forex-section" id="faq" data-forex-reveal>
         <div className="forex-faq-heading"><span className="forex-eyebrow">CLEAR ANSWERS</span><h2>What traders ask us first</h2><p>Review the desk details before deciding whether it fits your approach.</p></div>
