@@ -3339,3 +3339,459 @@
 .forex-title-highlight {
     color: #b7832d;
 }
+
+/* Forex membership pricing aligned with the page's cream and gold palette. */
+.forex-packages {
+    --forex-pricing-ink: #1c1915;
+    --forex-pricing-muted: #756b60;
+    --forex-pricing-gold: var(--forex-gold, #b7832d);
+    --forex-pricing-accent: #c9a24a;
+    --forex-pricing-line: var(--forex-line, rgba(174, 130, 73, .24));
+    width: calc(100% + 11vw);
+    max-width: none;
+    margin: 0 0 0 -5.5vw;
+    padding: 90px max(8vw, calc((100% - 1100px) / 2)) 102px;
+    color: var(--forex-pricing-ink);
+    background: transparent;
+    border: 0;
+}
+
+.forex-packages .forex-section-heading {
+    width: min(100%, 1280px);
+    max-width: 1280px;
+    margin: 0 auto 34px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+    align-items: end;
+    gap: 12px 8%;
+    text-align: left;
+}
+
+.forex-packages .forex-section-heading > .forex-eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    margin-bottom: 5px;
+}
+
+.forex-packages .forex-section-heading h2 {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 640px;
+    margin: 0;
+    color: var(--forex-pricing-ink);
+    font-weight: 800;
+}
+
+.forex-packages .forex-section-heading h2 .forex-title-highlight {
+    color: var(--forex-pricing-accent);
+}
+
+.forex-packages .forex-section-heading > p {
+    grid-column: 2;
+    grid-row: 2;
+    max-width: 500px;
+    margin: 0 0 5px;
+    color: var(--forex-pricing-muted);
+    line-height: 1.8;
+}
+
+.forex-packages .forex-section-heading > .forex-eyebrow {
+    color: var(--forex-pricing-gold);
+}
+
+.forex-packages .forex-section-heading > .forex-eyebrow::before,
+.forex-packages .forex-section-heading > .forex-eyebrow::after {
+    background: rgba(183, 131, 45, .5);
+}
+
+.forex-billing-control {
+    width: min(100%, 1280px);
+    margin: 0 auto 30px;
+    display: grid;
+    grid-template-columns: auto minmax(0, auto);
+    align-items: center;
+    justify-content: start;
+    gap: 8px 18px;
+}
+
+.forex-billing-label {
+    color: var(--forex-pricing-muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.forex-period-switch {
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid rgba(183, 131, 45, .48);
+    border-radius: 999px;
+    background: #211e19;
+}
+
+.forex-period-switch button {
+    min-width: 102px;
+    min-height: 40px;
+    /* padding: 0 12px; */
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #e8dfcf;
+    font: 600 13px/1.2 "Inter", sans-serif;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.forex-period-switch button.is-selected {
+    background: #e5c878;
+    color: #1c1915;
+    box-shadow: 0 4px 12px rgba(183, 131, 45, .2);
+}
+
+.forex-billing-caption {
+    grid-column: 2;
+    margin: 0;
+    color: #8a6b38;
+    font-size: 10px;
+}
+
+.forex-period-switch button:focus-visible {
+    outline: 2px solid #c9a24a;
+    outline-offset: 3px;
+}
+
+.forex-package-grid {
+    width: min(100%, 1100px);
+    max-width: 1100px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.forex-packages .forex-package-card {
+    min-height: 560px;
+    padding: 30px 29px 27px;
+    border: 1px solid var(--forex-pricing-line);
+    border-radius: 24px;
+    background: rgba(255, 253, 248, .9);
+    box-shadow: 0 12px 30px rgba(74, 56, 29, .07);
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.forex-packages .forex-package-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(183, 131, 45, .48);
+    background: rgba(255, 254, 251, .96);
+    box-shadow: 0 17px 34px rgba(74, 56, 29, .11);
+}
+
+.forex-packages .forex-package-card.is-recommended {
+    border: 1px solid rgba(183, 131, 45, .48);
+    background: linear-gradient(145deg, rgba(255, 253, 248, .97), rgba(242, 231, 213, .9));
+    box-shadow: 0 14px 34px rgba(74, 56, 29, .1);
+}
+
+.forex-packages .forex-package-card.is-recommended:hover {
+    border-color: rgba(183, 131, 45, .65);
+    background: linear-gradient(145deg, #fffefa, rgba(242, 231, 213, .96));
+}
+
+.forex-packages .forex-package-category {
+    color: #8a6b38;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+}
+
+.forex-packages .forex-price {
+    margin: 21px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--forex-pricing-gold);
+}
+
+.forex-packages .forex-price strong {
+    color: inherit;
+    font-size: clamp(40px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -2.7px;
+    line-height: 1.08;
+    white-space: nowrap;
+}
+
+.forex-packages .forex-price span {
+    color: var(--forex-pricing-muted);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.forex-packages .forex-package-card h3 {
+    margin: 9px 0 8px;
+    color: var(--forex-pricing-ink);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -.8px;
+}
+
+.forex-packages .forex-package-description {
+    min-height: 42px;
+    margin: 0;
+    color: var(--forex-pricing-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.forex-packages .forex-price-caption {
+    margin: 3px 0 0;
+    color: #8a6b38;
+    font-size: 10px;
+}
+
+.forex-packages .forex-package-card ul {
+    margin: 22px 0 24px;
+    padding: 18px 0 0;
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    border-top: 1px solid var(--forex-pricing-line);
+}
+
+.forex-packages .forex-package-card li {
+    grid-template-columns: 18px 1fr;
+    align-items: start;
+    gap: 14px;
+    color: #625a4d;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.forex-packages .forex-package-card li svg {
+    margin-top: 3px;
+    color: var(--forex-pricing-gold);
+    font-size: 16px;
+}
+
+.forex-packages .forex-package-card > .forex-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    margin-top: auto;
+    /* padding: 0 27px; */
+    border: 1px solid #b99138;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-decoration: none;
+    box-shadow: none;
+    justify-content: center;
+}
+
+.forex-packages .forex-package-card > .forex-button-secondary {
+    border-color: var(--forex-pricing-gold);
+    color: #8a6426;
+    background: rgba(183, 131, 45, .08);
+}
+
+.forex-packages .forex-package-card > .forex-button-primary {
+    border-color: #c99535;
+    color: #1c1915;
+    background: linear-gradient(135deg, #f5d38a, #d9a640);
+}
+
+.forex-packages .forex-package-card > .forex-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(145, 101, 44, .14);
+}
+
+@media (max-width: 900px) {
+    .forex-package-grid {
+        max-width: 600px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 760px) {
+    .forex-packages {
+        width: calc(100% + 12vw);
+        margin-left: -6vw;
+        padding: 80px clamp(32px, 8vw, 44px) 90px;
+    }
+
+    .forex-packages .forex-section-heading {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        width: min(100%, 460px);
+        margin-bottom: 29px;
+        text-align: left;
+    }
+
+    .forex-packages .forex-section-heading > .forex-eyebrow,
+    .forex-packages .forex-section-heading h2,
+    .forex-packages .forex-section-heading > p {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .forex-packages .forex-section-heading > p {
+        margin: 0;
+    }
+
+    .forex-billing-control {
+        width: min(100%, 460px);
+        grid-template-columns: auto minmax(0, 1fr);
+        margin-bottom: 30px;
+    }
+
+    .forex-period-switch {
+        width: 100%;
+    }
+
+    .forex-period-switch button {
+        min-width: 0;
+        min-height: 46px;
+        padding: 0 15px;
+        font-size: 13px;
+    }
+
+    .forex-package-grid {
+        width: 100%;
+        max-width: 460px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 21px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .forex-packages .forex-package-card {
+        min-height: 0;
+        padding: 28px 28px 25px;
+        border-radius: 25px;
+    }
+
+    .forex-packages .forex-price {
+        margin: 24px 0 15px;
+    }
+
+    .forex-packages .forex-price strong {
+        font-size: clamp(40px, 9vw, 54px);
+    }
+
+    .forex-packages .forex-package-card h3 {
+        font-size: 25px;
+    }
+
+    .forex-packages .forex-price {
+        margin-top: 17px;
+    }
+
+    .forex-packages .forex-package-description {
+        min-height: 0;
+        font-size: 14px;
+    }
+
+    .forex-packages .forex-package-card ul {
+        margin: 26px 0 22px;
+        padding-top: 16px;
+        gap: 10px;
+    }
+
+    .forex-packages .forex-package-card li {
+        font-size: 12.5px;
+    }
+
+    .forex-packages .forex-package-card > .forex-button {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .forex-packages {
+        width: calc(100% + 10vw);
+        margin-left: -5vw;
+        padding: 68px clamp(30px, 8vw, 36px) 76px;
+    }
+
+    .forex-period-switch {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .forex-billing-control {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .forex-billing-caption {
+        grid-column: 1;
+    }
+
+    .forex-period-switch button {
+        flex: 1;
+        padding: 0 8px;
+        font-size: 12px;
+    }
+
+    .forex-packages .forex-package-card {
+        padding: 26px 26px 23px;
+    }
+
+    .forex-packages .forex-package-category {
+        font-size: 11px;
+    }
+
+    .forex-packages .forex-price strong {
+        font-size: clamp(37px, 10vw, 46px);
+        letter-spacing: -2px;
+    }
+
+    .forex-packages .forex-package-card > .forex-button {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 380px) {
+    .forex-packages {
+        padding-top: 60px;
+        padding-bottom: 68px;
+    }
+
+    .forex-packages .forex-section-heading {
+        margin-bottom: 23px;
+    }
+
+    .forex-period-switch {
+        padding: 4px;
+    }
+
+    .forex-period-switch button {
+        min-height: 42px;
+        padding: 0 5px;
+        font-size: 11px;
+    }
+
+    .forex-packages .forex-package-card {
+        padding: 25px 24px 22px;
+    }
+
+    .forex-packages .forex-price strong {
+        font-size: 35px;
+        letter-spacing: -1.8px;
+    }
+
+    .forex-packages .forex-package-description,
+    .forex-packages .forex-package-card li {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .forex-period-switch button,
+    .forex-packages .forex-package-card,
+    .forex-packages .forex-package-card > .forex-button {
+        transition: none;
+    }
+}
