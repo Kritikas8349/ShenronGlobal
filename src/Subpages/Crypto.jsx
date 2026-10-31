@@ -10,6 +10,9 @@ import {
   FaSignal,
 } from "react-icons/fa";
 import "./Crypto.css";
+import EnquiryPopup from "../pages/EnquiryPopup";
+import { Link } from "react-router-dom";
+
 
 const overview = [
   {
@@ -267,6 +270,7 @@ function CoinArtwork() {
 }
 
 function CryptoHero() {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   return (
     <section className="crypto-hero" id="top">
       <div className="crypto-hero-copy">
@@ -275,7 +279,14 @@ function CryptoHero() {
         <p>Get crypto recommendations, market insights and risk-aware strategy notes for Bitcoin, Ethereum and other major digital assets.</p>
         <div className="crypto-hero-actions">
           <a className="crypto-button crypto-button-primary" href="/services/crypto#plans">View Plans <FaArrowRight aria-hidden="true" /></a>
-          <a className="crypto-button crypto-button-secondary" href="/contact-us">Book Consultation</a>
+          <button
+            className="crypto-button crypto-button-secondary"
+            type="button"
+            onClick={() => setIsEnquiryOpen(true)}
+          >
+            Book Consultation
+            <FaArrowRight />
+          </button>
         </div>
         <ul className="crypto-coverage" aria-label="Crypto desk coverage">
           <li><FaBitcoin aria-hidden="true" />BTC</li><li><FaEthereum aria-hidden="true" />ETH</li><li>Altcoins</li><li><FaShieldAlt aria-hidden="true" />24/5 support</li>
@@ -289,6 +300,12 @@ function CryptoHero() {
         <div className="crypto-market-panel crypto-panel-two"><span>RESEARCH LENS</span><strong>Structure · Liquidity · Risk</strong></div>
         <span className="crypto-visual-caption">Research context for a changing market</span>
       </div>
+      {isEnquiryOpen && (
+      <EnquiryPopup
+          openOnMount={true}
+          onClose={() => setIsEnquiryOpen(false)}
+      />
+  )}
     </section>
   );
 }
@@ -317,7 +334,7 @@ function CryptoPlans() {
         <div className="crypto-plan-price" aria-live="polite"><strong>{plan.prices[period]}</strong><span>/{periodUnit}</span></div>
         <p className="crypto-price-caption">{periodLabel} price</p>
         <ul>{plan.features.map((feature) => <li key={feature}><i aria-hidden="true" />{feature}</li>)}</ul>
-        <a className={`crypto-button ${plan.recommended ? "crypto-button-primary" : "crypto-button-secondary"}`} href="https://shenronglobal.com/contact" target="_blank" rel="noreferrer">Buy Now <FaArrowRight aria-hidden="true" /></a>
+        <a className={`crypto-button ${plan.recommended ? "crypto-button-primary" : "crypto-button-secondary"}`} href="/contact-us" target="_blank" rel="noreferrer">Buy Now <FaArrowRight aria-hidden="true" /></a>
       </article>)}</div>
     </section>
   );
@@ -344,6 +361,7 @@ function CryptoMarketSignals({ visible }) {
 }
 
 export default function Crypto() {
+
   const [signalsVisible, setSignalsVisible] = useState(false);
   useEffect(() => {
     const root = document.querySelector(".crypto-page");
@@ -366,6 +384,7 @@ export default function Crypto() {
   }, []);
 
   return (
+    <>
     <main className="crypto-page">
       <CryptoHero />
 
@@ -410,9 +429,10 @@ export default function Crypto() {
 
       <section className="crypto-final" data-crypto-reveal>
         <div><Eyebrow>CRYPTO DESK / SHENRON GLOBAL</Eyebrow><h2>Bring a clearer framework to your next <span>market decision.</span></h2><p>Talk with our team about crypto research, guidance and the support that fits your approach.</p></div>
-        <a className="crypto-button crypto-button-primary" href="/contact">Book Consultation <FaArrowRight aria-hidden="true" /></a>
+        <a className="crypto-button crypto-button-primary" href="/contact-us">Book Consultation <FaArrowRight aria-hidden="true" /></a>
         <span className="crypto-final-orbit" aria-hidden="true" />
       </section>
     </main>
+    </>
   );
 }

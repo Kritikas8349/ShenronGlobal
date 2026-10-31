@@ -112,6 +112,7 @@
 
 .forex-button-secondary {
     color: #292014;
+    cursor: pointer;
 }
 
 .forex-button:not(:disabled):hover {
@@ -1206,8 +1207,7 @@
     color: #c3a86e;
 }
 
-.forex-eyebrow>i {
-}
+
 
 .forex-hero h1 {
     margin: 20px 0 16px;
@@ -1218,8 +1218,7 @@
     letter-spacing: -2.8px;
 }
 
-.forex-hero h1 span {
-}
+
 
 .forex-hero-lede {
     color: #dbc794;
@@ -1260,8 +1259,7 @@
     color: #eee9dc;
 }
 
-.forex-button-secondary:not(:disabled):hover {
-}
+
 
 .forex-button:disabled {
     opacity: .62;
@@ -1378,9 +1376,6 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-}
-
-.forex-visual-legend span:nth-child(2) i {
 }
 
 .forex-session-stamp {
@@ -2106,8 +2101,6 @@
     color: #171717;
 }
 
-.forex-hero::before {
-}
 
 .forex-hero::after {
     border-color: rgba(174, 130, 73, .12);
@@ -2123,8 +2116,7 @@
     font-weight: 800;
 }
 
-.forex-hero h1 span {
-}
+
 
 .forex-hero-lede {
     color: #8b7759;
@@ -2164,8 +2156,7 @@
     color: #282828;
 }
 
-.forex-button-secondary:not(:disabled):hover {
-}
+
 
 .forex-market-visual {
     border-color: rgba(174, 130, 73, .25);
@@ -2173,8 +2164,6 @@
     box-shadow: 0 18px 45px rgba(76, 55, 31, .1);
 }
 
-.forex-market-visual::before {
-}
 
 .forex-visual-heading {
     border-color: rgba(174, 130, 73, .2);
@@ -2206,8 +2195,7 @@
     color: #756b60;
 }
 
-.forex-visual-legend i {
-}
+
 
 .forex-session-stamp {
     color: rgba(130, 97, 44, .72);
@@ -2256,8 +2244,7 @@
     color: #756b60;
 }
 
-.forex-packages {
-}
+
 
 .forex-package-card {
     border-color: rgba(173, 137, 87, .24);
@@ -2354,8 +2341,6 @@
     color: #a45e48;
 }
 
-.forex-method {
-}
 
 .forex-method::before {
     border-color: rgba(174, 130, 73, .1);
@@ -2375,8 +2360,7 @@
     color: #986d36;
 }
 
-.forex-method-steps::before {
-}
+
 
 .forex-broker-card {
     border-color: rgba(173, 137, 87, .22);
@@ -2446,10 +2430,7 @@
     color: #8a6b39;
 }
 
-@media (max-width:760px) {
-    .forex-method-steps::before {
-    }
-}
+
 
 /* Align the Forex hero copy and image as a responsive two-column layout. */
 .forex-hero {

@@ -14,6 +14,8 @@ import {
 import "./Forex.css";
 
 import forexHero from "../assets/forexHero.png";
+import EnquiryPopup from "../pages/EnquiryPopup";
+
 
 const stats = [
   ["100k+", "Traders in community"],
@@ -144,6 +146,8 @@ export default function Forex() {
     return () => observer.disconnect();
   }, []);
 
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   return (
     <main className="forex-page" id="top">
       <section className="forex-hero">
@@ -155,15 +159,16 @@ export default function Forex() {
           <div className="forex-hero-actions">
             <a
               className="forex-button forex-button-primary"
-              href="/contact-us"
+              href="https://wa.me/971565702852"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Claim your free trial <FaArrowRight />
             </a>
             <a
-              href="https://wa.me/971565702852"
+              onClick={() => setIsEnquiryOpen(true)}
+              type="button"
               className="forex-button forex-button-secondary"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Book your call
             </a>
@@ -244,6 +249,12 @@ export default function Forex() {
       </section> */}
 
       {/* <section className="forex-final-cta" id="final-cta" data-forex-reveal><div><span className="forex-eyebrow">FOREX DESK</span><h2>What can we help you achieve?</h2><p>Join the community, take the free trial, and see the forex desk in action for a week.</p></div><InactiveAction className="forex-button forex-button-primary">Book your FREE trial <FaArrowRight /></InactiveAction><a className="forex-back-link" href="#top">Back to the radar <FaArrowDown /></a></section> */}
+      {isEnquiryOpen && (
+                <EnquiryPopup
+                    openOnMount={true}
+                    onClose={() => setIsEnquiryOpen(false)}
+                />
+            )}
     </main>
   );
 }

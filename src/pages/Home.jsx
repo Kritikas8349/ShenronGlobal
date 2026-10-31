@@ -21,6 +21,8 @@ import {
 import "./Home.css";
 import heroImg from "../assets/MobileHero.png";
 import phone from "../assets/phoneNew.png";
+import EnquiryPopup from "../pages/EnquiryPopup";
+
 
 
 const testimonials = [
@@ -360,6 +362,8 @@ function SignalCard({ signal, index, visible }) {
 
 
 export default function Home() {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
     const [activeIndex, setActiveIndex] = useState(0);
     const [openIndex, setOpenIndex] = useState(0);
 
@@ -489,9 +493,13 @@ export default function Home() {
                         </p>
 
                         <div className="hero-buttons">
-                            <Link to="/contact-us" className="hero-btn primary-btn">
+                            <button
+                                className="hero-btn primary-btn"
+                                onClick={() => setIsEnquiryOpen(true)}
+                                type="button"
+                            >
                                 Start Trading
-                            </Link>
+                            </button>
 
                             <Link to="/services/forex" className="hero-btn secondary-btn">
                                 Explore Our Services
@@ -1125,6 +1133,13 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
+            {isEnquiryOpen && (
+                <EnquiryPopup
+                    openOnMount={true}
+                    onClose={() => setIsEnquiryOpen(false)}
+                />
+            )}
 
         </>
     );
