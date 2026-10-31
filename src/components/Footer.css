@@ -460,60 +460,6 @@
   }
   
   /* =========================================
-     BOTTOM BAR
-  ========================================= */
-  
-  .footer-bottom {
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.012);
-  }
-  
-  .footer-bottom-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    width: 100%;
-    max-width: 1400px;
-    min-height: 64px;
-    margin: 0 auto;
-    padding: 15px 5.2%;
-  }
-  
-  .footer-copyright {
-    margin: 0;
-    color: #89857e;
-    font-size: 11px;
-    line-height: 1.7;
-  }
-  
-  .footer-legal-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .footer-legal-links a {
-    color: #a7a299;
-    font-size: 11px;
-    line-height: 1.6;
-    text-decoration: none;
-    transition: color 0.25s ease;
-  }
-  
-  .footer-legal-links a:hover {
-    color: #d9ae5e;
-  }
-  
-  .footer-legal-divider {
-    color: #625c51;
-    font-size: 11px;
-  }
-  
-  /* =========================================
      LAPTOP RESPONSIVENESS
   ========================================= */
   
@@ -529,7 +475,7 @@
         minmax(0, 1fr);
       gap: 32px 24px;
     }
-  
+
     .footer-brand {
       grid-row: span 2;
       padding-right: 12px;
@@ -537,11 +483,6 @@
   
     .footer-column {
       padding-left: 20px;
-    }
-  
-    .footer-bottom-inner {
-      padding-right: 4%;
-      padding-left: 4%;
     }
   }
   
@@ -567,19 +508,6 @@
   
     .footer-column {
       padding-left: 18px;
-    }
-  
-    .footer-bottom-inner {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 13px;
-      padding-top: 19px;
-      padding-bottom: 19px;
-    }
-  
-    .footer-legal-links {
-      justify-content: flex-start;
-      gap: 12px;
     }
   }
   
@@ -637,23 +565,6 @@
       width: 32px;
       height: 32px;
     }
-  
-    .footer-bottom-inner {
-      padding: 18px 22px;
-    }
-  
-    .footer-copyright {
-      font-size: 10px;
-    }
-  
-    .footer-legal-links {
-      gap: 8px;
-    }
-  
-    .footer-legal-links a,
-    .footer-legal-divider {
-      font-size: 10px;
-    }
   }
   
   /* =========================================
@@ -673,15 +584,6 @@
     .footer-column {
       padding-left: 10px;
     }
-  
-    .footer-legal-links {
-      gap: 6px;
-    }
-  
-    .footer-bottom-inner {
-      padding-right: 16px;
-      padding-left: 16px;
-    }
   }
   
   /* =========================================
@@ -690,9 +592,194 @@
   
   @media (prefers-reduced-motion: reduce) {
     .footer-social-link,
-    .footer-link-list a,
-    .footer-legal-links a {
+    .footer-link-list a {
       transition: none;
+  }
+  }
+
+  /* =========================================
+     CONTACT AND RISK INFORMATION
+  ========================================= */
+
+  .footer-reference {
+    width: min(1680px, 88%);
+    margin: 0 auto;
+    color: #a5a199;
+  }
+
+  .footer-reference-contact {
+    padding: 0 0 48px;
+  }
+
+  .footer-reference-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-reference-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-width: 0;
+    color: #a5a199;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .footer-reference-contact-list li > svg {
+    flex: 0 0 22px;
+    width: 22px;
+    color: #e8bf58;
+    font-size: 20px;
+  }
+
+  .footer-reference-contact-list a {
+    color: inherit;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+  }
+
+  .footer-reference-contact-list a:hover {
+    color: #e8bf58;
+  }
+
+  .footer-reference-socials {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .footer-reference-socials a,
+  .footer-reference-socials span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(217, 174, 94, 0.25);
+    border-radius: 50%;
+    color: #b7b3ac;
+    background: rgba(255, 255, 255, 0.015);
+    font-size: 17px;
+  }
+
+  .footer-reference-socials a {
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .footer-reference-socials a:hover {
+    border-color: #e8bf58;
+    color: #111;
+    background: #e8bf58;
+  }
+
+  .footer-reference-copyright {
+    margin: 25px 0 0;
+    color: #a5a199;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .footer-reference-disclaimer {
+    position: relative;
+    isolation: isolate;
+    padding: 48px clamp(20px, 4vw, 76px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: #a5a199;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .footer-reference-disclaimer::before {
+    position: absolute;
+    z-index: -1;
+    inset: 50% auto auto 50%;
+    color: rgba(255, 255, 255, 0.035);
+    content: "Shenron";
+    font-size: clamp(72px, 16vw, 230px);
+    font-weight: 800;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .footer-reference-disclaimer p {
+    margin: 0;
+  }
+
+  .footer-reference-riskbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 72px;
+    padding: 18px 0;
+    color: #a5a199;
+    font-size: 14px;
+  }
+
+  .footer-reference-riskbar > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .footer-reference-riskbar i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #39c879;
+  }
+
+  .footer-reference-riskbar p {
+    margin: 0;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .footer-reference {
+      width: calc(100% - 44px);
+    }
+
+    .footer-reference-contact {
+      padding-bottom: 34px;
+    }
+
+    .footer-reference-contact-list {
+      gap: 15px;
+    }
+
+    .footer-reference-contact-list li,
+    .footer-reference-copyright {
+      font-size: 13px;
+    }
+
+    .footer-reference-disclaimer {
+      padding: 30px 0;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .footer-reference-riskbar {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+      padding: 18px 0;
+      font-size: 12px;
+    }
+
+    .footer-reference-riskbar p {
+      text-align: left;
     }
   }
-  

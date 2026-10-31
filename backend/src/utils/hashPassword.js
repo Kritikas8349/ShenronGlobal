@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { stdin, stdout } from "node:process";
 
 async function readPassword() {
-  stdout.write("Enter a new admin password (14+ characters): ");
+  stdout.write("Enter a new admin password (8+ characters): ");
   let password = "";
   if (stdin.isTTY) stdin.setRawMode(true);
   stdin.resume();
@@ -22,7 +22,7 @@ async function readPassword() {
 
 try {
   const password = await readPassword();
-  if (password.length < 14 || Buffer.byteLength(password, "utf8") > 72) throw new Error("Password must be at least 14 characters and no more than 72 UTF-8 bytes.");
+  if (password.length < 8 || Buffer.byteLength(password, "utf8") > 72) throw new Error("Password must be at least 8 characters and no more than 72 UTF-8 bytes.");
   stdout.write(`${await bcrypt.hash(password, 12)}\n`);
 } catch (error) {
   console.error(error.message);

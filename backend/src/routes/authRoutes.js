@@ -64,8 +64,8 @@ export function authRoutes(env, mailer) {
     const token = typeof req.body?.token === "string" ? req.body.token : "";
     const password = typeof req.body?.password === "string" ? req.body.password : "";
     if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return res.status(400).json({ message: "This password reset link is invalid or has expired." });
-    if (password.length < 14 || Buffer.byteLength(password, "utf8") > 72) {
-      return res.status(400).json({ message: "Choose a password with at least 14 characters and no more than 72 UTF-8 bytes." });
+    if (password.length < 8 || Buffer.byteLength(password, "utf8") > 72) {
+      return res.status(400).json({ message: "Choose a password with at least 8 characters and no more than 72 UTF-8 bytes." });
     }
 
     const tokenHash = hashResetToken(token);

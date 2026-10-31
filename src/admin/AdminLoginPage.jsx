@@ -10,6 +10,7 @@ export default function AdminLoginPage() {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   if (!loading && user) return <Navigate to="/admin/blogs" replace />;
@@ -38,7 +39,12 @@ export default function AdminLoginPage() {
             <label htmlFor="admin-login-password">Password</label>
             <Link to="/admin/forgot-password">Forgot password?</Link>
           </div>
-          <input id="admin-login-password" type="password" autoComplete="current-password" placeholder="Enter your password" required value={password} onChange={(event) => setPassword(event.target.value)} />
+          <div className="admin-password-input-wrap">
+            <input id="admin-login-password" type={showPassword ? "text" : "password"} autoComplete="current-password" placeholder="Enter your password" required value={password} onChange={(event) => setPassword(event.target.value)} />
+            <button className="admin-password-toggle" type="button" onClick={() => setShowPassword((shown) => !shown)} aria-label={showPassword ? "Hide password" : "Show password"} aria-pressed={showPassword}>
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
         </div>
         <button className="admin-primary admin-auth-submit" disabled={busy}>
           <span>{busy ? "Signing in..." : "Sign in to admin"}</span>

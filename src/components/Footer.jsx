@@ -3,10 +3,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import {
+  FaClock,
+  FaDiscord,
+  FaEnvelope,
   FaFacebookF,
+  FaGlobe,
   FaInstagram,
+  FaPhoneAlt,
   FaTelegram,
   FaArrowRight,
+  FaYoutube,
 } from "react-icons/fa";
 
 import { FaXTwitter } from "react-icons/fa6";
@@ -27,24 +33,11 @@ const serviceLinks = [
   { label: "Comex", to: "/services/comex" },
 ];
 
-const resourceLinks = [
-  {
-    label:
-      "Address: Business Centre, A3 Dubai South Business Park - Dubai - United Arab Emirates",
-    value: "Business Centre, Dubai",
-    to: "https://www.google.com/maps/search/?api=1&query=Business+Centre+A3+Dubai+South+Business+Park+Dubai",
-    external: true,
-  },
-  {
-    label: "Email: support@shenronglobal.ae",
-    value: "support@shenronglobal.ae",
-    to: "mailto:support@shenronglobal.ae",
-  },
-  {
-    label: "Phone no: +971565702852",
-    value: "+971565702852",
-    to: "tel:+971565702852",
-  },
+const legalLinks = [
+  { label: "Disclaimer", to: "/legal/disclaimer" },
+  { label: "Terms & Conditions", to: "/legal/terms-and-conditions" },
+  { label: "Privacy Policy", to: "/legal/privacy-policy" },
+  { label: "Refund Policy", to: "/legal/refund-policy" },
 ];
 
 const socialLinks = [
@@ -67,6 +60,18 @@ const socialLinks = [
     label: "Telegram",
     icon: <FaTelegram />,
     href: "https://t.me/shenronglobal",
+  },
+];
+
+const footerContactSocials = [
+  { label: "Discord", icon: <FaDiscord /> },
+  { label: "X", icon: <FaXTwitter />, href: "https://x.com/shenronglobal" },
+  { label: "Telegram", icon: <FaTelegram />, href: "https://t.me/shenronglobal" },
+  { label: "YouTube", icon: <FaYoutube /> },
+  {
+    label: "Instagram",
+    icon: <FaInstagram />,
+    href: "https://www.instagram.com/shenronglobal?exln=MTEzc2hnNXMxaXkxbQ%3D%3D&utm_source=qr",
   },
 ];
 
@@ -193,54 +198,54 @@ export default function Footer() {
               links={serviceLinks}
             />
 
-            {/* CONTACT US */}
+            {/* LEGAL LINKS */}
             <FooterLinks
-              title="Contact Us"
-              links={resourceLinks}
+              title="Legal"
+              links={legalLinks}
             />
 
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="footer-bottom">
-          <div className="footer-bottom-inner">
+        {/* ADDITIONAL CONTACT AND RISK INFORMATION */}
+        <div className="footer-reference">
+          <section className="footer-reference-contact" aria-label="Contact information">
+            <ul className="footer-reference-contact-list">
+              <li><FaEnvelope aria-hidden="true" /><a href="mailto:support@shenronglobal.ae">support@shenronglobal.ae</a></li>
+              <li><FaPhoneAlt aria-hidden="true" /><a href="tel:+971565702852">+971565702852</a></li>
+              <li><FaClock aria-hidden="true" /><span>Mon - Fri: 9:00 AM - 6:00 PM (GST)</span></li>
+              <li><FaGlobe aria-hidden="true" /><a href="https://shenronglobal.ae" target="_blank" rel="noopener noreferrer">shenronglobal.ae</a></li>
+            </ul>
 
-            <p className="footer-copyright">
-              © {new Date().getFullYear()} Shenron Global.
-              All rights reserved.
-            </p>
+            <div className="footer-reference-socials" aria-label="Social media">
+              {footerContactSocials.map((social) => social.href ? (
+                <a key={social.label} href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
+                  {social.icon}
+                </a>
+              ) : (
+                <span key={social.label} aria-label={`${social.label} link unavailable`} title={`${social.label} link unavailable`}>
+                  {social.icon}
+                </span>
+              ))}
+            </div>
 
-            {/* LEGAL LINKS */}
-            <nav
-              className="footer-legal-links"
-              aria-label="Legal links"
-            >
-              <Link to="/legal/disclaimer">
-                Disclaimer
-              </Link>
+            <p className="footer-reference-copyright">© copyright Shenron Global {new Date().getFullYear()}. All rights reserved.</p>
+          </section>
 
-              <span className="footer-legal-divider">|</span>
+          <section className="footer-reference-disclaimer" aria-label="Trading risk disclaimer">
+            <p>All content on this site, including market commentary, trading signals, analysis, reports, webinars, tutorials and other materials, is provided for educational and informational purposes only.</p>
+            <p>Nothing on this site constitutes financial, investment, legal, tax or other professional advice tailored to your personal circumstances.</p>
+            <p>Trading forex, precious metals, cryptocurrencies, indices and other leveraged instruments involves significant risk and may result in partial or total loss of capital.</p>
+            <p>Market conditions can change rapidly, and you should never trade with funds you cannot afford to lose.</p>
+            <p>Shenron makes no guarantee of profits, and past performance, testimonials, case studies and examples do not predict future results.</p>
+          </section>
 
-              <Link to="/legal/terms-and-conditions">
-                Terms &amp; Conditions
-              </Link>
-
-              <span className="footer-legal-divider">|</span>
-
-              <Link to="/legal/privacy-policy">
-                Privacy Policy
-              </Link>
-
-              <span className="footer-legal-divider">|</span>
-
-              <Link to="/legal/refund-policy">
-                Refund Policy
-              </Link>
-            </nav>
-
+          <div className="footer-reference-riskbar">
+            <span><i aria-hidden="true" />Shenron Global</span>
+            <p>Trading involves risk. Educational content only.</p>
           </div>
         </div>
+
       </footer>
     </>
   );

@@ -142,7 +142,7 @@ function AdminRoutes() {
 function PublicRoutes() {
   return (
     <>
-      <EnquiryPopup openOnMount showTrigger={false} showOncePerSession />
+      <EnquiryPopup openOnMount showTrigger={false} showOncePerBrowser />
       <Navbar />
 
       <Routes>

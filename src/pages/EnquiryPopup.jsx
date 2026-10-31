@@ -1,5 +1,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { apiRequest, jsonBody } from "../lib/api";
 import "./EnquiryPopup.css";
 
@@ -14,18 +15,33 @@ const initialForm = {
 const popupDismissalKey = "sg-enquiry-popup-dismissed";
 
 function wasPopupDismissed() {
+  let dismissedInTab = false;
   try {
-    return window.sessionStorage.getItem(popupDismissalKey) === "true";
+    dismissedInTab = window.sessionStorage.getItem(popupDismissalKey) === "true";
   } catch {
-    return false;
+    // Keep working when browser storage is disabled.
   }
+
+  try {
+    if (window.localStorage.getItem(popupDismissalKey) === "true") return true;
+    if (dismissedInTab) window.localStorage.setItem(popupDismissalKey, "true");
+  } catch {
+    // Fall back to the current tab's dismissal state.
+  }
+
+  return dismissedInTab;
 }
 
 function rememberPopupDismissal() {
   try {
+    window.localStorage.setItem(popupDismissalKey, "true");
+  } catch {
+    // The modal still closes if persistent storage is unavailable.
+  }
+  try {
     window.sessionStorage.setItem(popupDismissalKey, "true");
   } catch {
-    // The popup still closes for this page even when storage is unavailable.
+    // The current React state still closes the modal for this page.
   }
 }
 
@@ -33,10 +49,10 @@ export default function EnquiryPopup({
   onClose,
   openOnMount = false,
   showTrigger = true,
-  showOncePerSession = false,
+  showOncePerBrowser = false,
 }) {
   const [isOpen, setIsOpen] = useState(() => (
-    openOnMount && (!showOncePerSession || !wasPopupDismissed())
+    openOnMount && (!showOncePerBrowser || !wasPopupDismissed())
   ));
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("");
@@ -46,9 +62,9 @@ export default function EnquiryPopup({
     if (isSubmitting) return;
 
     setIsOpen(false);
-    if (showOncePerSession) rememberPopupDismissal();
+    if (showOncePerBrowser) rememberPopupDismissal();
     onClose?.();
-  }, [isSubmitting, onClose, showOncePerSession]);
+  }, [isSubmitting, onClose, showOncePerBrowser]);
   const closePopupRef = useRef(closePopup);
 
   useEffect(() => {
@@ -137,7 +153,7 @@ export default function EnquiryPopup({
         </button>
       )}
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div
           className="enquiry-overlay"
           onMouseDown={(event) => {
@@ -280,7 +296,8 @@ export default function EnquiryPopup({
               </form>
             </div>
           </section>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

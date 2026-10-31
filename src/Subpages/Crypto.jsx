@@ -334,7 +334,7 @@ function CryptoPlans() {
         <div className="crypto-plan-price" aria-live="polite"><strong>{plan.prices[period]}</strong><span>/{periodUnit}</span></div>
         <p className="crypto-price-caption">{periodLabel} price</p>
         <ul>{plan.features.map((feature) => <li key={feature}><i aria-hidden="true" />{feature}</li>)}</ul>
-        <a className={`crypto-button ${plan.recommended ? "crypto-button-primary" : "crypto-button-secondary"}`} href="/contact-us" target="_blank" rel="noreferrer">Buy Now <FaArrowRight aria-hidden="true" /></a>
+        <a className={`crypto-button ${plan.recommended ? "crypto-button-primary" : "crypto-button-secondary"}`} href="/contact-us">Buy Now <FaArrowRight aria-hidden="true" /></a>
       </article>)}</div>
     </section>
   );
@@ -424,7 +424,7 @@ export default function Crypto() {
         <div className="crypto-risk-emblem"><FaLock aria-hidden="true" /><span>RISK<br />FIRST</span></div>
         <div className="crypto-risk-copy"><Eyebrow>RISK AWARENESS</Eyebrow><h2>Market Recommendations Do Not Remove Trading Risk</h2>
           <p>Crypto trading is highly volatile and may involve liquidity, slippage, exchange, custody and leverage risks. Recommendations are informational and should be tested against your own rules.</p></div>
-        <a className="crypto-button crypto-button-secondary" href="https://shenronglobal.com/legal/risk-disclosure" target="_blank" rel="noreferrer">Read Full Risk Disclosure <FaArrowRight aria-hidden="true" /></a>
+        <a className="crypto-button crypto-button-secondary" href="https://shenronglobal.ae/legal/risk-disclosure" target="_blank" rel="noreferrer">Read Full Risk Disclosure <FaArrowRight aria-hidden="true" /></a>
       </section> */}
 
       <section className="crypto-final" data-crypto-reveal>
