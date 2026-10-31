@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useAdminAuth } from "./AdminAuth";
+import AdminAuthLayout from "./AdminAuthLayout";
 import "./Admin.css";
 
 export default function AdminLoginPage() {
@@ -18,12 +19,32 @@ export default function AdminLoginPage() {
     catch (err) { setError(err.message || "Sign in failed."); }
     finally { setBusy(false); }
   };
-  return <main className="admin-login-page"><form className="admin-login-card" onSubmit={submit}>
-    <Link className="admin-login-back" to="/blogs">← Visit the journal</Link>
-    <span className="admin-eyebrow">SHENRON GLOBAL · ADMIN</span><h1>Sign in to your desk.</h1><p>Manage market notes and published articles.</p>
-    {error && <div className="admin-alert error" role="alert">{error}</div>}
-    <label>Email address<input type="email" autoComplete="username" required value={email} onChange={(event) => setEmail(event.target.value)} /></label>
-    <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} /></label>
-    <button className="admin-primary" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button>
-  </form></main>;
+  return (
+    <AdminAuthLayout
+      backTo="/blogs"
+      backLabel="Visit the journal"
+      title="Sign in to your desk."
+      description="Manage market notes and published articles from your private workspace."
+    >
+      {location.state?.passwordReset && <div className="admin-alert" role="status">Your password has been reset. Sign in with the new password.</div>}
+      {error && <div className="admin-alert error" role="alert">{error}</div>}
+      <form className="admin-auth-form" onSubmit={submit}>
+        <label className="admin-auth-field" htmlFor="admin-login-email">
+          <span>Email address</span>
+          <input id="admin-login-email" type="email" autoComplete="username" placeholder="you@example.com" required value={email} onChange={(event) => setEmail(event.target.value)} />
+        </label>
+        <div className="admin-auth-field">
+          <div className="admin-auth-field-head">
+            <label htmlFor="admin-login-password">Password</label>
+            <Link to="/admin/forgot-password">Forgot password?</Link>
+          </div>
+          <input id="admin-login-password" type="password" autoComplete="current-password" placeholder="Enter your password" required value={password} onChange={(event) => setPassword(event.target.value)} />
+        </div>
+        <button className="admin-primary admin-auth-submit" disabled={busy}>
+          <span>{busy ? "Signing in..." : "Sign in to admin"}</span>
+          <span className="admin-auth-submit-arrow" aria-hidden="true">→</span>
+        </button>
+      </form>
+    </AdminAuthLayout>
+  );
 }

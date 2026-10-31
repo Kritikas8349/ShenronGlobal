@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { apiRequest, jsonBody } from "../lib/api";
 import "./EnquiryPopup.css";
 
@@ -11,11 +11,49 @@ const initialForm = {
   website: "",
 };
 
-export default function EnquiryPopup({ onClose, openOnMount = false }) {
-    const [isOpen, setIsOpen] = useState(openOnMount);
+const popupDismissalKey = "sg-enquiry-popup-dismissed";
+
+function wasPopupDismissed() {
+  try {
+    return window.sessionStorage.getItem(popupDismissalKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function rememberPopupDismissal() {
+  try {
+    window.sessionStorage.setItem(popupDismissalKey, "true");
+  } catch {
+    // The popup still closes for this page even when storage is unavailable.
+  }
+}
+
+export default function EnquiryPopup({
+  onClose,
+  openOnMount = false,
+  showTrigger = true,
+  showOncePerSession = false,
+}) {
+  const [isOpen, setIsOpen] = useState(() => (
+    openOnMount && (!showOncePerSession || !wasPopupDismissed())
+  ));
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const closePopup = useCallback(() => {
+    if (isSubmitting) return;
+
+    setIsOpen(false);
+    if (showOncePerSession) rememberPopupDismissal();
+    onClose?.();
+  }, [isSubmitting, onClose, showOncePerSession]);
+  const closePopupRef = useRef(closePopup);
+
+  useEffect(() => {
+    closePopupRef.current = closePopup;
+  }, [closePopup]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -24,7 +62,7 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
     document.body.style.overflow = "hidden";
 
     const handleEscape = (event) => {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") closePopupRef.current();
     };
 
     window.addEventListener("keydown", handleEscape);
@@ -45,13 +83,6 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
 
     if (status) setStatus("");
   };
-
-  const closePopup = () => {
-    if (isSubmitting) return;
-
-    setIsOpen(false);
-    onClose?.();
-};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,17 +123,19 @@ export default function EnquiryPopup({ onClose, openOnMount = false }) {
   return (
     <>
       {/* Button that opens the popup */}
-      <button
-        type="button"
-        className="enquiry-open-btn"
-        onClick={() => {
-          setStatus("");
-          setIsOpen(true);
-        }}
-      >
-        Enquire Now
-        <span aria-hidden="true">↗</span>
-      </button>
+      {showTrigger && (
+        <button
+          type="button"
+          className="enquiry-open-btn"
+          onClick={() => {
+            setStatus("");
+            setIsOpen(true);
+          }}
+        >
+          Enquire Now
+          <span aria-hidden="true">↗</span>
+        </button>
+      )}
 
       {isOpen && (
         <div

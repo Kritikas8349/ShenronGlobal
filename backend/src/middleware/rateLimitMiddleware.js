@@ -1,6 +1,8 @@
 import rateLimit from "express-rate-limit";
 
 export const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Too many sign-in attempts. Wait 15 minutes and try again." } });
+export const passwordResetRequestLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 5, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Too many password reset requests. Wait 15 minutes and try again." } });
+export const passwordResetLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Too many password reset attempts. Wait 15 minutes and try again." } });
 export const uploadLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Upload limit reached. Please wait before uploading again." } });
 export const enquiryLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Too many enquiries were submitted from this connection. Please try again later." } });
 export const enquiryEmailLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: "draft-8", legacyHeaders: false, message: { message: "Email reply limit reached. Please wait before sending more replies." } });

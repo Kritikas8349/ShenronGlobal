@@ -8,12 +8,13 @@ function integer(name, fallback) {
 }
 
 export function loadEnv() {
-  const required = ["MONGODB_URI", "ADMIN_EMAIL", "ADMIN_PASSWORD_HASH", "JWT_SECRET"];
+  const required = ["MONGODB_URI", "ADMIN_EMAIL", "JWT_SECRET"];
   const missing = required.filter((name) => !process.env[name]?.trim());
   if (missing.length) throw new Error(`Missing required environment values: ${missing.join(", ")}`);
   const jwtSecret = process.env.JWT_SECRET;
   if (jwtSecret.length < 32) throw new Error("JWT_SECRET must contain at least 32 characters.");
-  if (!/^\$2[aby]\$\d\d\$/.test(process.env.ADMIN_PASSWORD_HASH)) throw new Error("ADMIN_PASSWORD_HASH must be a bcrypt hash. Generate one with npm run hash-password.");
+  const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH?.trim() || "";
+  if (adminPasswordHash && !/^\$2[aby]\$\d\d\$/.test(adminPasswordHash)) throw new Error("ADMIN_PASSWORD_HASH must be a bcrypt hash. Generate one with npm run hash-password.");
   const clientOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5173").split(",").map((origin) => origin.trim().replace(/\/$/, "")).filter(Boolean);
   for (const origin of clientOrigins) {
     let parsedOrigin;
@@ -69,7 +70,7 @@ export function loadEnv() {
     clientOrigins,
     publicSiteUrl,
     adminEmail: process.env.ADMIN_EMAIL.trim().toLowerCase(),
-    adminPasswordHash: process.env.ADMIN_PASSWORD_HASH,
+    adminPasswordHash,
     jwtSecret,
     jwtCookieName: process.env.JWT_COOKIE_NAME || "sg_admin_session",
     cookieSameSite,

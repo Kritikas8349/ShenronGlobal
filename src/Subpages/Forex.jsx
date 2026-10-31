@@ -2,6 +2,7 @@
 import { useState } from "react";
 import {
   FaArrowRight,
+  FaBalanceScale,
   FaCalendarAlt,
   FaCheck,
   FaChartLine,
@@ -31,6 +32,8 @@ const features = [
   { number: "04", icon: <FaCalendarAlt />, title: "Economic Calendar", text: "CPI, FOMC, central bank speeches - flagged with expected impact." },
   { number: "05", icon: <FaStream />, title: "Trade Journal", text: "Three fields per trade, one weekly review pass. Discipline that sticks." },
   { number: "06", icon: <FaGlobe />, title: "Live Market Desk", text: "Written commentary during London and New York overlaps." },
+  { number: "07", icon: <FaBalanceScale />, title: "Position Sizing", text: "Match trade size to stop distance and a clear account risk limit." },
+  { number: "08", icon: <FaShieldAlt />, title: "Risk Guardrails", text: "Set daily loss limits, invalidation levels, and exposure caps before trading." },
 ];
 
 const packages = [

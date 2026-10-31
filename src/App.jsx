@@ -10,12 +10,15 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import EnquiryPopup from "./pages/EnquiryPopup";
 
 import {
   AdminAuthProvider,
   AdminGuard,
 } from "./admin/AdminAuth";
 import AdminLoginPage from "./admin/AdminLoginPage";
+import AdminForgotPasswordPage from "./admin/AdminForgotPasswordPage";
+import AdminResetPasswordPage from "./admin/AdminResetPasswordPage";
 import AdminLayout from "./admin/AdminLayout";
 
 // Blog Pages
@@ -76,6 +79,16 @@ function AdminRoutes() {
         />
 
         <Route
+          path="/admin/forgot-password"
+          element={<AdminForgotPasswordPage />}
+        />
+
+        <Route
+          path="/admin/reset-password"
+          element={<AdminResetPasswordPage />}
+        />
+
+        <Route
           path="/admin"
           element={
             <AdminGuard>
@@ -129,6 +142,7 @@ function AdminRoutes() {
 function PublicRoutes() {
   return (
     <>
+      <EnquiryPopup openOnMount showTrigger={false} showOncePerSession />
       <Navbar />
 
       <Routes>

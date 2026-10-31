@@ -66,7 +66,7 @@ export function createApp(env) {
   app.use("/api/enquiries", publicEnquiryRoutes());
   app.use("/api/blogs/admin", adminBlogRoutes(env));
   app.use("/api/blogs", publicReadLimiter, publicBlogRoutes());
-  app.use("/api/auth/admin", authRoutes(env));
+  app.use("/api/auth/admin", authRoutes(env, enquiryMailer));
   const frontendIndex = env.frontendDistDir ? path.join(env.frontendDistDir, "index.html") : "";
   if (frontendIndex && !existsSync(frontendIndex)) throw new Error("FRONTEND_DIST_DIR must contain the built frontend index.html.");
   if (frontendIndex && existsSync(frontendIndex)) {
